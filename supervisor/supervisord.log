@@ -1,0 +1,149 @@
+2017-04-06 13:37:35,090 CRIT Server 'inet_http_server' running without any HTTP authentication checking
+2017-04-06 13:38:59,857 CRIT Server 'inet_http_server' running without any HTTP authentication checking
+2017-04-06 13:39:14,110 CRIT Server 'inet_http_server' running without any HTTP authentication checking
+2017-04-06 13:39:14,417 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-06 13:39:14,418 INFO daemonizing the supervisord process
+2017-04-06 13:39:14,419 INFO supervisord started with pid 64995
+2017-04-06 13:44:10,604 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-06 13:44:10,606 INFO daemonizing the supervisord process
+2017-04-06 13:44:10,607 INFO supervisord started with pid 66031
+2017-04-06 13:46:27,882 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-06 13:46:27,884 INFO daemonizing the supervisord process
+2017-04-06 13:46:27,885 INFO supervisord started with pid 66674
+2017-04-06 13:46:28,888 INFO spawned: 'ls' with pid 66682
+2017-04-06 13:46:29,892 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 13:47:15,259 INFO exited: ls (exit status 1; not expected)
+2017-04-06 13:47:16,262 INFO spawned: 'ls' with pid 66905
+2017-04-06 13:47:17,268 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 13:52:05,880 INFO RPC interface 'supervisor' initialized
+2017-04-06 13:52:05,881 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-06 13:52:05,883 INFO daemonizing the supervisord process
+2017-04-06 13:52:05,884 INFO supervisord started with pid 67945
+2017-04-06 13:52:06,886 INFO spawned: 'ls' with pid 67953
+2017-04-06 13:52:07,897 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 13:58:56,800 INFO exited: ls (exit status 1; not expected)
+2017-04-06 13:58:57,802 INFO spawned: 'ls' with pid 69614
+2017-04-06 13:58:58,805 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 13:59:06,016 INFO RPC interface 'supervisor' initialized
+2017-04-06 13:59:06,016 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-06 13:59:06,017 INFO daemonizing the supervisord process
+2017-04-06 13:59:06,019 INFO supervisord started with pid 69640
+2017-04-06 13:59:07,021 INFO spawned: 'ls' with pid 69649
+2017-04-06 13:59:08,033 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 13:59:37,177 INFO waiting for ls to stop
+2017-04-06 13:59:37,178 INFO stopped: ls (terminated by SIGTERM)
+2017-04-06 14:01:44,022 INFO RPC interface 'supervisor' initialized
+2017-04-06 14:01:44,023 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-06 14:01:44,024 INFO daemonizing the supervisord process
+2017-04-06 14:01:44,025 INFO supervisord started with pid 70238
+2017-04-06 14:01:52,834 INFO spawned: 'ls' with pid 70269
+2017-04-06 14:01:53,833 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:01:55,058 INFO exited: ls (exit status 0; expected)
+2017-04-06 14:02:54,379 INFO RPC interface 'supervisor' initialized
+2017-04-06 14:02:54,379 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-06 14:02:54,380 INFO daemonizing the supervisord process
+2017-04-06 14:02:54,381 INFO supervisord started with pid 70531
+2017-04-06 14:03:45,381 INFO spawned: 'ls' with pid 70712
+2017-04-06 14:03:46,378 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:03:47,641 INFO exited: ls (exit status 0; expected)
+2017-04-06 14:04:30,915 INFO RPC interface 'supervisor' initialized
+2017-04-06 14:04:30,915 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-06 14:04:30,917 INFO daemonizing the supervisord process
+2017-04-06 14:04:30,918 INFO supervisord started with pid 70912
+2017-04-06 14:04:46,842 INFO spawned: 'ls' with pid 70971
+2017-04-06 14:04:46,962 INFO exited: ls (exit status 0; not expected)
+2017-04-06 14:04:47,583 INFO exited: ls (exit status 1; not expected)
+2017-04-06 14:04:47,967 INFO spawned: 'ls' with pid 70976
+2017-04-06 14:04:48,074 INFO exited: ls (exit status 0; not expected)
+2017-04-06 14:04:48,598 INFO spawned: 'ls' with pid 70979
+2017-04-06 14:04:49,598 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:04:50,076 INFO spawned: 'ls' with pid 70984
+2017-04-06 14:04:50,190 INFO exited: ls (exit status 0; not expected)
+2017-04-06 14:04:53,193 INFO spawned: 'ls' with pid 70993
+2017-04-06 14:04:53,307 INFO exited: ls (exit status 0; not expected)
+2017-04-06 14:04:54,307 INFO gave up: ls entered FATAL state, too many start retries too quickly
+2017-04-06 14:05:23,895 INFO spawned: 'ls' with pid 71088
+2017-04-06 14:05:24,894 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:05:24,961 INFO exited: ls (exit status 0; expected)
+2017-04-06 14:12:02,467 INFO exited: ls (exit status 1; not expected)
+2017-04-06 14:12:03,482 INFO spawned: 'ls' with pid 72591
+2017-04-06 14:12:04,492 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:17:24,268 INFO exited: ls (exit status 1; not expected)
+2017-04-06 14:17:25,270 INFO spawned: 'ls' with pid 73822
+2017-04-06 14:17:26,273 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:18:30,438 INFO RPC interface 'supervisor' initialized
+2017-04-06 14:18:30,438 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-06 14:18:30,439 INFO daemonizing the supervisord process
+2017-04-06 14:18:30,440 INFO supervisord started with pid 74050
+2017-04-06 14:24:07,274 INFO exited: ls (exit status 1; not expected)
+2017-04-06 14:24:08,316 INFO spawned: 'ls' with pid 75175
+2017-04-06 14:24:09,331 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:29:30,662 INFO exited: ls (exit status 1; not expected)
+2017-04-06 14:29:31,674 INFO spawned: 'ls' with pid 76347
+2017-04-06 14:29:32,684 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:36:36,944 INFO exited: ls (exit status 1; not expected)
+2017-04-06 14:36:37,945 INFO spawned: 'ls' with pid 78114
+2017-04-06 14:36:38,952 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:41:40,576 INFO exited: ls (exit status 1; not expected)
+2017-04-06 14:41:41,578 INFO spawned: 'ls' with pid 79377
+2017-04-06 14:41:42,583 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:48:33,947 INFO exited: ls (exit status 1; not expected)
+2017-04-06 14:48:34,949 INFO spawned: 'ls' with pid 80902
+2017-04-06 14:48:35,975 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 14:53:56,070 INFO exited: ls (exit status 1; not expected)
+2017-04-06 14:53:57,074 INFO spawned: 'ls' with pid 82120
+2017-04-06 14:53:58,078 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:00:50,083 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:00:51,124 INFO spawned: 'ls' with pid 83726
+2017-04-06 15:00:52,143 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:06:07,980 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:06:08,982 INFO spawned: 'ls' with pid 84797
+2017-04-06 15:06:09,987 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:12:13,046 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:12:14,047 INFO spawned: 'ls' with pid 85954
+2017-04-06 15:12:15,064 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:17:26,969 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:17:27,970 INFO spawned: 'ls' with pid 87178
+2017-04-06 15:17:28,980 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:24:28,344 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:24:29,346 INFO spawned: 'ls' with pid 88877
+2017-04-06 15:24:30,348 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:29:46,897 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:29:47,932 INFO spawned: 'ls' with pid 90039
+2017-04-06 15:29:48,938 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:36:09,559 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:36:10,561 INFO spawned: 'ls' with pid 91443
+2017-04-06 15:36:11,569 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:41:20,587 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:41:21,588 INFO spawned: 'ls' with pid 92535
+2017-04-06 15:41:22,589 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:47:27,758 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:47:28,760 INFO spawned: 'ls' with pid 93913
+2017-04-06 15:47:29,830 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:52:40,264 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:52:41,266 INFO spawned: 'ls' with pid 95027
+2017-04-06 15:52:42,606 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 15:59:07,339 INFO exited: ls (exit status 1; not expected)
+2017-04-06 15:59:08,341 INFO spawned: 'ls' with pid 96462
+2017-04-06 15:59:09,368 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 16:04:29,746 INFO exited: ls (exit status 1; not expected)
+2017-04-06 16:04:30,748 INFO spawned: 'ls' with pid 97604
+2017-04-06 16:04:31,764 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 16:11:01,503 INFO exited: ls (exit status 1; not expected)
+2017-04-06 16:11:02,506 INFO spawned: 'ls' with pid 99070
+2017-04-06 16:11:03,505 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 16:16:02,804 INFO exited: ls (exit status 1; not expected)
+2017-04-06 16:16:03,805 INFO spawned: 'ls' with pid 258
+2017-04-06 16:16:04,813 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 16:22:55,827 INFO exited: ls (exit status 1; not expected)
+2017-04-06 16:22:56,828 INFO spawned: 'ls' with pid 1814
+2017-04-06 16:22:57,833 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 16:28:13,554 INFO exited: ls (exit status 1; not expected)
+2017-04-06 16:28:14,555 INFO spawned: 'ls' with pid 3079
+2017-04-06 16:28:15,558 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 16:34:55,674 INFO exited: ls (exit status 1; not expected)
+2017-04-06 16:34:56,677 INFO spawned: 'ls' with pid 4522
+2017-04-06 16:34:57,676 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-06 16:40:12,195 INFO exited: ls (exit status 1; not expected)
+2017-04-06 16:40:13,197 INFO spawned: 'ls' with pid 5911
+2017-04-06 16:40:14,199 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
