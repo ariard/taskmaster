@@ -1,0 +1,5 @@
+architecture :
+- garder un client minimal ou virer des le debut les commandes non accepetes ? "command as request"
+- comment gerer le multiclient ? 
+- pourquoi la premiere transaction est perdue ?
+- comment "endormir" le serveur, c est a dire eviter qu il boucle sans arret ?

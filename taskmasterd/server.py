@@ -1,24 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    __main__.py                                        :+:      :+:    :+:    #
+#    server.py                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/06 23:57:07 by ariard           ###   ########.fr        #
+#    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
+#    Updated: 2017/04/06 23:56:53 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-import os
 import sys
-import signal
 import time
 import socket
-from daemonize import *
-from server import *
-
 
 def server():
 # Change HOST value    
@@ -36,11 +30,5 @@ def server():
             print("Received", repr(data))
         else:
             time.sleep(1)
-
-
-if __name__ == '__main__' :
-    daemonize()
-    server()
-
 
 #server.init #server.listen #server.deploy #server.exit
