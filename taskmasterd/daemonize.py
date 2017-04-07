@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:34:11 by ariard            #+#    #+#              #
-#    Updated: 2017/04/06 23:34:14 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/07 04:28:11 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ def daemonize():
 
         fd = open('/dev/null')
         os.dup2(fd.fileno(), 0)
-#        os.dup2(fd.fileno(), 1)
+        os.dup2(fd.fileno(), 1)
         os.dup2(fd.fileno(), 2)
 
         os.umask(0)
@@ -54,4 +54,4 @@ def daemonize():
         pid = os.getpid() 
         pidfile.write(str(pid))
 
-        os.kill(fatherpid, signal.SIGUSR1) 
+        os.kill(fatherpid, signal.SIGUSR2) 

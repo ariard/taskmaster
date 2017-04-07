@@ -3,3 +3,8 @@ architecture :
 - comment gerer le multiclient ? 
 - pourquoi la premiere transaction est perdue ?
 - comment "endormir" le serveur, c est a dire eviter qu il boucle sans arret ?
+- prevoir un fichier de config backup au cas ou passe sans fichier ?
+- faire gaffe aux socket eror "addres already in use"
+- verifier la bonne daemonization, est-ce que setid detache de la session et donc des entrees standards ?
+- try/except on syscall
+- comment surveiller les process et en meme temps ecouter les clients ?

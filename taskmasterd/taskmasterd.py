@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/06 23:57:07 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/07 04:27:42 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,31 +16,28 @@ import sys
 import signal
 import time
 import socket
+import configparser
+
 from daemonize import *
 from server import *
-
-
-def server():
-# Change HOST value    
-    HOST = ''
-    PORT = 2121
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, \
-                    socket.getprotobyname("tcp"))
-    if server_socket.bind((HOST, PORT)) == False:
-        sys.exit(-1)
-    server_socket.listen(42)
-    client_socket, client_addr = server_socket.accept()
-    while True:
-        data = client_socket.recv(1024)
-        if data:
-            print("Received", repr(data))
-        else:
-            time.sleep(1)
-
+from monitor import *
+from log import *
 
 if __name__ == '__main__' :
+    
+    if len(sys.argv) < 2:
+        print("usage : <config_file>")
+        exit(-1)
+
     daemonize()
-    server()
+    log = log()
+    config = configparser.ConfigParser()
+    config.read_file(open('/Users/ariard/Projects/taskmaster/taskmasterd/master.config'))
+    monitor = monitor(config, (config.sections()))
+    monitor.launch()
+    server = server('', 2121)
+    server.accept()
+    server.receive()
 
 
 #server.init #server.listen #server.deploy #server.exit
