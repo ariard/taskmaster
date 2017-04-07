@@ -7,4 +7,8 @@ architecture :
 - faire gaffe aux socket eror "addres already in use"
 - verifier la bonne daemonization, est-ce que setid detache de la session et donc des entrees standards ?
 - try/except on syscall
-- comment surveiller les process et en meme temps ecouter les clients ?
+- comment surveiller les process et en meme temps ecouter les clients?
+
+- a quel terminal rattacher les process ?
+- besoins de shell builtins ? (attach/detach)
+- attacher les programmes supervises au shell de lancement de supervisor
