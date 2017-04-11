@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/07 00:35:09 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/11 17:33:34 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ import sys
 import time
 import socket
 
-class server:
+class Server:
     def __init__(self, host, port):
         self.host = host
         self.port = port
@@ -30,5 +30,6 @@ class server:
     def receive(self):
         while True:
             data = self.cs.recv(1024)
+            print(data)
 
 #server.init #server.listen #server.deploy #server.exit

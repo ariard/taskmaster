@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/07 04:27:42 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/11 17:43:47 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,10 @@ if __name__ == '__main__' :
     config = configparser.ConfigParser()
     config.read_file(open('/Users/ariard/Projects/taskmaster/taskmasterd/master.config'))
     monitor = monitor(config, (config.sections()))
-    monitor.launch()
+    monitor.launch_all()
+#   server.init
     server = server('', 2121)
+#   server.launch
     server.accept()
     server.receive()
 

@@ -147,3 +147,111 @@
 2017-04-06 16:40:12,195 INFO exited: ls (exit status 1; not expected)
 2017-04-06 16:40:13,197 INFO spawned: 'ls' with pid 5911
 2017-04-06 16:40:14,199 INFO success: ls entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2017-04-10 17:45:59,600 INFO RPC interface 'supervisor' initialized
+2017-04-10 17:45:59,601 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-10 17:45:59,602 INFO daemonizing the supervisord process
+2017-04-10 17:45:59,603 INFO supervisord started with pid 29850
+2017-04-10 17:47:42,419 INFO spawned: 'ls' with pid 30426
+2017-04-10 17:47:43,214 INFO exited: ls (exit status 0; not expected)
+2017-04-10 17:47:44,217 INFO spawned: 'ls' with pid 30434
+2017-04-10 17:47:44,310 INFO exited: ls (exit status 0; not expected)
+2017-04-10 17:47:46,313 INFO spawned: 'ls' with pid 30440
+2017-04-10 17:47:46,406 INFO exited: ls (exit status 0; not expected)
+2017-04-10 17:47:49,409 INFO spawned: 'ls' with pid 30448
+2017-04-10 17:47:49,508 INFO exited: ls (exit status 0; not expected)
+2017-04-10 17:47:50,509 INFO gave up: ls entered FATAL state, too many start retries too quickly
+2017-04-10 22:25:01,590 INFO RPC interface 'supervisor' initialized
+2017-04-10 22:25:01,591 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-10 22:25:01,593 INFO daemonizing the supervisord process
+2017-04-10 22:25:01,593 INFO supervisord started with pid 93156
+2017-04-10 22:25:02,596 INFO spawned: 'ls' with pid 93171
+2017-04-10 22:25:02,709 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:25:03,711 INFO spawned: 'ls' with pid 93178
+2017-04-10 22:25:03,805 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:25:05,808 INFO spawned: 'ls' with pid 93191
+2017-04-10 22:25:05,902 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:25:08,906 INFO spawned: 'ls' with pid 93206
+2017-04-10 22:25:09,002 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:25:10,003 INFO gave up: ls entered FATAL state, too many start retries too quickly
+2017-04-10 22:25:45,368 INFO spawned: 'ls' with pid 93365
+2017-04-10 22:25:45,465 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:25:46,469 INFO spawned: 'ls' with pid 93371
+2017-04-10 22:25:46,562 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:25:48,565 INFO spawned: 'ls' with pid 93377
+2017-04-10 22:25:48,659 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:25:51,663 INFO spawned: 'ls' with pid 93387
+2017-04-10 22:25:51,757 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:25:51,909 INFO gave up: ls entered FATAL state, too many start retries too quickly
+2017-04-10 22:27:22,798 INFO RPC interface 'supervisor' initialized
+2017-04-10 22:27:22,798 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-10 22:27:22,799 INFO daemonizing the supervisord process
+2017-04-10 22:27:22,800 INFO supervisord started with pid 93729
+2017-04-10 22:27:23,802 INFO spawned: 'ls' with pid 93745
+2017-04-10 22:27:23,903 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:27:24,906 INFO spawned: 'ls' with pid 93747
+2017-04-10 22:27:24,999 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:27:27,001 INFO spawned: 'ls' with pid 93754
+2017-04-10 22:27:27,103 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:27:30,919 INFO spawned: 'ls' with pid 93766
+2017-04-10 22:27:31,011 INFO exited: ls (exit status 0; not expected)
+2017-04-10 22:27:32,012 INFO gave up: ls entered FATAL state, too many start retries too quickly
+2017-04-10 22:29:27,695 INFO RPC interface 'supervisor' initialized
+2017-04-10 22:29:27,695 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-10 22:29:27,696 INFO daemonizing the supervisord process
+2017-04-10 22:29:27,697 INFO supervisord started with pid 94195
+2017-04-10 22:29:28,699 INFO spawned: 'ls' with pid 94210
+2017-04-10 22:29:28,713 INFO success: ls entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2017-04-10 22:29:28,797 INFO exited: ls (exit status 0; expected)
+2017-04-10 22:30:06,730 INFO RPC interface 'supervisor' initialized
+2017-04-10 22:30:06,730 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-10 22:30:06,731 INFO daemonizing the supervisord process
+2017-04-10 22:30:06,732 INFO supervisord started with pid 94353
+2017-04-10 22:30:07,734 INFO spawned: 'ls' with pid 94368
+2017-04-10 22:30:07,747 INFO success: ls entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2017-04-10 22:30:07,828 INFO exited: ls (exit status 0; expected)
+2017-04-10 22:30:15,325 INFO spawned: 'ls' with pid 94389
+2017-04-10 22:30:15,325 INFO success: ls entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2017-04-10 22:30:15,424 INFO exited: ls (exit status 0; expected)
+2017-04-11 00:20:31,503 INFO RPC interface 'supervisor' initialized
+2017-04-11 00:20:31,504 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-11 00:20:31,505 INFO daemonizing the supervisord process
+2017-04-11 00:20:31,506 INFO supervisord started with pid 18640
+2017-04-11 00:20:32,509 INFO spawned: 'ls' with pid 18656
+2017-04-11 00:20:32,521 INFO success: ls entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2017-04-11 00:20:32,602 INFO exited: ls (exit status 0; expected)
+2017-04-11 00:22:26,009 INFO spawned: 'ls' with pid 19193
+2017-04-11 00:22:26,009 INFO success: ls entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2017-04-11 00:22:26,103 INFO exited: ls (exit status 0; expected)
+2017-04-11 00:22:30,609 INFO spawned: 'ls' with pid 19207
+2017-04-11 00:22:30,609 INFO success: ls entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2017-04-11 00:22:30,704 INFO exited: ls (exit status 0; expected)
+2017-04-11 00:25:47,296 INFO spawned: 'ls' with pid 19879
+2017-04-11 00:25:47,299 INFO success: ls entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2017-04-11 00:25:47,408 INFO exited: ls (exit status 0; expected)
+2017-04-11 01:24:24,998 INFO RPC interface 'supervisor' initialized
+2017-04-11 01:24:24,999 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-11 01:24:25,000 INFO daemonizing the supervisord process
+2017-04-11 01:24:25,001 INFO supervisord started with pid 32745
+2017-04-11 01:24:26,004 INFO spawned: 'ls' with pid 32757
+2017-04-11 01:24:26,065 INFO success: ls entered RUNNING state, process has stayed up for > than 0 seconds (startsecs)
+2017-04-11 01:24:26,651 INFO exited: ls (exit status 0; expected)
+2017-04-11 01:27:16,223 INFO RPC interface 'supervisor' initialized
+2017-04-11 01:27:16,223 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-11 01:27:16,224 INFO daemonizing the supervisord process
+2017-04-11 01:27:16,225 INFO supervisord started with pid 33372
+2017-04-11 01:27:17,228 INFO spawned: 'bigls' with pid 33384
+2017-04-11 01:27:17,230 INFO spawned: 'fatls' with pid 33385
+2017-04-11 01:28:57,480 INFO success: bigls entered RUNNING state, process has stayed up for > than 100 seconds (startsecs)
+2017-04-11 01:28:57,481 INFO success: fatls entered RUNNING state, process has stayed up for > than 100 seconds (startsecs)
+2017-04-11 01:39:13,246 INFO exited: fatls (exit status 1; not expected)
+2017-04-11 01:39:13,318 INFO spawned: 'fatls' with pid 35944
+2017-04-11 01:40:53,405 INFO success: fatls entered RUNNING state, process has stayed up for > than 100 seconds (startsecs)
+2017-04-11 01:50:08,716 INFO exited: fatls (exit status 1; not expected)
+2017-04-11 01:50:08,722 INFO spawned: 'fatls' with pid 38190
+2017-04-11 01:50:14,688 INFO exited: bigls (exit status 1; not expected)
+2017-04-11 01:50:14,717 INFO spawned: 'bigls' with pid 38212
+2017-04-11 01:51:48,722 INFO success: fatls entered RUNNING state, process has stayed up for > than 100 seconds (startsecs)
+2017-04-11 01:51:54,716 INFO success: bigls entered RUNNING state, process has stayed up for > than 100 seconds (startsecs)
+2017-04-11 02:02:10,253 INFO exited: fatls (exit status 1; not expected)
+2017-04-11 02:02:10,408 INFO spawned: 'fatls' with pid 40664
+2017-04-11 02:03:50,490 INFO success: fatls entered RUNNING state, process has stayed up for > than 100 seconds (startsecs)
