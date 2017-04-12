@@ -6,12 +6,13 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 02:59:46 by ariard            #+#    #+#              #
-#    Updated: 2017/04/12 18:53:51 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/12 21:08:52 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import subprocess
 import os
+import sys
 
 from execute import *
 from debug import *
@@ -27,18 +28,24 @@ class Monitor:
         for i in self.list_programs:
             self.program = Program(self.config, i)
             if self.program.autostart == "true":
-                while self.program.numprocs > 1:
-                    self.launch(self, self.program, self.program)
-                    self.program.numproc -= 1
+                while self.program.numprocs > 0:
+                    self.launch(self.program, self.program.numprocs)
+                    self.program.numprocs -= 1
     
     def launch(self, program, numero):
-        DG("at launch")
-        self.table_prog[program.command + str(numero)] = [ self.command, \
-            self.autostart, self.autorestart, self.startsecs, self.startretries, \
-            self.stopsignal, self.stopwaitsecs, self.stdout, self.stderr, \
-            self.env, self.dir, self.umask ]
+        self.table_prog[program.command + str(numero)] = [ program.command, \
+            program.autostart, program.autorestart, program.startsecs, program.startretries, \
+            program.stopsignal, program.stopwaitsecs, program.stdout, program.stderr, \
+            program.env, program.dir, program.umask ]
         status = os.fork()
         if status == 0:
+            DG("launch command")
             program.conf()
-#           log start    
-            subprocess.run(program.command)
+#           log start
+            try:
+                args = program.command.split(' ')
+                DG(args[0])
+                os.execv(args[0], args)
+            except:
+                DG("log : no such program")
+                sys.exit(-1)
