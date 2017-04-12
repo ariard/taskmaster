@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 02:59:46 by ariard            #+#    #+#              #
-#    Updated: 2017/04/11 19:26:03 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/12 16:15:40 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ class Monitor:
 
     def launch_all(self):
         for i in self.list_programs:
-            self.program = program(self.config, i)
+            self.program = Program(self.config, i)
             if self.program.autostart == "true":
                 while self.program.numprocs > 1:
                     self.launch(self, self.program, self.program)
