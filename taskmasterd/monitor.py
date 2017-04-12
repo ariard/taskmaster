@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 02:59:46 by ariard            #+#    #+#              #
-#    Updated: 2017/04/12 16:15:40 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/12 18:53:51 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ import subprocess
 import os
 
 from execute import *
+from debug import *
 
 class Monitor:
     def __init__(self, config, list_sections):
@@ -31,6 +32,7 @@ class Monitor:
                     self.program.numproc -= 1
     
     def launch(self, program, numero):
+        DG("at launch")
         self.table_prog[program.command + str(numero)] = [ self.command, \
             self.autostart, self.autorestart, self.startsecs, self.startretries, \
             self.stopsignal, self.stopwaitsecs, self.stdout, self.stderr, \
