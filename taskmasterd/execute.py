@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/04/12 21:09:34 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/12 22:19:32 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,13 @@ class Program:
             os.umask(int(self.umask))
         except:
             DG("log : couldn't umask")
-#        for i, j in self.env:
-#           os.environ[i] = j
+        try:
+            list_env = self.env.split(',')
+            for i in list_env:
+                j = i.split('=')
+                os.environ[j[0]] = j[1]
+        except:
+            DG("log : couldn't set env")
         try:
             fd = open(self.stdout, 'w+')
             os.dup2(fd.fileno(), 1)
