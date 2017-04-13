@@ -255,3 +255,25 @@
 2017-04-11 02:02:10,253 INFO exited: fatls (exit status 1; not expected)
 2017-04-11 02:02:10,408 INFO spawned: 'fatls' with pid 40664
 2017-04-11 02:03:50,490 INFO success: fatls entered RUNNING state, process has stayed up for > than 100 seconds (startsecs)
+2017-04-12 21:58:42,520 INFO RPC interface 'supervisor' initialized
+2017-04-12 21:58:42,521 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-12 21:58:42,522 INFO daemonizing the supervisord process
+2017-04-12 21:58:42,524 INFO supervisord started with pid 86013
+2017-04-12 21:58:43,527 INFO spawned: 'fatls' with pid 86025
+2017-04-12 22:00:06,967 INFO waiting for fatls to die
+2017-04-12 22:00:06,967 INFO stopped: fatls (terminated by SIGTERM)
+2017-04-12 22:01:51,675 INFO RPC interface 'supervisor' initialized
+2017-04-12 22:01:51,675 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-12 22:01:51,677 INFO daemonizing the supervisord process
+2017-04-12 22:01:51,678 INFO supervisord started with pid 86949
+2017-04-12 22:01:52,680 INFO spawned: 'fatls' with pid 86965
+2017-04-12 22:03:32,791 INFO success: fatls entered RUNNING state, process has stayed up for > than 100 seconds (startsecs)
+2017-04-12 22:03:35,997 INFO waiting for fatls to die
+2017-04-12 22:03:35,998 INFO stopped: fatls (terminated by SIGTERM)
+2017-04-12 22:04:14,493 INFO RPC interface 'supervisor' initialized
+2017-04-12 22:04:14,493 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-12 22:04:14,494 INFO daemonizing the supervisord process
+2017-04-12 22:04:14,495 INFO supervisord started with pid 87555
+2017-04-12 22:04:15,497 INFO spawned: 'fatls' with pid 87570
+2017-04-12 22:04:36,714 INFO waiting for fatls to die
+2017-04-12 22:04:36,714 INFO stopped: fatls (terminated by SIGTERM)

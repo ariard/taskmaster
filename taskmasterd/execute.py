@@ -6,11 +6,13 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/04/11 19:12:54 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/12 22:20:22 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import os
+
+from debug import *
 
 class Program:
     def __init__(self, parse, program):
@@ -30,16 +32,35 @@ class Program:
             self.umask = parse.get(program, "umask")
 
     def conf(self):
-        if self.dir == True:
-            os.chdir(self.dir) 
-        if self.umask == True:
-            os.umask(self.umask)
-#        for i, j in self.env:
-#           os.environ[i] = j
-        if self.stdout == True:
-            fd = open(self.stdout, 'w+')
-            os.dup2(fd, 1)
-        if self.stderr == True:
-            fd = open(self.stderr, 'w+')
-            os.dup2(fd, 2)
+        DG(" conf") 
 
+        try:
+            DG(self.dir)
+            os.chdir(self.dir) 
+        except:
+            DG("log : couldn't chdir")
+
+        try:
+            os.umask(int(self.umask))
+        except:
+            DG("log : couldn't umask")
+
+        try:
+            list_env = self.env.split(',')
+            for i in list_env:
+                j = i.split('=')
+                os.environ[j[0]] = j[1]
+        except:
+            DG("log : couldn't set env")
+
+        try:
+            fd = open(self.stdout, 'w+')
+            os.dup2(fd.fileno(), 1)
+        except:
+            DG("log : couldn't set stdout")
+
+        try:
+            fd = open(self.stderr, 'w+')
+            os.dup2(fd.fileno(), 2)
+        except:
+            DG("log : couldn't set stderr")

@@ -6,13 +6,15 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:34:11 by ariard            #+#    #+#              #
-#    Updated: 2017/04/11 17:39:31 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/12 20:38:14 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import os
 import sys
 import signal
+
+from debug import *
 
 def daemon_success(number, frame):
     file = open("/tmp/daemon.log", 'w+')
@@ -28,11 +30,12 @@ def daemonize():
 #   Sanitize environnement variable
 #   Check .pid to ensure non-daemon
 
+    DG("before daemonize")
     fatherpid = os.getpid()
     status = os.fork()
 
     if status > 0:
-       signal.signal(signal.SIGUSR1, daemon_success)   
+       signal.signal(signal.SIGUSR1, daemon_success)
        os.wait()
     
     if status == 0:
@@ -44,8 +47,8 @@ def daemonize():
 
         fd = open('/dev/null')
         os.dup2(fd.fileno(), 0)
-        os.dup2(fd.fileno(), 1)
-        os.dup2(fd.fileno(), 2)
+#        os.dup2(fd.fileno(), 1)
+#        os.dup2(fd.fileno(), 2)
 
         os.umask(0)
         os.chdir('/')

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/11 17:33:34 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/13 15:21:26 by ataguiro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,24 @@ import sys
 import time
 import socket
 
+from debug import *
+
 class Server:
     def __init__(self, host, port):
+        DG("server init")
         self.host = host
         self.port = port
         self.ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM, \
                         socket.getprotobyname("tcp"))
-        if self.ss.bind((self.host, self.port)) == False:
-             sys.exit(-1)
-        self.ss.listen(42)
+        try:
+            self.ss.bind((self.host, self.port))
+        except:
+            DG("port already bind")
+            sys.exit(-1)
+        self.ss.listen(5)
 
     def accept(self):
+        DG("before accept")
         self.cs, self.sa = self.ss.accept()
 
     def receive(self):
