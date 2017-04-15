@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/15 19:17:24 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/15 23:46:00 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,28 +24,29 @@ from monitor import *
 from log import *
 from debug import *
 
+log = log()
+
 if __name__ == '__main__' :
     
     DG_init()
     if len(sys.argv) < 2:
         print("usage : <config_file>")
         exit(-1)
-
     DG("start")
     daemonize()
-    log = log()
+    log.update("[SERVER] - File Configuration Sourced\n")
     config = configparser.ConfigParser()
     config.read_file(open('/Users/ariard/Projects/taskmaster/taskmasterd/master.config'))
     monitor = Monitor(config, (config.sections()))
+    monitor.start_reporter()
+    monitor.start_guardian()
     monitor.launch_all()
 #   server.init
     DG(str(table_prog))
-    monitor.start_guardian()
     server = Server('', 2121)
 #   server.launch
     server.accept()
     server.receive()
     DG("usual end")
-
 
 #server.init #server.listen #server.deploy #server.exit

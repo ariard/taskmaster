@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 02:59:46 by ariard            #+#    #+#              #
-#    Updated: 2017/04/15 20:16:35 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/16 00:19:32 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ from task_signal import *
 
 table_prog = dict()
 
-def launch(program):
+def launcher(program):
     global table_prog
 
     status = os.fork()
@@ -55,6 +55,14 @@ def launch(program):
         try:
             args = program.command.split(' ')
             DG(args[0])
+#            log.update("[PROGRAM] - Launch " + str(program.command) + "\n")
+#           log start + modify table_prog on shared memory
+#            fifo = os.open("/tmp/fifo", os.O_WRONLY | os.O_SYNC)
+            fifo = open("/tmp/fifo", "w")
+            fifo.write(str(os.getpid()) + ";" + str(time.time()) + "\n")
+#            os.close(fifo)
+            fifo.close()
+            DG("after write FIFO")
             os.execv(args[0], args)
         except:
             DG("log : no such program")
@@ -66,18 +74,24 @@ def guardian():
 
     while 1 :
         while len(queue_pid) > 1:
-            DG("test guardian")
             pid = queue_pid[0]
             status = queue_pid[1]
             program = table_prog[pid]
             if program[3] != status and program[2] == "true":
                 if program[5] > 0:
                     program[13].startretries -= 1
-                    launch(program[13])
+                    launcher(program[13])
             queue_pid.pop(0)
             queue_pid.pop(0) 
         time.sleep(1)
 
+def reporter():
+    while 1:
+        fifo = open("/tmp/fifo", "r")
+        for line in fifo:
+            starter = line.split(";")
+            DG("starter :" + line)
+        fifo.close()
 
 class Monitor:
     def __init__(self, config, list_sections):
@@ -85,17 +99,25 @@ class Monitor:
         self.list_programs = list()
         self.list_programs.extend(list_sections)
         signal.signal(signal.SIGCHLD, check_exit)
+        try:
+            os.mkfifo("/tmp/fifo", mode=0o666)
+        except:
+            DG("log : fifo already exist")
 
     def launch_all(self):
         for i in self.list_programs:
             self.program = Program(self.config, i)
             if self.program.autostart == "true":
                 while self.program.numprocs > 0:
-                    launch(self.program)
+                    launcher(self.program)
                     self.program.numprocs -= 1
 #        for i,j  in table_prog.items():
 #            print(i, j)
 
     def start_guardian(self):
         t = threading.Thread(target=guardian)
+        t.start()
+
+    def start_reporter(self):
+        t = threading.Thread(target=reporter)
         t.start()
