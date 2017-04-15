@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 02:59:46 by ariard            #+#    #+#              #
-#    Updated: 2017/04/14 18:50:06 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/15 20:16:35 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,12 @@ import subprocess
 import os
 import sys
 import signal
+import threading
+import time
 
 from execute import *
 from debug import *
+from task_signal import *
 
 # Table Prog
 #   0 : command
@@ -57,19 +60,23 @@ def launch(program):
             DG("log : no such program")
             sys.exit(-1)
 
-def check_exit(number, frame):
-    while True:
-        status = 0
-        try:
-            pid = os.waitpid(-1, 0)
-            program = table_prog[pid[0]]
-            if program[3] != pid[1] \
-            and program[2] == "true":
+def guardian():
+    global queue_pid
+    global table_lock
+
+    while 1 :
+        while len(queue_pid) > 1:
+            DG("test guardian")
+            pid = queue_pid[0]
+            status = queue_pid[1]
+            program = table_prog[pid]
+            if program[3] != status and program[2] == "true":
                 if program[5] > 0:
                     program[13].startretries -= 1
                     launch(program[13])
-        except:
-            break
+            queue_pid.pop(0)
+            queue_pid.pop(0) 
+        time.sleep(1)
 
 
 class Monitor:
@@ -88,3 +95,7 @@ class Monitor:
                     self.program.numprocs -= 1
 #        for i,j  in table_prog.items():
 #            print(i, j)
+
+    def start_guardian(self):
+        t = threading.Thread(target=guardian)
+        t.start()

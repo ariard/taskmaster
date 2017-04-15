@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/13 00:27:18 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/15 19:17:24 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ if __name__ == '__main__' :
     monitor = Monitor(config, (config.sections()))
     monitor.launch_all()
 #   server.init
+    DG(str(table_prog))
+    monitor.start_guardian()
     server = Server('', 2121)
 #   server.launch
     server.accept()
