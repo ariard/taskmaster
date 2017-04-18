@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/15 18:50:45 by ariard            #+#    #+#              #
-#    Updated: 2017/04/15 23:17:18 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/18 19:13:24 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,6 @@ def check_exit(number, frame):
         try:
             pid = os.waitpid(0, 0)
             queue_pid += pid;
-            DG("queue pid is:" + str(queue_pid))
+#            DG("queue pid is:" + str(queue_pid))
         except:
             break

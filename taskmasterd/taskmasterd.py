@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/15 23:46:00 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/18 19:36:10 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ import signal
 import time
 import socket
 import configparser
+import threading
 
 from daemonize import *
 from server import *
@@ -42,11 +43,21 @@ if __name__ == '__main__' :
     monitor.start_guardian()
     monitor.launch_all()
 #   server.init
-    DG(str(table_prog))
-    server = Server('', 2121)
+    DG(str(table_prog)) 
+    server = Server('', 4242)
+    DG("after launch server")
 #   server.launch
-    server.accept()
-    server.receive()
+    while True:
+        global num_threads
+        server.c, server.addr = server.ss.accept()
+        DG("after accept")
+        print('Connection received from : ', server.addr)
+        DG("after received")
+        t = threading.Thread(target=new_client, args=(server.c, server.addr))
+        t.start()
+        num_threads += 1
+        print('debug: [' + str(num_threads) + '] threads are actually running')
+    server.ss.close()
     DG("usual end")
 
 #server.init #server.listen #server.deploy #server.exit

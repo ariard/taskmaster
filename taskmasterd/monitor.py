@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 02:59:46 by ariard            #+#    #+#              #
-#    Updated: 2017/04/16 00:19:32 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/18 19:21:42 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ def reporter():
         fifo = open("/tmp/fifo", "r")
         for line in fifo:
             starter = line.split(";")
-            DG("starter :" + line)
+#           DG("starter :" + line)
         fifo.close()
 
 class Monitor:
