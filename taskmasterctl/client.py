@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/20 00:32:23 by ataguiro         ###   ########.fr        #
+#    Updated: 2017/04/21 18:17:51 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ def welcome(cnum):
 	print("----------------------------------------------------------------")
 
 def line_is_command(line):
-	if (line == "exit" or line == "help" or line == "start" or line == "restart" or line == "status" or line == "stop"):
+	if (line == "exit" or line == "help" or "start" in line or "restart" in line or "status" in line or "stop" in line):
 		return 1
 	return 0
 
