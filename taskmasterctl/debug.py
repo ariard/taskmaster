@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/12 16:47:39 by ariard            #+#    #+#              #
-#    Updated: 2017/04/12 19:23:22 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/21 18:11:52 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,6 @@ def DG(message):
     while align > 0:
         space += ' '
         align -= 1
-    print(pid_color + FG_WHITE + pid, thread, filename, space,
+    print(str(pid_color) + FG_WHITE + pid, thread, filename, space,
         ":" + BG_DEF + "  " + message, file=open("/tmp/STDBUG", "a+"), flush=True)
 

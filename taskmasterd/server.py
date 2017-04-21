@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/18 19:34:11 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/21 18:19:06 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,15 @@ def new_client(clientsocket, addr):
     while True:
         m = clientsocket.recv(1024)
         m = m.strip()
+        cmd_lst = m.split(' ')
         if not m:
             print('That motherfucking client ' + str(addr[1]) + ' sent a SIGINT signal, stopping...')
             break
-        if m == 'exit' or m == 'quit':
+        elif cmd_lst[0] == 'exit' or cmd_lst[0] == 'quit':
             print('exit request received from ' + str(addr[1]) + ' ... stopping')
             break
+        elif cmd_lst[0] == 'start'
+            
         print(addr, ' >> ', m)
         #m = raw_input('> ')
         #clientsocket.send(m + "\n")

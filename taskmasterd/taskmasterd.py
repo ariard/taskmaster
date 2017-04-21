@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/21 17:56:59 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/21 17:58:01 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ if __name__ == '__main__' :
     daemonize()
     log.update("[SERVER] - File Configuration Sourced\n")
     config = configparser.ConfigParser()
-    config.read_file(open('/Users/echo/taskmaster/taskmasterd/master.config'))
+    config.read_file(open('/Users/ariard/Projects/taskmaster/taskmasterd/master.config'))
     monitor = Monitor(config, (config.sections()))
     monitor.start_reporter()
     monitor.start_guardian()
