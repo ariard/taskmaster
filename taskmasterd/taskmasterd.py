@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/18 19:36:10 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/21 17:29:55 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ if __name__ == '__main__' :
     server = Server('', 4242)
     DG("after launch server")
 #   server.launch
+
+
     while True:
         global num_threads
         server.c, server.addr = server.ss.accept()

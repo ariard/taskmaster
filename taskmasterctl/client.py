@@ -6,12 +6,14 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/20 00:32:23 by ataguiro         ###   ########.fr        #
+#    Updated: 2017/04/21 17:42:02 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import socket
 import readline
+
+from debug import *
 
 # Line editing inits
 
@@ -53,14 +55,15 @@ def send_to_server(line, sc):
 	sc.send(line.encode('utf8'))
 
 def prompt(sc):
-	while True:
-		line = input("\033[1;32mtaskmaster>\033[0m ")
-		if (line_is_command(line)):
-			send_to_server(line, sc)
-			if (line == 'exit'):
-				break
-		else:
-			print("taskmaster:", line, ": command not found")	
+    while True:
+        line = input("\033[1;32mtaskmaster>\033[0m ")
+        if (line_is_command(line)):
+            DG("send line")
+            send_to_server(line, sc)
+        elif (line == 'exit'):
+            break
+        else:
+            print("taskmaster:", line, ": command not found")
 
 def launch(host, port):
 	sc = socket.socket()
