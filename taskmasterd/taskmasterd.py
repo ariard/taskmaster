@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    __main__.py                                        :+:      :+:    :+:    #
+#    taskmasterd.py                                     :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/18 19:36:10 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/21 17:52:05 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ if __name__ == '__main__' :
     daemonize()
     log.update("[SERVER] - File Configuration Sourced\n")
     config = configparser.ConfigParser()
-    config.read_file(open('/Users/ariard/Projects/taskmaster/taskmasterd/master.config'))
+    config.read_file(open('/Users/echo/taskmaster/taskmasterd/master.config'))
     monitor = Monitor(config, (config.sections()))
     monitor.start_reporter()
     monitor.start_guardian()
@@ -53,6 +53,7 @@ if __name__ == '__main__' :
         DG("after accept")
         print('Connection received from : ', server.addr)
         DG("after received")
+        server.c.send(str(num_threads).encode('utf-8'))
         t = threading.Thread(target=new_client, args=(server.c, server.addr))
         t.start()
         num_threads += 1
