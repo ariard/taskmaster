@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/21 18:19:06 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/21 22:58:47 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,55 +14,54 @@ import sys
 import time
 import socket
 import threading
+import configparser 
+import os
+import signal
 
 from debug import *
+from task_signal import *
+from task_error import *
 
-num_threads = 0
+from configurator import configurator
 
-def new_client(clientsocket, addr):
-    while True:
-        m = clientsocket.recv(1024)
-        m = m.strip()
-        cmd_lst = m.split(' ')
-        if not m:
-            print('That motherfucking client ' + str(addr[1]) + ' sent a SIGINT signal, stopping...')
-            break
-        elif cmd_lst[0] == 'exit' or cmd_lst[0] == 'quit':
-            print('exit request received from ' + str(addr[1]) + ' ... stopping')
-            break
-        elif cmd_lst[0] == 'start'
-            
-        print(addr, ' >> ', m)
-        #m = raw_input('> ')
-        #clientsocket.send(m + "\n")
-    global num_threads
-    num_threads -= 1
-    print('debug: [' + str(num_threads) + '] threads are actually running')
-    clientsocket.close()
+def extract_Prog(list_sections):
+    prog = list()
+    for sections in list_sections:
+        if sections[1:8] == "program"
+            prog += sections
+    return (prog)
 
 class Server:
-    def __init__(self, host, port):
+    def __init__(self, file_config):
+        self.config = configparser.ConfigParser()
+        try:
+            path = os.path.realpath(file_config)
+        except FileNotFoundError:
+            error_msg("No such configuration file")
+        self.config.read_file(open(path))
+        try:
+            self.port = self.config.get("[unix_http_server]", "port")
+        except configparser.NoSectionError:
+            error_msg("No section on server")
+        except configparser.DuplicateSectionError: 
+            error_msg("Duplicate section on server") 
+        self.host = ''
         self.ss = socket.socket()
-        self.host = host
-        self.port = port
         self.c = None
         self.addr = None
-        print("Server started and waiting for clients...")
         try:
-            self.ss.bind((self.host, self.port))
+            self.ss.bind(self.host, selft.port)
         except:
-            DG("port already bind")
-            sys.exit(-1)
+            err_msg("Socket already in use")
         self.ss.listen(5)
+        self.list.progs = extract_Prog(self.config.sections())
+        signal.signal(signal.SIGCHLD, check_exit) 
+        DG("Server started and waiting for clients...")
 
-    def accept(self):
-        DG("before accept")
-        self.cs, self.sa = self.ss.accept()
-
-    def receive(self):
-        while True:
-            data = self.cs.recv(1024)
-            print(data)
-
-     
-#server.init #server.listen #server.deploy #server.exit
+    def start_monitor(self):
+        t = threading.Thread(target=monitor, args=(self.config, self.list_sections))
+        t.start()
+    
+    def start_launcher(self):
+        t = threading.Thread(target=launcher, args=(self.config, self.list_sections))
+        t.start()

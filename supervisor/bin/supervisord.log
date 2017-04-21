@@ -1,0 +1,83 @@
+2017-04-21 19:57:54,260 INFO RPC interface 'supervisor' initialized
+2017-04-21 19:57:54,260 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-21 19:57:54,261 INFO daemonizing the supervisord process
+2017-04-21 19:57:54,262 INFO supervisord started with pid 37020
+2017-04-21 19:57:55,264 INFO spawnerr: can't find command '/Users/ariard/local/bin/ls'
+2017-04-21 19:57:56,265 INFO spawnerr: can't find command '/Users/ariard/local/bin/ls'
+2017-04-21 19:57:58,267 INFO spawnerr: can't find command '/Users/ariard/local/bin/ls'
+2017-04-21 19:58:01,270 INFO spawnerr: can't find command '/Users/ariard/local/bin/ls'
+2017-04-21 19:58:01,270 INFO gave up: fatls entered FATAL state, too many start retries too quickly
+2017-04-21 19:59:24,064 INFO RPC interface 'supervisor' initialized
+2017-04-21 19:59:24,064 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-21 19:59:24,066 INFO daemonizing the supervisord process
+2017-04-21 19:59:24,067 INFO supervisord started with pid 37388
+2017-04-21 19:59:25,069 INFO spawned: 'fatls' with pid 37399
+2017-04-21 19:59:53,658 INFO waiting for fatls to die
+2017-04-21 19:59:53,659 INFO stopped: fatls (terminated by SIGTERM)
+2017-04-21 19:59:53,770 INFO RPC interface 'supervisor' initialized
+2017-04-21 19:59:53,770 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-21 19:59:53,770 INFO supervisord started with pid 37388
+2017-04-21 19:59:54,772 INFO spawned: 'fatls' with pid 37440
+2017-04-21 20:00:13,741 INFO waiting for fatls to die
+2017-04-21 20:00:13,743 INFO stopped: fatls (terminated by SIGTERM)
+2017-04-21 20:00:47,602 INFO RPC interface 'supervisor' initialized
+2017-04-21 20:00:47,602 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-21 20:00:47,603 INFO daemonizing the supervisord process
+2017-04-21 20:00:47,604 INFO supervisord started with pid 37590
+2017-04-21 20:00:48,607 INFO spawned: 'fatls' with pid 37605
+2017-04-21 20:00:58,612 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 20:01:06,379 INFO waiting for fatls to die
+2017-04-21 20:01:06,381 INFO stopped: fatls (terminated by SIGTERM)
+2017-04-21 20:01:06,493 INFO RPC interface 'supervisor' initialized
+2017-04-21 20:01:06,493 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-04-21 20:01:06,493 INFO supervisord started with pid 37590
+2017-04-21 20:01:07,495 INFO spawned: 'fatls' with pid 37658
+2017-04-21 20:01:17,507 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 20:04:51,411 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 20:04:52,413 INFO spawned: 'fatls' with pid 38028
+2017-04-21 20:05:02,519 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 20:27:11,277 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 20:27:12,279 INFO spawned: 'fatls' with pid 42317
+2017-04-21 20:27:22,283 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 20:31:53,777 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 20:31:54,780 INFO spawned: 'fatls' with pid 43474
+2017-04-21 20:32:04,813 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 20:55:23,838 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 20:55:24,840 INFO spawned: 'fatls' with pid 48002
+2017-04-21 20:55:34,887 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 20:59:47,239 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 20:59:48,251 INFO spawned: 'fatls' with pid 48399
+2017-04-21 20:59:58,255 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 21:20:35,930 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 21:20:36,933 INFO spawned: 'fatls' with pid 52590
+2017-04-21 21:20:47,318 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 21:24:52,866 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 21:24:53,869 INFO spawned: 'fatls' with pid 53053
+2017-04-21 21:25:03,886 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 21:48:57,065 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 21:48:58,081 INFO spawned: 'fatls' with pid 57803
+2017-04-21 21:49:08,489 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 21:54:25,931 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 21:54:26,933 INFO spawned: 'fatls' with pid 58708
+2017-04-21 21:54:37,747 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 22:00:51,362 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 22:00:52,364 INFO spawned: 'fatls' with pid 59331
+2017-04-21 22:01:02,363 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 22:25:51,395 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 22:25:52,401 INFO spawned: 'fatls' with pid 64074
+2017-04-21 22:26:02,417 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 22:30:47,821 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 22:30:48,843 INFO spawned: 'fatls' with pid 65127
+2017-04-21 22:30:59,154 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 22:53:48,433 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 22:53:49,439 INFO spawned: 'fatls' with pid 68708
+2017-04-21 22:53:59,443 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 22:58:57,676 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 22:58:58,690 INFO spawned: 'fatls' with pid 69807
+2017-04-21 22:59:08,748 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 23:04:52,214 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 23:04:53,217 INFO spawned: 'fatls' with pid 70277
+2017-04-21 23:05:03,299 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-21 23:29:22,389 INFO exited: fatls (exit status 1; not expected)
+2017-04-21 23:29:23,392 INFO spawned: 'fatls' with pid 74949
+2017-04-21 23:29:33,393 INFO success: fatls entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/21 17:58:01 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/21 22:17:21 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ from server import *
 from monitor import *
 from log import *
 from debug import *
+from servitor import *
 
 log = log()
 
@@ -35,10 +36,8 @@ if __name__ == '__main__' :
         exit(-1)
     DG("start")
     daemonize()
-    log.update("[SERVER] - File Configuration Sourced\n")
-    config = configparser.ConfigParser()
-    config.read_file(open('/Users/ariard/Projects/taskmaster/taskmasterd/master.config'))
-    monitor = Monitor(config, (config.sections()))
+    server = Server(argv[1])
+    server.start_launcher()
     monitor.start_reporter()
     monitor.start_guardian()
     monitor.launch_all()
@@ -56,7 +55,7 @@ if __name__ == '__main__' :
         print('Connection received from : ', server.addr)
         DG("after received")
         server.c.send(str(num_threads).encode('utf-8'))
-        t = threading.Thread(target=new_client, args=(server.c, server.addr))
+        t = threading.Thread(target=new_client, args=(server.c, server.addr, monitor))
         t.start()
         num_threads += 1
         print('debug: [' + str(num_threads) + '] threads are actually running')
