@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 17:52:05 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 19:44:15 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,14 @@ from execute import *
 from task_error import *
 from statutor import *
 
+import settings
+
 num_threads = 0
 
 def serviter(clientsocket, addr, server):
-    global table_prog
-    global table_process
-    global prog_to_pid
+    table_prog = settings.table_prog
+    table_process = settings.table_process 
+    prog_to_pid = settings.prog_to_pid
 
     while True:
         m = clientsocket.recv(1024)

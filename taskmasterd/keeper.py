@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 17:30:23 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 19:44:38 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,12 @@ from debug import *
 from launcher import * 
 from task_signal import *
 
+import settings
+
 def keeper():
-    global queue_pid
-    global table_prog
-    global table_process
+    queue_pid = settings.queue_pid
+    table_prog = settings.table_prog
+    table_process = settings.table_process
 
     while 1 :
         while len(queue_pid) > 1:

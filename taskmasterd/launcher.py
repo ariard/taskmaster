@@ -6,37 +6,23 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 17:51:08 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 19:50:32 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import os
 import sys 
 import time
+import copy
 
-# Table Prog
-#   0 : command
-#   1 : autostart
-#   2 : autorestart
-#   3 : exitcodes
-#   4 : startsecs
-#   5 : startretries
-#   6 : stopsignal
-#   7 : stopwaitsecs
-#   8 : stdout
-#   9 : stderr
-#   10: env
-#   11: dir
-#   12: umask
-#   13 : program
-#   14 : status
-#   15 : pid
-#   16 : brothers
+from debug import *
+
+import settings
 
 def launcher(program, name_prog):
-    global table_prog
-    global table_process
-    global prog_to_pid
+    table_prog = settings.table_prog
+    table_process = settings.table_process
+    prog_to_pid = settings.prog_to_pid
 
     pid = os.fork()
     if pid > 0:
@@ -44,8 +30,8 @@ def launcher(program, name_prog):
             status = "STARTING"
         else:
             status = "RUNNING"
-        table_process[pid] = [name_prog, status, program.startretries[:]]
-        prog_to_pid[name_prog] += pid
+        table_process[pid] = [name_prog, status, copy.copy(program.startretries)]
+        prog_to_pid[name_prog] = None
 
     if pid == 0:
         DG("launch command")

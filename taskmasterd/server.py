@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 17:47:56 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 19:03:40 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,21 +30,18 @@ from killer import killer
 
 def extractProg(list_sections):
     prog = list()
+    DG("sections " + str(list_sections))
     for sections in list_sections:
-        if sections[1:8] == "program":
-            prog += sections
+        if sections[0:7] == "program":
+            prog.append(sections)
     return (prog)
 
 class Server:
-    def __init__(self, file_config):
+    def __init__(self, path):
         self.config = configparser.ConfigParser()
+        self.config.read(path)
         try:
-            path = os.path.realpath(file_config)
-        except FileNotFoundError:
-            error_msg("No such configuration file")
-        self.config.read_file(open(path))
-        try:
-            self.port = self.config.get("[unix_http_server]", "port")
+            self.port = int(self.config.get('server', 'port'))
         except configparser.NoSectionError:
             error_msg("No section on server")
         except configparser.DuplicateSectionError: 
@@ -54,15 +51,16 @@ class Server:
         self.c = None
         self.addr = None
         try:
-            self.ss.bind(self.host, selft.port)
+            self.ss.bind((self.host, self.port))
         except:
-            err_msg("Socket already in use")
+            error_msg("Socket already in use")
         self.ss.listen(5)
-        self.list.progs = extractProg(self.config.sections())
+        self.list_progs = extractProg(self.config.sections())
         signal.signal(signal.SIGCHLD, check_exit) 
         DG("Server started and waiting for clients...")
 
     def start_manager(self, config, list_progs):
+        DG("start manager")
         t = threading.Thread(target=manager, args=(config, list_progs, self))
         t.start()
     

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 17:53:13 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 19:50:58 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,25 +21,30 @@ import threading
 
 from daemonize import *
 from server import *
-from monitor import *
-from log import *
 from debug import *
+from task_error import *
+
+import settings
 
 if __name__ == '__main__' :
     
     DG_init()
+    try:
+        path_config = os.path.abspath(sys.argv[1])
+    except FileNotFoundError:
+        error_msg("No such configuration file")
+
     if len(sys.argv) < 2:
         print("usage : <config_file>")
         exit(-1)
     DG("start")
     daemonize()
-    server = Server(sys.argv[1])
-    server.start_keeper()
-    server.start_watcher()
+    settings.init()
+    server = Server(path_config)
+#    server.start_keeper()
+#    server.start_watcher()
     server.start_manager(server.config, server.list_progs)
 #   server.init
-    DG(str(table_prog)) 
-    server = Server('', 4242)
     DG("after launch server")
 #   server.launch
 

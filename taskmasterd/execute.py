@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 00:03:10 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 19:20:20 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,6 @@ class Program:
             fd = open(self.stdout, 'w+')
             os.dup2(fd.fileno(), 1)
 
-        if selft.stderr:
+        if self.stderr:
             fd = open(self.stderr, 'w+')
             os.dup2(fd.fileno(), 2)

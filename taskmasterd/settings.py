@@ -1,17 +1,20 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    task_error.py                                      :+:      :+:    :+:    #
+#    settings.py                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/04/21 21:55:37 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 18:26:04 by ariard           ###   ########.fr        #
+#    Created: 2017/04/22 19:31:29 by ariard            #+#    #+#              #
+#    Updated: 2017/04/22 19:32:39 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-import sys
+def init():
+    global table_prog
+    global table_process
+    global prog_to_pid
 
-def error_msg(msg):
-    print("taskmaster: " + msg, file=sys.stderr)
-    sys.exit(-1)
+    table_prog = dict()
+    table_process = dict()
+    prog_to_pid = dict()
