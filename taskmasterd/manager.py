@@ -6,44 +6,34 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 19:33:01 by ariard            #+#    #+#              #
-#    Updated: 2017/04/21 23:32:38 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 01:47:02 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 from monitor import *
 
-# Table Prog
-#   0 : command
-#   1 : autostart
-#   2 : autorestart
-#   3 : exitcodes
-#   4 : startsecs
-#   5 : startretries
-#   6 : stopsignal
-#   7 : stopwaitsecs
-#   8 : stdout
-#   9 : stderr
-#   10: env
-#   11: dir
-#   12: umask
-#   13 : program
-#   14 : status
-#   15 : pid
+table_prog = dict()
+table_process = dict()
+prog_to_pid = dict()
 
-table_prog = list()
-
-def configurater(config, list_progs)
+def manager(config, list_progs)
     global table_prog
-    global pid_to_prog
+    global table_process
 
     for name_prog in list_progs: 
         if name_prog in table_prog:
             
         else:
             table_prog[name_prog] = Program(config, name_prog)
-
+            if table_prog[name_prog].autostart == "true"
+                and table_prog[name_prog].command:
+                numprocs = table_prog[name_prog].numprocs
+                while numprocs > 0:
+                    launcher(table_prog[name_prog], name_prog)
+                    numprocs -= 1
+            elif table_prog[name_prog].autostart == "false"
+                table_prog[name_prog].autostart == "true" 
             
-
 
     for name in monitor.list_programs:
         abstract_program = Program(monitor.config, name) 

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/04/21 23:29:53 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 00:03:10 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ class Program:
             try:
                 self.command = config.get(name_prog, "command")
             except configparser.ParsingError:
-                self.command = ""
+                self.command = None
             try:
                 self.numprocs = int(config.get(name_prog, "numprocs"))
             except configparser.ParsingError:
@@ -72,37 +72,25 @@ class Program:
                 self.umask = config.get(name_prog, "umask")
             except configparser.ParsingError:
                 self.umask = None 
-            self.status = "STARTING"
 
     def conf(self):
         DG(" conf") 
-
-        try:
+        if self.dir:
             os.chdir(self.dir) 
-        except:
-            DG("log : couldn't chdir")
 
-        try:
+        if self.umask:
             os.umask(int(self.umask))
-        except:
-            DG("log : couldn't umask")
-
-        try:
+        
+        if self.env:
             list_env = self.env.split(',')
             for i in list_env:
                 j = i.split('=')
                 os.environ[j[0]] = j[1]
-        except:
-            DG("log : couldn't set env")
 
-        try:
+        if self.stdout:
             fd = open(self.stdout, 'w+')
             os.dup2(fd.fileno(), 1)
-        except:
-            DG("log : couldn't set stdout")
 
-        try:
+        if selft.stderr:
             fd = open(self.stderr, 'w+')
             os.dup2(fd.fileno(), 2)
-        except:
-            DG("log : couldn't set stderr")

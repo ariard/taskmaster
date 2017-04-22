@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/21 22:58:47 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 01:58:23 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,13 @@ from debug import *
 from task_signal import *
 from task_error import *
 
-from configurator import configurator
+from manager import manager
+from keeper import keeper
+from watcher import watcher
+from serviter import serviter
+from killer import killer
 
-def extract_Prog(list_sections):
+def extractProg(list_sections):
     prog = list()
     for sections in list_sections:
         if sections[1:8] == "program"
@@ -54,14 +58,25 @@ class Server:
         except:
             err_msg("Socket already in use")
         self.ss.listen(5)
-        self.list.progs = extract_Prog(self.config.sections())
+        self.list.progs = extractProg(self.config.sections())
         signal.signal(signal.SIGCHLD, check_exit) 
         DG("Server started and waiting for clients...")
 
-    def start_monitor(self):
-        t = threading.Thread(target=monitor, args=(self.config, self.list_sections))
+    def start_manager(self, config, list_progs):
+        t = threading.Thread(target=manager, args=(config, list_progs))
         t.start()
     
-    def start_launcher(self):
-        t = threading.Thread(target=launcher, args=(self.config, self.list_sections))
+    def start_keeper(self):
+        t = threading.Thread(target=keeper)
         t.start()
+
+    def start_watcher(self):
+        t = threading.Thread(target=watcher)
+        t.start()
+
+    def start_serviter(self):
+        t = threading.Thread(target=serviter, args=(self.c[:], self.addr[:], self)
+        t.start()
+
+    def start_killer(self, pid):
+        t = threading.Thread(target=killer, args=(pid))

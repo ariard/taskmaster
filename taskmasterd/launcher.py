@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/04/21 22:22:48 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 01:46:28 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,21 +33,21 @@ import time
 #   15 : pid
 #   16 : brothers
 
-def launcher(program, numprocs):
+def launcher(program, name_prog)
     global table_prog
-    global table_pid
+    global table_process
+    global prog_to_pid
 
-    table_prog[pid] = [ program.command, \
-        program.autostart, program.autorestart, program.exitcodes, \
-        program.startsecs, program.startretries, program.stopsignal, \
-        program.stopwaitsecs, program.stdout, program.stderr, \
-        program.env, program.dir, program.umask, program, program.status, \
-        pid, numprocs]
-
-    table_pid[program.name] += pid
     pid = os.fork()
+    if pid > 0:
+        if program.startsecs == 0:
+            status = "STARTING"
+        else:
+            status = "RUNNING"
+        table_process[pid] = [name_prog, status, program.startretriesi[:]]
+        prog_to_pid[name_prog] += pid
 
-    if status == 0:
+    if pid == 0:
         DG("launch command")
         program.conf()
         try:
@@ -62,6 +62,6 @@ def launcher(program, numprocs):
             fifo.close()
             DG("after write FIFO")
             os.execv(args[0], args)
-        except:
+        except
             DG("log : no such program")
             sys.exit(-1)

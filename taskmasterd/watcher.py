@@ -6,16 +6,22 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:45:20 by ariard            #+#    #+#              #
-#    Updated: 2017/04/21 20:45:53 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 01:02:23 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+import time
+
 from debug import *
 
-def reporter():
+def watcher():
+    global table_prog
+    global table_process 
+
     while 1:
         fifo = open("/tmp/fifo", "r")
         for line in fifo:
-            starter = line.split(";")
-#           DG("starter :" + line)
+            startinfos = line.split(";")
+            if table_process[startinfos[0]][1] == "STARTING":
+                table_process[startinfos[0]] += startinfos[1]
         fifo.close()

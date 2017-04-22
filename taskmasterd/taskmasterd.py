@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/21 22:17:21 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 01:20:11 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,16 +37,14 @@ if __name__ == '__main__' :
     DG("start")
     daemonize()
     server = Server(argv[1])
-    server.start_launcher()
-    monitor.start_reporter()
-    monitor.start_guardian()
-    monitor.launch_all()
+    server.start_keeper()
+    server.start_watcher()
+    server.start_manager(server.config, server.list_progs)
 #   server.init
     DG(str(table_prog)) 
     server = Server('', 4242)
     DG("after launch server")
 #   server.launch
-
 
     while True:
         global num_threads
@@ -55,8 +53,7 @@ if __name__ == '__main__' :
         print('Connection received from : ', server.addr)
         DG("after received")
         server.c.send(str(num_threads).encode('utf-8'))
-        t = threading.Thread(target=new_client, args=(server.c, server.addr, monitor))
-        t.start()
+        server.start_servitor()
         num_threads += 1
         print('debug: [' + str(num_threads) + '] threads are actually running')
     server.ss.close()

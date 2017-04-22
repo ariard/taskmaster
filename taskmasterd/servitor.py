@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/21 20:52:17 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 02:03:30 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,14 @@ import configparser
 
 from debug import * 
 from execute import *
+from task_error import *
 
 num_threads = 0
 
-def new_client(clientsocket, addr, monitor)
+def serviter(clientsocket, addr, server)
+    global table_prog
+    global table_process
+
     while True:
         m = clientsocket.recv(1024)
         m = m.strip()
@@ -31,29 +35,33 @@ def new_client(clientsocket, addr, monitor)
             print('exit request received from ' + str(addr[1]) + ' ... stopping')
             break
 
-        elif cmd_lst[0] == 'start' or cmd_lst[0] == 'restart'
-            for i in cmd_lst[1:]:
-               program = Program(monitor.config, i)        
-                while program.numprocs > 0:
-                    launcher(program)
-                    program.numprocs -= 1
+        elif cmd_lst[0] == 'start' or cmd_lst[0] == 'restart':
+            server.start_manager(server.config, cmd_lst[1:]) 
 
-        elif cmd_lst[0] == 'stop' 
-            for i in cmd_list[1:]:
-                running_program = table_prog[i]
-                while running_program.numprocs > 0:
-                   monitor.start_killer(running_program)
-                   running_program.numprocs -= 1
+        elif cmd_lst[0] == 'stop':
+            for name_prog in cmd_list[1:]:
+                numprocs = table_prog[name_prog].numprocs[:] 
+                while numprocs > 0:
+                   server.start_killer(prog_to_pid[name_prog])
+                   prog_to_pid = prog_to_pid[1:]
+                   numprocs -= 1
 
-        elif cmd_lst[0] == 'reload'
-            config = configparser.ConfigParser()
-            config.read_file(open(cmd_lst[1]))
-            monitor.config = config 
-            monitor.list_programs = list()
-            monitor.list_programs.extend(config.sections())
-            monitor.start_configurator()
+        elif cmd_lst[0] == 'reload':
+            server.config = configparser.ConfigParser()
+            try:
+                server.config.read_file(open(cmd_lst[1]))
+            except FileNotFoundError:
+                error_msg("No such configuration file")
+            server.config.read_file(open(path))
+            server.list_progs = extractProg(server.config.sections())
+            server.start_manager(server.config, server.list_progs)
 
-#        elif cmd_lst[0] == 'status'    
+        elif cmd_lst[0] == 'status':   
+        #TANT QUE TAB_PROCESS
+            #LIRE TAB = FAIRE LIGNE
+            #ENVOYER NAME + add entry in tab_process
+
+        
             
 
         #m = raw_input('> ')
