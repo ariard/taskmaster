@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:45:20 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 01:02:23 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 17:33:31 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,3 +25,5 @@ def watcher():
             if table_process[startinfos[0]][1] == "STARTING":
                 table_process[startinfos[0]] += startinfos[1]
         fifo.close()
+
+    #TO IMPLEMENT, THREAD DEDIE POUR UDPDATE DATE DES PROCESS

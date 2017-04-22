@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 01:20:11 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 17:53:13 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,6 @@ from server import *
 from monitor import *
 from log import *
 from debug import *
-from servitor import *
-
-log = log()
 
 if __name__ == '__main__' :
     
@@ -36,7 +33,7 @@ if __name__ == '__main__' :
         exit(-1)
     DG("start")
     daemonize()
-    server = Server(argv[1])
+    server = Server(sys.argv[1])
     server.start_keeper()
     server.start_watcher()
     server.start_manager(server.config, server.list_progs)

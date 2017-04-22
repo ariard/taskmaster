@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 01:58:23 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 17:47:56 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ from killer import killer
 def extractProg(list_sections):
     prog = list()
     for sections in list_sections:
-        if sections[1:8] == "program"
+        if sections[1:8] == "program":
             prog += sections
     return (prog)
 
@@ -63,7 +63,7 @@ class Server:
         DG("Server started and waiting for clients...")
 
     def start_manager(self, config, list_progs):
-        t = threading.Thread(target=manager, args=(config, list_progs))
+        t = threading.Thread(target=manager, args=(config, list_progs, self))
         t.start()
     
     def start_keeper(self):
@@ -75,8 +75,9 @@ class Server:
         t.start()
 
     def start_serviter(self):
-        t = threading.Thread(target=serviter, args=(self.c[:], self.addr[:], self)
+        t = threading.Thread(target=serviter, args=(self.c[:], self.addr[:], self))
         t.start()
 
     def start_killer(self, pid):
         t = threading.Thread(target=killer, args=(pid))
+        t.start()

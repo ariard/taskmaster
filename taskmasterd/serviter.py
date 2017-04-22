@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 02:03:30 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 17:52:05 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,14 @@ import configparser
 from debug import * 
 from execute import *
 from task_error import *
+from statutor import *
 
 num_threads = 0
 
-def serviter(clientsocket, addr, server)
+def serviter(clientsocket, addr, server):
     global table_prog
     global table_process
+    global prog_to_pid
 
     while True:
         m = clientsocket.recv(1024)
@@ -43,7 +45,7 @@ def serviter(clientsocket, addr, server)
                 numprocs = table_prog[name_prog].numprocs[:] 
                 while numprocs > 0:
                    server.start_killer(prog_to_pid[name_prog])
-                   prog_to_pid = prog_to_pid[1:]
+                   prog_to_pid[name_prog] = prog_to_pid[name_prog][1:]
                    numprocs -= 1
 
         elif cmd_lst[0] == 'reload':
@@ -56,16 +58,10 @@ def serviter(clientsocket, addr, server)
             server.list_progs = extractProg(server.config.sections())
             server.start_manager(server.config, server.list_progs)
 
-        elif cmd_lst[0] == 'status':   
-        #TANT QUE TAB_PROCESS
-            #LIRE TAB = FAIRE LIGNE
-            #ENVOYER NAME + add entry in tab_process
+        elif cmd_lst[0] == 'status':
+            tab = getStatus()
+            cliensocket.send(tab + "\n")
 
-        
-            
-
-        #m = raw_input('> ')
-        #clientsocket.send(m + "\n")
     global num_threads
     num_threads -= 1
     print('debug: [' + str(num_threads) + '] threads are actually running')

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 01:46:28 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 17:51:08 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ import time
 #   15 : pid
 #   16 : brothers
 
-def launcher(program, name_prog)
+def launcher(program, name_prog):
     global table_prog
     global table_process
     global prog_to_pid
@@ -44,7 +44,7 @@ def launcher(program, name_prog)
             status = "STARTING"
         else:
             status = "RUNNING"
-        table_process[pid] = [name_prog, status, program.startretriesi[:]]
+        table_process[pid] = [name_prog, status, program.startretries[:]]
         prog_to_pid[name_prog] += pid
 
     if pid == 0:
@@ -62,6 +62,6 @@ def launcher(program, name_prog)
             fifo.close()
             DG("after write FIFO")
             os.execv(args[0], args)
-        except
+        except:
             DG("log : no such program")
             sys.exit(-1)
