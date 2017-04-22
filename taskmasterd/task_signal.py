@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/15 18:50:45 by ariard            #+#    #+#              #
-#    Updated: 2017/04/18 19:13:24 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 20:00:53 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@ import signal
 
 from debug import *
 
-queue_pid = list()
+import settings
 
 def check_exit(number, frame):
-    global queue_pid
+    queue_pid = settings.queue_pid
 
     while True:
         try:

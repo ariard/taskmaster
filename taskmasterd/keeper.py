@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 19:44:38 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 20:04:13 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ def keeper():
         while len(queue_pid) > 1:
             pid = queue_pid[0]
             exitcode = queue_pid[1]
-            program = table_prog[table_process[pid]]
+            name_prog = table_process[pid][0]
+            program = table_prog[name_prog]
             if ((exitcode not in program.exitcodes and program.autorestart == "unexpected") \
                 or (program.autorestart == "true")) and table_process[pid][1] == "RUNNING":
                 if table_process[pid][2] > 0:

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 19:49:29 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 19:58:49 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,12 +61,12 @@ def manager(config, list_progs, server):
                     table_prog[name_prog] = new_prog
  
         else:
-            DG("should launch a new program")
             table_prog[name_prog] = Program(config, name_prog)
 
             if table_prog[name_prog].autostart == "true" \
                 and table_prog[name_prog].command:
                 numprocs = table_prog[name_prog].numprocs                 
+                prog_to_pid[name_prog] = list()
 
                 while numprocs > 0:
                     launcher(table_prog[name_prog], name_prog)

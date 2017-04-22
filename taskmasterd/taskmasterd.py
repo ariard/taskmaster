@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 19:50:58 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 20:05:30 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ if __name__ == '__main__' :
     settings.init()
     server = Server(path_config)
 #    server.start_keeper()
-#    server.start_watcher()
+    server.start_watcher()
     server.start_manager(server.config, server.list_progs)
 #   server.init
     DG("after launch server")

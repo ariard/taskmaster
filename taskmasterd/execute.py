@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 19:20:20 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 20:03:25 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ class Program:
             except configparser.ParsingError:
                 self.autorestart = "unexpected" 
             try:
-                self.exitcodes = int(config.get(name_prog, "exitcodes"))
+                self.exitcodes = config.get(name_prog, "exitcodes").split(',')
             except configparser.ParsingError:
                 self.exitcodes = 0
             try:

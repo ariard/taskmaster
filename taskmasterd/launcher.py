@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 19:50:32 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/22 19:59:03 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ def launcher(program, name_prog):
         else:
             status = "RUNNING"
         table_process[pid] = [name_prog, status, copy.copy(program.startretries)]
-        prog_to_pid[name_prog] = None
+        prog_to_pid[name_prog].append(pid)
 
     if pid == 0:
         DG("launch command")
