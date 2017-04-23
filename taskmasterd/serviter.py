@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 19:44:15 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/23 18:27:03 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,6 @@ import settings
 num_threads = 0
 
 def serviter(clientsocket, addr, server):
-    table_prog = settings.table_prog
-    table_process = settings.table_process 
-    prog_to_pid = settings.prog_to_pid
 
     while True:
         m = clientsocket.recv(1024)
@@ -40,22 +37,20 @@ def serviter(clientsocket, addr, server):
             break
 
         elif cmd_lst[0] == 'start' or cmd_lst[0] == 'restart':
-            server.start_manager(server.config, cmd_lst[1:]) 
+            server.start_manager(server.config, cmd_lst[1:])
 
         elif cmd_lst[0] == 'stop':
-            for name_prog in cmd_list[1:]:
-                numprocs = table_prog[name_prog].numprocs[:] 
-                while numprocs > 0:
-                   server.start_killer(prog_to_pid[name_prog])
-                   prog_to_pid[name_prog] = prog_to_pid[name_prog][1:]
-                   numprocs -= 1
+            if cmd_lst[1] in settings.tab_process:
+                server.start_killer(settings.tab_process[cmd_lst[1]])
+            else:
+                error_msg("No such process " + cmd_lst[1])
 
         elif cmd_lst[0] == 'reload':
             server.config = configparser.ConfigParser()
             try:
                 server.config.read_file(open(cmd_lst[1]))
             except FileNotFoundError:
-                error_msg("No such configuration file")
+                error_msg("No such configuration file" + cmd_lst[1])
             server.config.read_file(open(path))
             server.list_progs = extractProg(server.config.sections())
             server.start_manager(server.config, server.list_progs)

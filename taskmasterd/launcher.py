@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 19:59:03 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/23 19:04:01 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,19 +19,29 @@ from debug import *
 
 import settings
 
-def launcher(program, name_prog):
-    table_prog = settings.table_prog
-    table_process = settings.table_process
-    prog_to_pid = settings.prog_to_pid
+class Process:
+    def __init__(self, name_process, pid, status, retries, num, name_prog):
+        self.name_process = name_process
+        self.pid = pid
+        self.status = status
+        self.retries = retries
+        self.num = num
+        self.father = name_prog
+
+
+def launcher(program, name_prog, num, retries):
 
     pid = os.fork()
     if pid > 0:
-        if program.startsecs == 0:
+        if program.startsecs > 0:
             status = "STARTING"
         else:
             status = "RUNNING"
-        table_process[pid] = [name_prog, status, copy.copy(program.startretries)]
-        prog_to_pid[name_prog].append(pid)
+        name_process = name_prog + "_" + str(num)
+        process = Process(name_process, pid, status, retries, num, name_prog)
+        settings.tab_process[pid] = process
+        settings.tab_process[name_process] = process
+        settings.lst_pid.append(pid)
 
     if pid == 0:
         DG("launch command")

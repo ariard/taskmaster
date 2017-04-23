@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 20:05:30 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/23 18:18:44 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ if __name__ == '__main__' :
     daemonize()
     settings.init()
     server = Server(path_config)
-#    server.start_keeper()
+    server.start_keeper()
     server.start_watcher()
     server.start_manager(server.config, server.list_progs)
 #   server.init
@@ -55,7 +55,7 @@ if __name__ == '__main__' :
         print('Connection received from : ', server.addr)
         DG("after received")
         server.c.send(str(num_threads).encode('utf-8'))
-        server.start_servitor()
+        server.start_serviter()
         num_threads += 1
         print('debug: [' + str(num_threads) + '] threads are actually running')
     server.ss.close()
