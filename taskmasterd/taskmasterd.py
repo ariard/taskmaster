@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/23 18:18:44 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/24 23:06:35 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ from daemonize import *
 from server import *
 from debug import *
 from task_error import *
+from syslogging import *
+from serviter import num_threads
 
 import settings
 
@@ -53,6 +55,7 @@ if __name__ == '__main__' :
         server.c, server.addr = server.ss.accept()
         DG("after accept")
         print('Connection received from : ', server.addr)
+        logging.warning(flow(server.addr, 1))
         DG("after received")
         server.c.send(str(num_threads).encode('utf-8'))
         server.start_serviter()

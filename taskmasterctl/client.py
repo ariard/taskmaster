@@ -6,14 +6,13 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/21 18:26:18 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/24 22:24:15 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import socket
 import readline
-
-from debug import *
+import os
 
 # Line editing inits
 
@@ -40,16 +39,16 @@ def header():
 def welcome(cnum):
 	header()
 	print("----------------------------------------------------------------")
-	print("-- Available commands : help, start, restart, status, stop, exit")
-	print("-- Server running adress : ", host)
-	print("-- Listening on port : ", port)
-	print("-- You are the client number : ", cnum)
+	print("-- Available commands : help, start [command], restart [command]")
+	print("--                      status [command], stop, exit            ")
+	print("--                      reload [file]                           ")
+	print("-- Server running adress : ", host                               )
+	print("-- Listening on port : ", port                                   )
+	print("-- You are the client number : ", cnum                           )
 	print("----------------------------------------------------------------")
 
 def line_is_command(line):
-	if (line == "exit" or line == "help" or line == "start" \
-            or line == "restart" or line == "status" \
-            or line == "stop" or line == "reload"):
+	if (line == "exit" or line == "help" or "start" in line or "restart" in line or "status" in line or "stop" in line or "reload" in line):
 		return 1
 	return 0
 
@@ -57,15 +56,19 @@ def send_to_server(line, sc):
 	sc.send(line.encode('utf8'))
 
 def prompt(sc):
-    while True:
-        line = input("\033[1;32mtaskmaster>\033[0m ")
-        if (line_is_command(line)):
-            DG("send line")
-            send_to_server(line, sc)
-        elif (line == 'exit'):
-            break
-        else:
-            print("taskmaster:", line, ": command not found")
+	while True:
+		line = input("\033[1;32mtaskmaster>\033[0m ")
+		if (line_is_command(line)):
+			if "reload" in line:
+				sp = line.split()
+				if len(sp) == 2:
+					sp[1] = os.path.abspath(sp[1])
+					line = sp[0] + " " + sp[1]
+			send_to_server(line, sc)
+			if (line == 'exit'):
+				break
+		else:
+			print("taskmaster:", line, ": command not found")	
 
 def launch(host, port):
 	sc = socket.socket()
