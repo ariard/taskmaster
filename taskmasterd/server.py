@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/24 23:06:53 by echo             ###   ########.fr        #
+#    Updated: 2017/04/25 20:48:03 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,20 +22,13 @@ from debug import *
 from task_signal import *
 from drop_root import *
 from task_error import *
+from extract import *
 
 from manager import manager
 from keeper import keeper
 from watcher import watcher
 from serviter import serviter, logging
 from killer import killer
-
-def extractProg(list_sections):
-    prog = list()
-    DG("sections " + str(list_sections))
-    for sections in list_sections:
-        if sections[0:7] == "program":
-            prog.append(sections)
-    return (prog)
 
 class Server:
     def __init__(self, path):

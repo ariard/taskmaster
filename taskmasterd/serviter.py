@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/25 19:23:48 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/25 20:47:02 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ from task_error import *
 from statutor import *
 from syslogging import *
 from report import report
+from extract import *
 
 import settings
 
@@ -63,17 +64,18 @@ def serviter(clientsocket, addr, server):
                 error_msg("No such process " + cmd_lst[1])
 
         elif cmd_lst[0] == 'reload':
+            DG("reload")
+            DG(cmd_lst[1])
             server.config = configparser.ConfigParser()
             try:
-                server.config.read_file(open(cmd_lst[1]))
-            except FileNotFoundError:
+                path_config = os.path.abspath(cmd_lst[1])
+                server.config.read(path_config)
+                server.list_progs = extractProg(server.config.sections())
+                server.start_manager(server.config, server.list_progs)
+            except Error :
                 error_msg("No such configuration file" + cmd_lst[1])
-            server.config.read_file(open(path))
-            server.list_progs = extractProg(server.config.sections())
-            server.start_manager(server.config, server.list_progs)
 
         elif cmd_lst[0] == 'status':
-            DG("status")
             tab = getStatus()
             DG(str(tab))
             clientsocket.send(str(tab).encode("utf-8"))
