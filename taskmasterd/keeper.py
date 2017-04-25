@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/04/23 19:05:40 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/25 23:13:11 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ def keeper():
             program = settings.tab_prog[name_prog]
             if ((exitcode not in program.exitcodes and program.autorestart == "unexpected") \
                 or (program.autorestart == "true")) and settings.tab_process[pid].status == "RUNNING":
-                if settings.tab_process[pid].retries > 0:
+                #report(("yo", "hahaha"), name_prog, "originadam@gmail.com")
+		if settings.tab_process[pid].retries > 0:
                     settings.tab_process[pid].retries -= 1
                     launcher(program, name_prog, settings.tab_process[pid].num, settings.tab_process[pid].retries)
             elif tab_process[pid].status == "RUNNING":

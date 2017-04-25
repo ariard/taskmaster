@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/24 22:24:15 by echo             ###   ########.fr        #
+#    Updated: 2017/04/25 23:07:25 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,12 +48,16 @@ def welcome(cnum):
 	print("----------------------------------------------------------------")
 
 def line_is_command(line):
-	if (line == "exit" or line == "help" or "start" in line or "restart" in line or "status" in line or "stop" in line or "reload" in line):
+	if (line == "exit" or "start" in line or "restart" in line or "status" in line or "stop" in line or "reload" in line):
 		return 1
 	return 0
 
 def send_to_server(line, sc):
 	sc.send(line.encode('utf8'))
+
+def wait_answer(sc):
+	reply = sc.recv(1024)
+	print(">> " + str(reply.decode('utf-8')))
 
 def prompt(sc):
 	while True:
@@ -67,8 +71,13 @@ def prompt(sc):
 			send_to_server(line, sc)
 			if (line == 'exit'):
 				break
+		elif (line == 'help'):
+			print ("exit, start prog, restart prog, status prog, stop prog, reload file, help")
 		else:
-			print("taskmaster:", line, ": command not found")	
+			print("taskmaster:", line, ": command not found")
+		if (line == "status" or line == "stop"):
+			print("")
+			wait_answer(sc)
 
 def launch(host, port):
 	sc = socket.socket()
