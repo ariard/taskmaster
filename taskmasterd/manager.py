@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/04/23 19:00:57 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/25 18:30:37 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,14 @@ def manager(config, list_progs, server):
 
     for name_prog in list_progs: 
         DG(name_prog)
+
+        if name_prog in settings.tab_prog and settings.tab_prog[name_prog].autostart == "false" :
+            numprocs = settings.tab_prog[name_prog].numprocs
+
+            while numprocs > 0:
+                launcher(settings.tab_prog[name_prog], name_prog, numprocs, \
+                    copy.copy(settings.tab_prog[name_prog].startretries))
+                numprocs -= 1
 
         if name_prog in settings.tab_prog:
             new_prog = Program(config, name_prog)
@@ -70,6 +78,3 @@ def manager(config, list_progs, server):
                     launcher(settings.tab_prog[name_prog], name_prog, numprocs, \
                         copy.copy(settings.tab_prog[name_prog].startretries))
                     numprocs -= 1
-
-            elif settings.tab_prog[name_prog].autostart == "false":
-                settings.tab_prog[name_prog].autostart == "true" 

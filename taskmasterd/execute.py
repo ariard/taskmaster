@@ -6,11 +6,12 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 20:03:25 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/25 17:23:59 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import os
+import configparser
 
 from debug import *
 
@@ -18,59 +19,59 @@ class Program:
     def __init__(self, config , name_prog):
             try:
                 self.command = config.get(name_prog, "command")
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.command = None
             try:
                 self.numprocs = int(config.get(name_prog, "numprocs"))
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.numprocs = 1
             try:
                 self.autostart = config.get(name_prog, "autostart")
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.autostart = "true"
             try:
                 self.autorestart = config.get(name_prog, "autorestart")
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.autorestart = "unexpected" 
             try:
                 self.exitcodes = config.get(name_prog, "exitcodes").split(',')
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.exitcodes = 0
             try:
                 self.startsecs = int(config.get(name_prog, "startsecs"))
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.startsecs = 1
             try:
                 self.startretries = int(config.get(name_prog, "startretries"))
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.startretries = 3
             try:
                 self.stopsignal = config.get(name_prog, "stopsignal")
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.stopsignal = "TERM"
             try:
                 self.stopwaitsecs = config.get(name_prog, "stopwaitsecs")
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.stopwaitsecs = 10
             try:
                 self.stdout = config.get(name_prog, "stdout_logfile")
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.stdout = None
             try:
                 self.stderr = config.get(name_prog, "stderr_logfile")
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.stderr = None
             try: 
                 self.env = config.get(name_prog, "environnement")
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.env = None
             try:
                 self.dir = config.get(name_prog, "directory")
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.dir = None
             try:
                 self.umask = config.get(name_prog, "umask")
-            except configparser.ParsingError:
+            except configparser.NoOptionError:
                 self.umask = None 
 
     def conf(self):

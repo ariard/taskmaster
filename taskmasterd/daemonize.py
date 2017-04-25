@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:34:11 by ariard            #+#    #+#              #
-#    Updated: 2017/04/24 22:08:51 by echo             ###   ########.fr        #
+#    Updated: 2017/04/25 17:25:52 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ def daemonize():
 
         fd = open('/dev/null')
         os.dup2(fd.fileno(), 0)
-#         os.dup2(fd.fileno(), 1)
+        os.dup2(fd.fileno(), 1)
 #        os.dup2(fd.fileno(), 2)
 
         os.umask(0)

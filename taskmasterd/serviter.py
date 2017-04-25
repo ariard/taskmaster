@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/24 23:08:19 by echo             ###   ########.fr        #
+#    Updated: 2017/04/25 19:23:48 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,18 +33,28 @@ def serviter(clientsocket, addr, server):
     while True:
         m = clientsocket.recv(1024)        
         #report(addr, "ls", "originadam@gmail.com")
-        m = m.strip()
-        cmd_lst = m.split(b' ')
-        if m:
-            print(m + b'\n')
-            logging.info(command(m.decode('utf-8'), addr))
-        elif cmd_lst[0] == 'exit' or cmd_lst[0] == 'quit' or not m:
+        dec = m.decode("utf-8")
+        cmd_lst = dec.split(' ')
+        DG("cmd_lst[0] + " + cmd_lst[0])
+        try:
+            DG("cmd_lst[1] + " + cmd_lst[1])
+        except:
+            pass
+#        if m:
+#            print(m + b'\n')
+#            logging.info(command(m.decode('utf-8'), addr))
+        if cmd_lst[0] == 'exit' or cmd_lst[0] == 'quit' or not m:
             logging.warning(flow(addr, 0))
             print('exit request received from ' + str(addr[1]) + ' ... stopping')
             break
 
         elif cmd_lst[0] == 'start' or cmd_lst[0] == 'restart':
-            server.start_manager(server.config, cmd_lst[1:])
+            try:
+                test_cmd = server.config.get("program:" + cmd_lst[1], "command")
+                server.start_manager(server.config, ["program:" + cmd_lst[1]])
+            except configparser.NoSectionError:
+                DG("error no such program")
+                clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
 
         elif cmd_lst[0] == 'stop':
             if cmd_lst[1] in settings.tab_process:
@@ -63,8 +73,10 @@ def serviter(clientsocket, addr, server):
             server.start_manager(server.config, server.list_progs)
 
         elif cmd_lst[0] == 'status':
+            DG("status")
             tab = getStatus()
-            cliensocket.send(tab + "\n")
+            DG(str(tab))
+            clientsocket.send(str(tab).encode("utf-8"))
 
     global num_threads
     num_threads -= 1

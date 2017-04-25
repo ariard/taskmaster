@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/24 23:06:35 by echo             ###   ########.fr        #
+#    Updated: 2017/04/25 17:28:11 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,14 +53,12 @@ if __name__ == '__main__' :
     while True:
         global num_threads
         server.c, server.addr = server.ss.accept()
-        DG("after accept")
-        print('Connection received from : ', server.addr)
+        DG('Connection received from : ' + str(server.addr))
         logging.warning(flow(server.addr, 1))
-        DG("after received")
         server.c.send(str(num_threads).encode('utf-8'))
         server.start_serviter()
         num_threads += 1
-        print('debug: [' + str(num_threads) + '] threads are actually running')
+        DG('debug: [' + str(num_threads) + '] threads are actually running')
     server.ss.close()
     DG("usual end")
 

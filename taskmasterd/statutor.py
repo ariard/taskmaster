@@ -6,17 +6,21 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 16:54:51 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 17:13:27 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/25 19:23:03 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-def getStatus():
-    global table_process
-    global prog_to_pid
+import settings
 
-    tab = str()
-    for name in prog_to_pid:
+from debug import *
+
+def getStatus():
+
+    tab = list()
+    for name in settings.tab_process:
         
-        for pid in prog_to_pid[name]:
-            tab += name + "    " + str(pid) + "    " + table_process[pid][1] + "\n"
+        if str(name).isdigit() == False:
+            DG(str(name))
+            tab.append(name + "    " + str(settings.tab_process[name].pid) + "    " + \
+                settings.tab_process[name].status + "\n")
     return tab

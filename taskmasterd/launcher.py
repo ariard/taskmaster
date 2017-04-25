@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/04/23 19:04:01 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/25 18:40:16 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,14 @@ class Process:
 
 def launcher(program, name_prog, num, retries):
 
+    DG(name_prog)
     pid = os.fork()
     if pid > 0:
         if program.startsecs > 0:
             status = "STARTING"
         else:
             status = "RUNNING"
-        name_process = name_prog + "_" + str(num)
+        name_process = name_prog[8:] + "_" + str(num)
         process = Process(name_process, pid, status, retries, num, name_prog)
         settings.tab_process[pid] = process
         settings.tab_process[name_process] = process
