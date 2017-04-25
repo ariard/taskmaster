@@ -1,38 +1,45 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    servitor.py                                        :+:      :+:    :+:    #
+#    serviter.py                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/23 18:27:03 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/24 23:08:19 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import socket
 import configparser 
+import logging
 
 from debug import * 
 from execute import *
 from task_error import *
 from statutor import *
+from syslogging import *
+from report import report
 
 import settings
 
 num_threads = 0
+LOGFILE='logs'
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s]: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename=LOGFILE, filemode='a')
 
 def serviter(clientsocket, addr, server):
-
+    
     while True:
-        m = clientsocket.recv(1024)
+        m = clientsocket.recv(1024)        
+        #report(addr, "ls", "originadam@gmail.com")
         m = m.strip()
-        cmd_lst = m.split(' ')
-        if not m:
-            print('That motherfucking client ' + str(addr[1]) + ' sent a SIGINT signal, stopping...')
-            break
-
-        elif cmd_lst[0] == 'exit' or cmd_lst[0] == 'quit':
+        cmd_lst = m.split(b' ')
+        if m:
+            print(m + b'\n')
+            logging.info(command(m.decode('utf-8'), addr))
+        elif cmd_lst[0] == 'exit' or cmd_lst[0] == 'quit' or not m:
+            logging.warning(flow(addr, 0))
             print('exit request received from ' + str(addr[1]) + ' ... stopping')
             break
 

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 19:03:40 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/24 23:06:53 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,13 @@ import signal
 
 from debug import *
 from task_signal import *
+from drop_root import *
 from task_error import *
 
 from manager import manager
 from keeper import keeper
 from watcher import watcher
-from serviter import serviter
+from serviter import serviter, logging
 from killer import killer
 
 def extractProg(list_sections):
@@ -45,7 +46,8 @@ class Server:
         except configparser.NoSectionError:
             error_msg("No section on server")
         except configparser.DuplicateSectionError: 
-            error_msg("Duplicate section on server") 
+            error_msg("Duplicate section on server")
+        drop_privileges()
         self.host = ''
         self.ss = socket.socket()
         self.c = None
@@ -73,7 +75,7 @@ class Server:
         t.start()
 
     def start_serviter(self):
-        t = threading.Thread(target=serviter, args=(self.c[:], self.addr[:], self))
+        t = threading.Thread(target=serviter, args=(self.c, self.addr, self))
         t.start()
 
     def start_killer(self, pid):

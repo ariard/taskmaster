@@ -1,0 +1,52 @@
+04/24/2017 10:01:35 PM [WARNING]: '49262' joined from '127.0.0.1'
+04/24/2017 10:04:12 PM [WARNING]: '49282' joined from '127.0.0.1'
+04/24/2017 10:04:42 PM [WARNING]: '49288' joined from '127.0.0.1'
+04/24/2017 10:05:09 PM [WARNING]: '49289' joined from '127.0.0.1'
+04/24/2017 10:08:23 PM [WARNING]: '49310' joined from '127.0.0.1'
+04/24/2017 10:09:33 PM [WARNING]: '49311' joined from '127.0.0.1'
+04/24/2017 10:13:31 PM [WARNING]: '49329' joined from '127.0.0.1'
+04/24/2017 10:15:40 PM [WARNING]: '49330' joined from '127.0.0.1'
+04/24/2017 10:16:53 PM [WARNING]: '49345' joined from '127.0.0.1'
+04/24/2017 10:17:39 PM [WARNING]: '49346' joined from '127.0.0.1'
+04/24/2017 10:18:35 PM [WARNING]: '49347' joined from '127.0.0.1'
+04/24/2017 10:18:37 PM [INFO]: received command: 'start' from 127.0.0.1:49347
+04/24/2017 10:18:40 PM [INFO]: received command: 'start ls' from 127.0.0.1:49347
+04/24/2017 10:18:44 PM [INFO]: received command: 'stop blabla' from 127.0.0.1:49347
+04/24/2017 10:18:45 PM [WARNING]: '49347' left from '127.0.0.1'
+04/24/2017 10:19:27 PM [WARNING]: '49348' joined from '127.0.0.1'
+04/24/2017 10:20:02 PM [WARNING]: '49349' joined from '127.0.0.1'
+04/24/2017 10:20:05 PM [INFO]: received command: 'start' from 127.0.0.1:49349
+04/24/2017 10:20:07 PM [INFO]: received command: 'start ls' from 127.0.0.1:49349
+04/24/2017 10:20:14 PM [INFO]: received command: 'restart ls' from 127.0.0.1:49349
+04/24/2017 10:20:16 PM [WARNING]: '49349' left from '127.0.0.1'
+04/24/2017 10:23:02 PM [WARNING]: '49352' joined from '127.0.0.1'
+04/24/2017 10:23:05 PM [WARNING]: '49352' left from '127.0.0.1'
+04/24/2017 10:24:19 PM [WARNING]: '49370' joined from '127.0.0.1'
+04/24/2017 10:24:22 PM [INFO]: received command: 'reload' from 127.0.0.1:49370
+04/24/2017 10:24:28 PM [INFO]: received command: 'reload /Users/echo/taskmaster/taskmasterctl/master.config' from 127.0.0.1:49370
+04/24/2017 10:24:34 PM [INFO]: received command: 'exit' from 127.0.0.1:49370
+04/24/2017 10:24:34 PM [WARNING]: '49370' left from '127.0.0.1'
+04/24/2017 10:24:45 PM [WARNING]: '49371' joined from '127.0.0.1'
+04/24/2017 10:24:52 PM [WARNING]: '49373' joined from '127.0.0.1'
+04/24/2017 10:24:55 PM [INFO]: received command: 'start ls' from 127.0.0.1:49373
+04/24/2017 10:24:57 PM [INFO]: received command: 'stop ls' from 127.0.0.1:49371
+04/24/2017 10:24:59 PM [WARNING]: '49371' left from '127.0.0.1'
+04/24/2017 10:25:01 PM [WARNING]: '49373' left from '127.0.0.1'
+04/24/2017 10:42:17 PM [WARNING]: '49484' joined from '127.0.0.1'
+04/24/2017 10:43:27 PM [WARNING]: '49486' joined from '127.0.0.1'
+04/24/2017 10:44:42 PM [WARNING]: '49488' joined from '127.0.0.1'
+04/24/2017 10:44:47 PM [INFO]: received command: 'start ls' from 127.0.0.1:49488
+04/24/2017 10:44:50 PM [INFO]: received command: 'stop ls' from 127.0.0.1:49488
+04/24/2017 10:45:14 PM [INFO]: received command: 'start ls' from 127.0.0.1:49488
+04/24/2017 10:45:16 PM [INFO]: received command: 'stop ls' from 127.0.0.1:49488
+04/24/2017 10:45:20 PM [INFO]: received command: 'reload /Users/echo/taskmaster/taskmasterctl/config.master' from 127.0.0.1:49488
+04/24/2017 10:45:23 PM [INFO]: received command: 'exit' from 127.0.0.1:49488
+04/24/2017 10:45:23 PM [WARNING]: '49488' left from '127.0.0.1'
+04/24/2017 10:49:11 PM [WARNING]: '49539' joined from '127.0.0.1'
+04/24/2017 10:53:19 PM [WARNING]: '49562' joined from '127.0.0.1'
+04/24/2017 10:53:26 PM [INFO]: received command: 'start ls' from 127.0.0.1:49562
+04/24/2017 11:06:57 PM [WARNING]: '49643' joined from '127.0.0.1'
+04/24/2017 11:07:04 PM [INFO]: received command: 'start ls' from 127.0.0.1:49643
+04/24/2017 11:07:09 PM [INFO]: received command: 'stop ls' from 127.0.0.1:49643
+04/24/2017 11:07:21 PM [INFO]: received command: 'exit' from 127.0.0.1:49643
+04/24/2017 11:07:26 PM [WARNING]: '49643' left from '127.0.0.1'
