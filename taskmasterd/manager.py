@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/04/26 22:43:05 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/26 23:01:52 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,13 @@ def manager(config, list_progs, server):
         if name_prog in settings.tab_prog and settings.tab_prog[name_prog].autostart == "false" :
             numprocs = settings.tab_prog[name_prog].numprocs
 
+            DG("test1")
             while numprocs > 0:
                 launcher(settings.tab_prog[name_prog], name_prog, numprocs, \
                     copy.copy(settings.tab_prog[name_prog].startretries))
                 numprocs -= 1
 
-        if name_prog in settings.tab_prog:
+        elif name_prog in settings.tab_prog:
             new_prog = Program(config, name_prog)
             old_prog = settings.tab_prog[name_prog]
             numprocs = settings.tab_prog[name_prog].numprocs
@@ -72,8 +73,10 @@ def manager(config, list_progs, server):
 
             if settings.tab_prog[name_prog].autostart == "true" \
                 and settings.tab_prog[name_prog].command:
-                numprocs = settings.tab_prog[name_prog].numprocs                 
+                settings.tab_prog[name_prog].autostart = "false"
+                numprocs = settings.tab_prog[name_prog].numprocs
 
+                DG("from launch")
                 while numprocs > 0:
                     launcher(settings.tab_prog[name_prog], name_prog, numprocs, \
                         copy.copy(settings.tab_prog[name_prog].startretries))
