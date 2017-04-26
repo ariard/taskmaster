@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/25 20:47:02 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/26 23:28:06 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ def serviter(clientsocket, addr, server):
             print('exit request received from ' + str(addr[1]) + ' ... stopping')
             break
 
-        elif cmd_lst[0] == 'start' or cmd_lst[0] == 'restart':
+        elif cmd_lst[0] == 'start':
             try:
                 test_cmd = server.config.get("program:" + cmd_lst[1], "command")
                 server.start_manager(server.config, ["program:" + cmd_lst[1]])
@@ -57,9 +57,19 @@ def serviter(clientsocket, addr, server):
                 DG("error no such program")
                 clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
 
+        elif cmd_lst[0] == 'restart':
+            try:
+                test_cmd = server.config.get("program:" + cmd_lst[1], "command")
+                server.start_killer(settings.tab_process[cmd_lst[1]])
+                server.start_manager(server.config, ["program:" + cmd_lst[1]])
+            except configparser.NoSectionError:
+                DG("error no such program")
+                clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
+                
+
         elif cmd_lst[0] == 'stop':
             if cmd_lst[1] in settings.tab_process:
-                server.start_killer(settings.tab_process[cmd_lst[1]])
+                server.start_killer(settings.tab_process[cmd_lst[1]].pid)
             else:
                 error_msg("No such process " + cmd_lst[1])
 
