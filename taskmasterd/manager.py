@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/04/25 18:30:37 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/26 22:43:05 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ def manager(config, list_progs, server):
         if name_prog in settings.tab_prog:
             new_prog = Program(config, name_prog)
             old_prog = settings.tab_prog[name_prog]
-            numprocs = settings.tab_prog[name_prog].numprocs                 
+            numprocs = settings.tab_prog[name_prog].numprocs
             if new_prog.stdout != old_prog.stdout or new_prog.stderr != old_prog.stderr \
                 or new_prog.env != old_prog.env or new_prog.dir != old_prog.dir \
                 or new_prog.umask != old_prog.umask:
@@ -55,7 +55,7 @@ def manager(config, list_progs, server):
 
                 if numprocs < new_prog.numprocs:
                     new_num = new_prog - numprocs
-
+            
                     while new_num > 0:
                         launcher(settings.tab_prog[name_prog], name_prog, numprocs, \
                             copy.copy(settings.tab_prog[name_prog].startretries))

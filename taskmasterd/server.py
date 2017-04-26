@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/25 20:48:03 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/26 22:22:54 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,14 +63,10 @@ class Server:
         t = threading.Thread(target=keeper)
         t.start()
 
-    def start_watcher(self):
-        t = threading.Thread(target=watcher)
-        t.start()
-
     def start_serviter(self):
         t = threading.Thread(target=serviter, args=(self.c, self.addr, self))
         t.start()
 
-    def start_killer(self, pid):
-        t = threading.Thread(target=killer, args=(pid))
+    def start_killer(self, named_process):
+        t = threading.Thread(target=killer, args=(named_process))
         t.start()
