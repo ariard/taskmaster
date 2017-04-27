@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/25 23:07:25 by echo             ###   ########.fr        #
+#    Updated: 2017/04/27 23:53:30 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,9 +75,7 @@ def prompt(sc):
 			print ("exit, start prog, restart prog, status prog, stop prog, reload file, help")
 		else:
 			print("taskmaster:", line, ": command not found")
-		if (line == "status" or line == "stop"):
-			print("")
-			wait_answer(sc)
+		wait_answer(sc)
 
 def launch(host, port):
 	sc = socket.socket()
