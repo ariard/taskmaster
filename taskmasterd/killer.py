@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:54:34 by ariard            #+#    #+#              #
-#    Updated: 2017/04/27 00:02:05 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/27 17:29:48 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,10 @@ def getSignal(stopsignal):
 def killer(pid, null):
 
     name = settings.pid2name[pid]
+    if settings.tab_process[name].status != "STARTING" and settings.tab_process[name].status != "STOPPING":
+        return 1
     father = settings.tab_process[name].father
     signal = getSignal(settings.tab_prog[father].stopsignal)
-    if settings.tab_process[name].status != "STARTING" and setttings.tab_process[name].status != "STOPPING":
-        return 1
     settings.tab_process[name].status = "STOPPING"
     os.kill(pid, signal)
     time.sleep(settings.tab_prog[father].stopwaitsecs)

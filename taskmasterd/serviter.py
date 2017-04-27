@@ -6,13 +6,14 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/26 23:28:06 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/27 17:30:56 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import socket
 import configparser 
 import logging
+import signal
 
 from debug import * 
 from execute import *
@@ -60,7 +61,7 @@ def serviter(clientsocket, addr, server):
         elif cmd_lst[0] == 'restart':
             try:
                 test_cmd = server.config.get("program:" + cmd_lst[1], "command")
-                server.start_killer(settings.tab_process[cmd_lst[1]])
+                server.start_killer(settings.tab_process[cmd_lst[1]].pid)
                 server.start_manager(server.config, ["program:" + cmd_lst[1]])
             except configparser.NoSectionError:
                 DG("error no such program")
@@ -89,6 +90,17 @@ def serviter(clientsocket, addr, server):
             tab = getStatus()
             DG(str(tab))
             clientsocket.send(str(tab).encode("utf-8"))
+
+        elif cmd_lst[0] == 'shutdown':
+            for name in settings.tab_process:
+                DG("pid is " + str(settings.tab_process[name].pid))
+                server.start_killer(settings.tab_process[name].pid)
+            try:
+                os.remove("/tmp/.taskmasterd")
+            except:
+                pass
+            clientsocket.send("Taskmasterd is shutdown".encode("utf-8"))
+            sys.exit(-1)
 
     global num_threads
     num_threads -= 1
