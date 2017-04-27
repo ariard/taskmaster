@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/25 20:48:03 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/27 18:24:43 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ class Server:
         except configparser.DuplicateSectionError: 
             error_msg("Duplicate section on server")
         drop_privileges()
+        self.pid = os.getpid()
         self.host = ''
         self.ss = socket.socket()
         self.c = None
@@ -63,14 +64,10 @@ class Server:
         t = threading.Thread(target=keeper)
         t.start()
 
-    def start_watcher(self):
-        t = threading.Thread(target=watcher)
-        t.start()
-
     def start_serviter(self):
         t = threading.Thread(target=serviter, args=(self.c, self.addr, self))
         t.start()
 
     def start_killer(self, pid):
-        t = threading.Thread(target=killer, args=(pid))
+        t = threading.Thread(target=killer, args=(pid, None))
         t.start()

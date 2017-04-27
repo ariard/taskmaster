@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:45:20 by ariard            #+#    #+#              #
-#    Updated: 2017/04/23 18:16:22 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/26 22:35:08 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,18 +16,10 @@ from debug import *
 
 import settings
 
-def watcher():
+def watcher(name_process):
 
-    while 1:
-        try:
-            fifo = open("/tmp/fifo", "r")
-
-            for line in fifo:
-                startinfos = line.split(";")
-
-                if settings.tab_process[startinfos[0]][1] == "STARTING":
-                    tab_process[startinfos[0]] += startinfos[1]
-                fifo.close()
-        except:
-            pass
-    #TO IMPLEMENT, THREAD DEDIE POUR UDPDATE DATE DES PROCESS
+        watch_time = time.time()
+        secs = watch_time - settings.tab_process[name_process].time
+        if secs >= settings.tab_prog[settings.tab_process[name_process].father].startsecs \
+            and settings.tab_process[name_process].status == "STARTING":
+            settings.tab_process[name_process].status = "RUNNING"

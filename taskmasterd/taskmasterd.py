@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/25 17:28:11 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/27 17:10:53 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,20 +31,17 @@ import settings
 if __name__ == '__main__' :
     
     DG_init()
+    if len(sys.argv) < 2:
+        error_msg("usage : <config_file>")
     try:
         path_config = os.path.abspath(sys.argv[1])
     except FileNotFoundError:
         error_msg("No such configuration file")
-
-    if len(sys.argv) < 2:
-        print("usage : <config_file>")
-        exit(-1)
     DG("start")
     daemonize()
     settings.init()
     server = Server(path_config)
     server.start_keeper()
-    server.start_watcher()
     server.start_manager(server.config, server.list_progs)
 #   server.init
     DG("after launch server")

@@ -6,12 +6,13 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 21:55:37 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 18:26:04 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/27 17:09:12 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import sys
 
 def error_msg(msg):
-    print("taskmaster: " + msg, file=sys.stderr)
+    
+    sys.stderr.write("taskmaster: " + msg)
     sys.exit(-1)

@@ -6,34 +6,44 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:54:34 by ariard            #+#    #+#              #
-#    Updated: 2017/04/22 01:50:23 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/27 17:29:48 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import os
 import signal
+import time
 
 from task_signal import *
 
+import settings
+
 def getSignal(stopsignal):
-    signals = ["TERM", signal.TERM, "HUP", signal.HUP, "INT", signal.INT, \
-        "QUIT", signal.QUIT, "KILL", signal.KILL, "USR1", signal.USR1, \
-        "USR2", signal.USR2] 
+    signals = ["TERM", signal.SIGTERM, "HUP", signal.SIGHUP, "INT", signal.SIGINT, \
+        "QUIT", signal.SIGQUIT, "KILL", signal.SIGKILL, "USR1", signal.SIGUSR1, \
+        "USR2", signal.SIGUSR2] 
 
     a = 0
+    DG(stopsignal)
     for i in signals:
-        if a == 0:
+        
+        
+        if a == 1:
             return i
         if stopsignal == i:
-            a == 1
 
-def killer(pid):
-    global queue_pid
-    global table_prog
-    global table_process
+            DG(i)
+            a = 1
 
-    signal = get_signal(table_prog[table_process[pid][1]].stopsignal)
+def killer(pid, null):
+
+    name = settings.pid2name[pid]
+    if settings.tab_process[name].status != "STARTING" and settings.tab_process[name].status != "STOPPING":
+        return 1
+    father = settings.tab_process[name].father
+    signal = getSignal(settings.tab_prog[father].stopsignal)
+    settings.tab_process[name].status = "STOPPING"
     os.kill(pid, signal)
-    time.sleep(table_prog[table_process[pid][1]].stopwaits)
-    if pid not in queue_pid:
+    time.sleep(settings.tab_prog[father].stopwaitsecs)
+    if settings.tab_process[name].status != "STOPPED":
         os.kill(pid, signal.SIGKILL)

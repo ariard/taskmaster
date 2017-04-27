@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/04/25 17:23:59 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/26 23:55:11 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,11 @@ class Program:
                 self.autorestart = config.get(name_prog, "autorestart")
             except configparser.NoOptionError:
                 self.autorestart = "unexpected" 
+            self.exitcodes = list()
             try:
-                self.exitcodes = config.get(name_prog, "exitcodes").split(',')
+                self.exitcodes.append(config.get(name_prog, "exitcodes").split(','))
             except configparser.NoOptionError:
-                self.exitcodes = 0
+                self.exitcodes.append(0)
             try:
                 self.startsecs = int(config.get(name_prog, "startsecs"))
             except configparser.NoOptionError:
