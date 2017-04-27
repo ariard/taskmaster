@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/26 23:22:06 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/27 18:24:43 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ class Server:
         except configparser.DuplicateSectionError: 
             error_msg("Duplicate section on server")
         drop_privileges()
+        self.pid = os.getpid()
         self.host = ''
         self.ss = socket.socket()
         self.c = None

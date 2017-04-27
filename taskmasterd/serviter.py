@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/27 17:30:56 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/27 18:23:28 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,14 +37,16 @@ def serviter(clientsocket, addr, server):
         #report(addr, "ls", "originadam@gmail.com")
         dec = m.decode("utf-8")
         cmd_lst = dec.split(' ')
-        DG("cmd_lst[0] + " + cmd_lst[0])
-        try:
-            DG("cmd_lst[1] + " + cmd_lst[1])
-        except:
-            pass
+#        DG("cmd_lst[0] + " + cmd_lst[0])
+#        try:
+#            DG("cmd_lst[1] + " + cmd_lst[1])
+#        except:
+#            pass
 #        if m:
 #            print(m + b'\n')
 #            logging.info(command(m.decode('utf-8'), addr))
+
+
         if cmd_lst[0] == 'exit' or cmd_lst[0] == 'quit' or not m:
             logging.warning(flow(addr, 0))
             print('exit request received from ' + str(addr[1]) + ' ... stopping')
@@ -52,17 +54,19 @@ def serviter(clientsocket, addr, server):
 
         elif cmd_lst[0] == 'start':
             try:
-                test_cmd = server.config.get("program:" + cmd_lst[1], "command")
-                server.start_manager(server.config, ["program:" + cmd_lst[1]])
+                program = "program:" + cmd_lst[1].strip('_0123456789')
+                server.config.get(program, "command")
+                server.start_manager(server.config, [program])
             except configparser.NoSectionError:
                 DG("error no such program")
                 clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
 
         elif cmd_lst[0] == 'restart':
             try:
-                test_cmd = server.config.get("program:" + cmd_lst[1], "command")
                 server.start_killer(settings.tab_process[cmd_lst[1]].pid)
-                server.start_manager(server.config, ["program:" + cmd_lst[1]])
+                program = "program:" + cmd_lst[1].strip('_0123456789')
+                server.config.get(program, "command")
+                server.start_manager(server.config, [program])
             except configparser.NoSectionError:
                 DG("error no such program")
                 clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
@@ -72,7 +76,7 @@ def serviter(clientsocket, addr, server):
             if cmd_lst[1] in settings.tab_process:
                 server.start_killer(settings.tab_process[cmd_lst[1]].pid)
             else:
-                error_msg("No such process " + cmd_lst[1])
+                clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
 
         elif cmd_lst[0] == 'reload':
             DG("reload")
@@ -84,12 +88,21 @@ def serviter(clientsocket, addr, server):
                 server.list_progs = extractProg(server.config.sections())
                 server.start_manager(server.config, server.list_progs)
             except Error :
-                error_msg("No such configuration file" + cmd_lst[1])
+                clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
 
         elif cmd_lst[0] == 'status':
             tab = getStatus()
             DG(str(tab))
             clientsocket.send(str(tab).encode("utf-8"))
+
+        elif cmd_lst[0] == 'config':
+            program = "program:" + cmd_lst[1].strip('_0123456789')
+            config_program = server.config.options("program:" + program)
+            clientsocket.send(config_program.encode("utf-8"))
+
+        elif cmd_lst[0] == 'alert':
+            pass
+               
 
         elif cmd_lst[0] == 'shutdown':
             for name in settings.tab_process:
@@ -100,6 +113,7 @@ def serviter(clientsocket, addr, server):
             except:
                 pass
             clientsocket.send("Taskmasterd is shutdown".encode("utf-8"))
+            os.kill(server.pid, signal.SIGKILL)
             sys.exit(-1)
 
     global num_threads
