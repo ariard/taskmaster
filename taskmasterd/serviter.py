@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/27 18:23:28 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 16:40:30 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,11 @@ from extract import *
 import settings
 
 num_threads = 0
-LOGFILE='logs'
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s]: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename=LOGFILE, filemode='a')
 
 def serviter(clientsocket, addr, server):
     
     while True:
-        m = clientsocket.recv(1024)        
+        m = clientsocket.recv(1024)
         #report(addr, "ls", "originadam@gmail.com")
         dec = m.decode("utf-8")
         cmd_lst = dec.split(' ')
@@ -92,7 +89,6 @@ def serviter(clientsocket, addr, server):
 
         elif cmd_lst[0] == 'status':
             tab = getStatus()
-            DG(str(tab))
             clientsocket.send(str(tab).encode("utf-8"))
 
         elif cmd_lst[0] == 'config':

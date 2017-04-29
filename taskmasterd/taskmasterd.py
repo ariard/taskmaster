@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 21:57:30 by ariard            #+#    #+#              #
-#    Updated: 2017/04/27 17:10:53 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 17:12:20 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,8 @@ if __name__ == '__main__' :
     except FileNotFoundError:
         error_msg("No such configuration file")
     DG("start")
-    daemonize()
     settings.init()
+    daemonize()
     server = Server(path_config)
     server.start_keeper()
     server.start_manager(server.config, server.list_progs)
@@ -51,7 +51,7 @@ if __name__ == '__main__' :
         global num_threads
         server.c, server.addr = server.ss.accept()
         DG('Connection received from : ' + str(server.addr))
-        logging.warning(flow(server.addr, 1))
+        logging.warning(flow(server.addr, 2))
         server.c.send(str(num_threads).encode('utf-8'))
         server.start_serviter()
         num_threads += 1
