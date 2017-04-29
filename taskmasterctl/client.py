@@ -6,13 +6,15 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/29 21:01:13 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 23:18:52 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import socket
 import readline
 import os
+import sys
+import getpass
 
 from debug import *
 
@@ -52,7 +54,7 @@ def welcome(cnum):
 def line_is_command(line):
     if (line == "exit" or line == "help" or "start" in line or "restart" in line or "status" in line \
         or "stop" in line or "reload" in line or line == "shutdown" or "config" in line or "alert" in line \
-        or "alert"):
+        or "alert" in line):
         return 1
     return 0
 
@@ -65,6 +67,7 @@ def wait_answer(sc):
     print(reply)
 
 def prompt(sc):
+    DG("Prompt good")
     while True:
         line = input("\033[1;32mtaskmaster>\033[0m ")
         if (line_is_command(line)):
@@ -87,10 +90,22 @@ def launch(host, port):
     sc = socket.socket()
     print("Trying to connect", host, "on port", port," ...")
     sc.connect((host, port))
-    cnum = sc.recv(1024)
-    cnum = cnum.decode('utf8')
+    sc.send(("\r\n").encode('utf-8'))
+    DG("num client ok")
+    cnum = (sc.recv(1024)).decode('utf-8')
     welcome(cnum)
-    prompt(sc)
+    while True:
+        psswd = getpass.getpass()
+        if len(psswd) == 0:
+            psswd = "\r\n"
+        sc.send(psswd.encode('utf-8'))
+        answer = sc.recv(1024).decode('utf-8')
+        if answer == "valid":
+            prompt(sc)
+            sys.exit(0)
+        print(answer)
+        if "deconnecting" in answer:
+            sys.exit(0)
 
 if __name__ == '__main__':
     launch(host, port)

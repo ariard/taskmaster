@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/04/27 18:24:43 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 21:28:42 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,10 @@ class Server:
     def __init__(self, path):
         self.config = configparser.ConfigParser()
         self.config.read(path)
+        try:
+            self.psswd = self.config.get('server', 'password')
+        except:
+            self.psswd = None
         try:
             self.port = int(self.config.get('server', 'port'))
         except configparser.NoSectionError:

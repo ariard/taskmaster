@@ -1891,3 +1891,303 @@
 2017-04-29 20:39:56,352 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
 2017-04-29 20:39:56,422 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
 2017-04-29 20:39:56,422 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:07:26,824 INFO exited: fatls_07 (exit status 1; not expected)
+2017-04-29 21:07:26,824 INFO exited: fatls_01 (exit status 1; not expected)
+2017-04-29 21:07:26,824 INFO exited: fatls_05 (exit status 1; not expected)
+2017-04-29 21:07:26,825 INFO exited: fatls_09 (exit status 1; not expected)
+2017-04-29 21:07:26,837 INFO spawned: 'fatls_09' with pid 55265
+2017-04-29 21:07:26,840 INFO spawned: 'fatls_01' with pid 55266
+2017-04-29 21:07:26,843 INFO spawned: 'fatls_05' with pid 55268
+2017-04-29 21:07:26,847 INFO spawned: 'fatls_07' with pid 55269
+2017-04-29 21:07:26,851 INFO exited: fatls_06 (exit status 1; not expected)
+2017-04-29 21:07:26,983 INFO spawned: 'fatls_06' with pid 55270
+2017-04-29 21:07:26,984 INFO exited: fatls_04 (exit status 1; not expected)
+2017-04-29 21:07:26,985 INFO exited: fatls_08 (exit status 1; not expected)
+2017-04-29 21:07:26,985 INFO exited: fatls_02 (exit status 1; not expected)
+2017-04-29 21:07:26,985 INFO exited: fatls_03 (exit status 1; not expected)
+2017-04-29 21:07:26,985 INFO exited: fatls_00 (exit status 1; not expected)
+2017-04-29 21:07:27,372 INFO spawned: 'fatls_08' with pid 55271
+2017-04-29 21:07:27,374 INFO spawned: 'fatls_00' with pid 55272
+2017-04-29 21:07:27,375 INFO spawned: 'fatls_03' with pid 55273
+2017-04-29 21:07:27,377 INFO spawned: 'fatls_02' with pid 55274
+2017-04-29 21:07:27,380 INFO spawned: 'fatls_04' with pid 55275
+2017-04-29 21:07:36,838 INFO success: fatls_09 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:07:36,838 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:07:36,843 INFO success: fatls_05 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:07:36,843 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:07:36,983 INFO success: fatls_06 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:07:37,371 INFO success: fatls_08 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:07:37,374 INFO success: fatls_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:07:37,376 INFO success: fatls_03 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:07:37,376 INFO success: fatls_02 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:07:37,378 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:10:53,855 INFO exited: fatls_02 (exit status 1; not expected)
+2017-04-29 21:10:53,860 INFO exited: fatls_03 (exit status 1; not expected)
+2017-04-29 21:10:53,860 INFO exited: fatls_00 (exit status 1; not expected)
+2017-04-29 21:10:53,860 INFO exited: fatls_08 (exit status 1; not expected)
+2017-04-29 21:10:53,860 INFO exited: fatls_06 (exit status 1; not expected)
+2017-04-29 21:10:53,861 INFO exited: fatls_07 (exit status 1; not expected)
+2017-04-29 21:10:53,861 INFO exited: fatls_01 (exit status 1; not expected)
+2017-04-29 21:10:53,861 INFO exited: fatls_09 (exit status 1; not expected)
+2017-04-29 21:10:53,861 INFO exited: fatls_04 (exit status 1; not expected)
+2017-04-29 21:10:54,006 INFO spawned: 'fatls_09' with pid 55892
+2017-04-29 21:10:54,008 INFO spawned: 'fatls_08' with pid 55893
+2017-04-29 21:10:54,009 INFO spawned: 'fatls_01' with pid 55894
+2017-04-29 21:10:54,012 INFO spawned: 'fatls_00' with pid 55895
+2017-04-29 21:10:54,013 INFO spawned: 'fatls_03' with pid 55896
+2017-04-29 21:10:54,015 INFO spawned: 'fatls_02' with pid 55897
+2017-04-29 21:10:54,017 INFO spawned: 'fatls_04' with pid 55898
+2017-04-29 21:10:54,019 INFO spawned: 'fatls_07' with pid 55899
+2017-04-29 21:10:54,021 INFO spawned: 'fatls_06' with pid 55900
+2017-04-29 21:10:54,021 INFO exited: fatls_05 (exit status 1; not expected)
+2017-04-29 21:10:54,660 INFO spawned: 'fatls_05' with pid 55905
+2017-04-29 21:11:04,068 INFO success: fatls_09 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:11:04,068 INFO success: fatls_08 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:11:04,068 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:11:04,068 INFO success: fatls_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:11:04,069 INFO success: fatls_03 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:11:04,069 INFO success: fatls_02 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:11:04,069 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:11:04,069 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:11:04,069 INFO success: fatls_06 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:11:04,659 INFO success: fatls_05 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:38:48,729 INFO exited: fatls_05 (exit status 1; not expected)
+2017-04-29 21:38:48,732 INFO exited: fatls_06 (exit status 1; not expected)
+2017-04-29 21:38:48,732 INFO exited: fatls_02 (exit status 1; not expected)
+2017-04-29 21:38:48,732 INFO exited: fatls_03 (exit status 1; not expected)
+2017-04-29 21:38:48,736 INFO spawned: 'fatls_03' with pid 63557
+2017-04-29 21:38:48,740 INFO spawned: 'fatls_02' with pid 63558
+2017-04-29 21:38:48,743 INFO spawned: 'fatls_05' with pid 63559
+2017-04-29 21:38:48,746 INFO spawned: 'fatls_06' with pid 63560
+2017-04-29 21:38:48,748 INFO exited: fatls_07 (exit status 1; not expected)
+2017-04-29 21:38:48,748 INFO exited: fatls_04 (exit status 1; not expected)
+2017-04-29 21:38:48,749 INFO exited: fatls_00 (exit status 1; not expected)
+2017-04-29 21:38:48,749 INFO exited: fatls_09 (exit status 1; not expected)
+2017-04-29 21:38:48,753 INFO spawned: 'fatls_09' with pid 63561
+2017-04-29 21:38:48,755 INFO spawned: 'fatls_00' with pid 63562
+2017-04-29 21:38:48,757 INFO spawned: 'fatls_04' with pid 63563
+2017-04-29 21:38:48,761 INFO spawned: 'fatls_07' with pid 63564
+2017-04-29 21:38:48,762 INFO exited: fatls_01 (exit status 1; not expected)
+2017-04-29 21:38:48,763 INFO exited: fatls_08 (exit status 1; not expected)
+2017-04-29 21:38:49,169 INFO spawned: 'fatls_08' with pid 63565
+2017-04-29 21:38:49,174 INFO spawned: 'fatls_01' with pid 63566
+2017-04-29 21:38:58,734 INFO success: fatls_03 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:38:58,742 INFO success: fatls_02 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:38:58,742 INFO success: fatls_05 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:38:58,747 INFO success: fatls_06 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:38:58,754 INFO success: fatls_09 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:38:58,754 INFO success: fatls_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:38:58,757 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:38:58,760 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:38:59,171 INFO success: fatls_08 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:38:59,171 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:42:00,016 INFO exited: fatls_04 (exit status 1; not expected)
+2017-04-29 21:42:00,095 INFO spawned: 'fatls_04' with pid 64131
+2017-04-29 21:42:00,096 INFO exited: fatls_01 (exit status 1; not expected)
+2017-04-29 21:42:00,096 INFO exited: fatls_08 (exit status 1; not expected)
+2017-04-29 21:42:00,096 INFO exited: fatls_07 (exit status 1; not expected)
+2017-04-29 21:42:00,096 INFO exited: fatls_00 (exit status 1; not expected)
+2017-04-29 21:42:00,096 INFO exited: fatls_09 (exit status 1; not expected)
+2017-04-29 21:42:00,096 INFO exited: fatls_06 (exit status 1; not expected)
+2017-04-29 21:42:00,097 INFO exited: fatls_05 (exit status 1; not expected)
+2017-04-29 21:42:00,097 INFO exited: fatls_02 (exit status 1; not expected)
+2017-04-29 21:42:00,097 INFO exited: fatls_03 (exit status 1; not expected)
+2017-04-29 21:42:01,165 INFO spawned: 'fatls_09' with pid 64136
+2017-04-29 21:42:01,166 INFO spawned: 'fatls_08' with pid 64137
+2017-04-29 21:42:01,168 INFO spawned: 'fatls_01' with pid 64138
+2017-04-29 21:42:01,170 INFO spawned: 'fatls_00' with pid 64139
+2017-04-29 21:42:01,173 INFO spawned: 'fatls_03' with pid 64140
+2017-04-29 21:42:01,176 INFO spawned: 'fatls_02' with pid 64141
+2017-04-29 21:42:01,179 INFO spawned: 'fatls_05' with pid 64142
+2017-04-29 21:42:01,183 INFO spawned: 'fatls_07' with pid 64143
+2017-04-29 21:42:01,186 INFO spawned: 'fatls_06' with pid 64144
+2017-04-29 21:42:10,198 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:42:11,165 INFO success: fatls_09 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:42:11,167 INFO success: fatls_08 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:42:11,167 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:42:11,185 INFO success: fatls_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:42:11,185 INFO success: fatls_03 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:42:11,185 INFO success: fatls_02 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:42:11,185 INFO success: fatls_05 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:42:11,185 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 21:42:11,185 INFO success: fatls_06 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:09:27,349 INFO exited: fatls_06 (exit status 1; not expected)
+2017-04-29 22:09:27,354 INFO exited: fatls_07 (exit status 1; not expected)
+2017-04-29 22:09:27,354 INFO exited: fatls_05 (exit status 1; not expected)
+2017-04-29 22:09:27,354 INFO exited: fatls_08 (exit status 1; not expected)
+2017-04-29 22:09:27,359 INFO spawned: 'fatls_08' with pid 71598
+2017-04-29 22:09:27,362 INFO spawned: 'fatls_05' with pid 71604
+2017-04-29 22:09:27,366 INFO spawned: 'fatls_07' with pid 71605
+2017-04-29 22:09:27,369 INFO spawned: 'fatls_06' with pid 71606
+2017-04-29 22:09:27,375 INFO exited: fatls_09 (exit status 1; not expected)
+2017-04-29 22:09:27,378 INFO spawned: 'fatls_09' with pid 71607
+2017-04-29 22:09:27,379 INFO exited: fatls_03 (exit status 1; not expected)
+2017-04-29 22:09:27,382 INFO spawned: 'fatls_03' with pid 71609
+2017-04-29 22:09:27,386 INFO exited: fatls_04 (exit status 1; not expected)
+2017-04-29 22:09:27,389 INFO spawned: 'fatls_04' with pid 71610
+2017-04-29 22:09:27,390 INFO exited: fatls_00 (exit status 1; not expected)
+2017-04-29 22:09:27,390 INFO exited: fatls_01 (exit status 1; not expected)
+2017-04-29 22:09:27,393 INFO spawned: 'fatls_01' with pid 71611
+2017-04-29 22:09:27,395 INFO spawned: 'fatls_00' with pid 71612
+2017-04-29 22:09:27,396 INFO exited: fatls_02 (exit status 1; not expected)
+2017-04-29 22:09:27,861 INFO spawned: 'fatls_02' with pid 71616
+2017-04-29 22:09:37,361 INFO success: fatls_08 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:09:37,361 INFO success: fatls_05 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:09:37,371 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:09:37,371 INFO success: fatls_06 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:09:37,376 INFO success: fatls_09 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:09:37,381 INFO success: fatls_03 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:09:37,394 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:09:37,394 INFO success: fatls_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:09:37,394 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:09:37,867 INFO success: fatls_02 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:12:55,716 INFO exited: fatls_03 (exit status 1; not expected)
+2017-04-29 22:12:55,719 INFO exited: fatls_00 (exit status 1; not expected)
+2017-04-29 22:12:55,722 INFO spawned: 'fatls_00' with pid 72388
+2017-04-29 22:12:55,725 INFO spawned: 'fatls_03' with pid 72389
+2017-04-29 22:12:55,726 INFO exited: fatls_01 (exit status 1; not expected)
+2017-04-29 22:12:55,727 INFO exited: fatls_04 (exit status 1; not expected)
+2017-04-29 22:12:55,727 INFO exited: fatls_09 (exit status 1; not expected)
+2017-04-29 22:12:55,732 INFO spawned: 'fatls_09' with pid 72390
+2017-04-29 22:12:55,735 INFO spawned: 'fatls_01' with pid 72391
+2017-04-29 22:12:55,739 INFO spawned: 'fatls_04' with pid 72392
+2017-04-29 22:12:55,740 INFO exited: fatls_06 (exit status 1; not expected)
+2017-04-29 22:12:55,747 INFO spawned: 'fatls_06' with pid 72393
+2017-04-29 22:12:55,748 INFO exited: fatls_02 (exit status 1; not expected)
+2017-04-29 22:12:55,755 INFO spawned: 'fatls_02' with pid 72395
+2017-04-29 22:12:55,761 INFO exited: fatls_07 (exit status 1; not expected)
+2017-04-29 22:12:55,764 INFO spawned: 'fatls_07' with pid 72396
+2017-04-29 22:12:55,768 INFO exited: fatls_08 (exit status 1; not expected)
+2017-04-29 22:12:55,774 INFO spawned: 'fatls_08' with pid 72397
+2017-04-29 22:12:55,781 INFO exited: fatls_05 (exit status 1; not expected)
+2017-04-29 22:12:56,435 INFO spawned: 'fatls_05' with pid 72415
+2017-04-29 22:13:06,181 INFO success: fatls_09 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:13:06,181 INFO success: fatls_08 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:13:06,181 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:13:06,181 INFO success: fatls_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:13:06,181 INFO success: fatls_03 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:13:06,181 INFO success: fatls_02 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:13:06,181 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:13:06,181 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:13:06,181 INFO success: fatls_06 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:13:07,253 INFO success: fatls_05 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:40:42,982 INFO exited: fatls_08 (exit status 1; not expected)
+2017-04-29 22:40:42,986 INFO exited: fatls_07 (exit status 1; not expected)
+2017-04-29 22:40:42,986 INFO exited: fatls_04 (exit status 1; not expected)
+2017-04-29 22:40:42,986 INFO exited: fatls_00 (exit status 1; not expected)
+2017-04-29 22:40:42,989 INFO spawned: 'fatls_08' with pid 80473
+2017-04-29 22:40:42,992 INFO spawned: 'fatls_00' with pid 80474
+2017-04-29 22:40:42,995 INFO spawned: 'fatls_04' with pid 80475
+2017-04-29 22:40:42,999 INFO spawned: 'fatls_07' with pid 80476
+2017-04-29 22:40:43,000 INFO exited: fatls_09 (exit status 1; not expected)
+2017-04-29 22:40:43,001 INFO exited: fatls_01 (exit status 1; not expected)
+2017-04-29 22:40:43,011 INFO spawned: 'fatls_09' with pid 80478
+2017-04-29 22:40:43,014 INFO spawned: 'fatls_01' with pid 80479
+2017-04-29 22:40:43,021 INFO exited: fatls_02 (exit status 1; not expected)
+2017-04-29 22:40:43,026 INFO spawned: 'fatls_02' with pid 80480
+2017-04-29 22:40:43,036 INFO exited: fatls_03 (exit status 1; not expected)
+2017-04-29 22:40:43,044 INFO spawned: 'fatls_03' with pid 80481
+2017-04-29 22:40:43,044 INFO exited: fatls_06 (exit status 1; not expected)
+2017-04-29 22:40:43,047 INFO spawned: 'fatls_06' with pid 80482
+2017-04-29 22:40:43,059 INFO exited: fatls_05 (exit status 1; not expected)
+2017-04-29 22:40:43,399 INFO spawned: 'fatls_05' with pid 80483
+2017-04-29 22:40:52,992 INFO success: fatls_08 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:40:52,992 INFO success: fatls_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:40:52,994 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:40:53,008 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:40:53,019 INFO success: fatls_09 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:40:53,019 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:40:53,028 INFO success: fatls_02 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:40:53,054 INFO success: fatls_03 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:40:53,054 INFO success: fatls_06 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:40:53,398 INFO success: fatls_05 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:44:23,400 INFO exited: fatls_03 (exit status 1; not expected)
+2017-04-29 22:44:23,401 INFO exited: fatls_05 (exit status 1; not expected)
+2017-04-29 22:44:23,401 INFO exited: fatls_04 (exit status 1; not expected)
+2017-04-29 22:44:23,458 INFO spawned: 'fatls_03' with pid 81220
+2017-04-29 22:44:23,460 INFO spawned: 'fatls_05' with pid 81221
+2017-04-29 22:44:23,462 INFO spawned: 'fatls_04' with pid 81222
+2017-04-29 22:44:23,464 INFO exited: fatls_06 (exit status 1; not expected)
+2017-04-29 22:44:23,464 INFO exited: fatls_02 (exit status 1; not expected)
+2017-04-29 22:44:23,465 INFO exited: fatls_01 (exit status 1; not expected)
+2017-04-29 22:44:23,465 INFO exited: fatls_09 (exit status 1; not expected)
+2017-04-29 22:44:23,466 INFO exited: fatls_07 (exit status 1; not expected)
+2017-04-29 22:44:23,466 INFO exited: fatls_00 (exit status 1; not expected)
+2017-04-29 22:44:23,467 INFO exited: fatls_08 (exit status 1; not expected)
+2017-04-29 22:44:24,088 INFO spawned: 'fatls_09' with pid 81223
+2017-04-29 22:44:24,090 INFO spawned: 'fatls_08' with pid 81224
+2017-04-29 22:44:24,091 INFO spawned: 'fatls_01' with pid 81225
+2017-04-29 22:44:24,094 INFO spawned: 'fatls_00' with pid 81226
+2017-04-29 22:44:24,097 INFO spawned: 'fatls_02' with pid 81227
+2017-04-29 22:44:24,100 INFO spawned: 'fatls_07' with pid 81228
+2017-04-29 22:44:24,106 INFO spawned: 'fatls_06' with pid 81229
+2017-04-29 22:44:33,462 INFO success: fatls_03 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:44:33,462 INFO success: fatls_05 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:44:33,462 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:44:34,306 INFO success: fatls_09 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:44:34,307 INFO success: fatls_08 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:44:34,307 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:44:34,307 INFO success: fatls_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:44:34,307 INFO success: fatls_02 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:44:34,307 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 22:44:34,308 INFO success: fatls_06 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:12:05,355 INFO exited: fatls_07 (exit status 1; not expected)
+2017-04-29 23:12:05,360 INFO exited: fatls_08 (exit status 1; not expected)
+2017-04-29 23:12:05,360 INFO exited: fatls_04 (exit status 1; not expected)
+2017-04-29 23:12:05,360 INFO exited: fatls_05 (exit status 1; not expected)
+2017-04-29 23:12:05,361 INFO exited: fatls_03 (exit status 1; not expected)
+2017-04-29 23:12:05,365 INFO spawned: 'fatls_08' with pid 91176
+2017-04-29 23:12:05,368 INFO spawned: 'fatls_03' with pid 91177
+2017-04-29 23:12:05,371 INFO spawned: 'fatls_05' with pid 91178
+2017-04-29 23:12:05,374 INFO spawned: 'fatls_04' with pid 91179
+2017-04-29 23:12:05,377 INFO spawned: 'fatls_07' with pid 91180
+2017-04-29 23:12:05,378 INFO exited: fatls_06 (exit status 1; not expected)
+2017-04-29 23:12:05,378 INFO exited: fatls_02 (exit status 1; not expected)
+2017-04-29 23:12:05,378 INFO exited: fatls_00 (exit status 1; not expected)
+2017-04-29 23:12:05,378 INFO exited: fatls_09 (exit status 1; not expected)
+2017-04-29 23:12:05,383 INFO spawned: 'fatls_09' with pid 91181
+2017-04-29 23:12:05,385 INFO spawned: 'fatls_00' with pid 91182
+2017-04-29 23:12:05,388 INFO spawned: 'fatls_02' with pid 91183
+2017-04-29 23:12:05,390 INFO spawned: 'fatls_06' with pid 91184
+2017-04-29 23:12:05,392 INFO exited: fatls_01 (exit status 1; not expected)
+2017-04-29 23:12:05,969 INFO spawned: 'fatls_01' with pid 91189
+2017-04-29 23:12:15,366 INFO success: fatls_08 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:12:15,368 INFO success: fatls_03 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:12:15,379 INFO success: fatls_05 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:12:15,379 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:12:15,379 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:12:15,387 INFO success: fatls_09 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:12:15,387 INFO success: fatls_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:12:15,387 INFO success: fatls_02 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:12:15,389 INFO success: fatls_06 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:12:15,961 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:15:52,450 INFO exited: fatls_01 (exit status 1; not expected)
+2017-04-29 23:15:52,451 INFO exited: fatls_06 (exit status 1; not expected)
+2017-04-29 23:15:52,451 INFO exited: fatls_02 (exit status 1; not expected)
+2017-04-29 23:15:52,451 INFO exited: fatls_00 (exit status 1; not expected)
+2017-04-29 23:15:52,451 INFO exited: fatls_05 (exit status 1; not expected)
+2017-04-29 23:15:52,455 INFO spawned: 'fatls_01' with pid 91930
+2017-04-29 23:15:52,458 INFO spawned: 'fatls_00' with pid 91931
+2017-04-29 23:15:52,461 INFO spawned: 'fatls_02' with pid 91932
+2017-04-29 23:15:52,463 INFO spawned: 'fatls_05' with pid 91933
+2017-04-29 23:15:52,466 INFO spawned: 'fatls_06' with pid 91934
+2017-04-29 23:15:52,467 INFO exited: fatls_07 (exit status 1; not expected)
+2017-04-29 23:15:52,468 INFO exited: fatls_04 (exit status 1; not expected)
+2017-04-29 23:15:52,468 INFO exited: fatls_03 (exit status 1; not expected)
+2017-04-29 23:15:52,468 INFO exited: fatls_08 (exit status 1; not expected)
+2017-04-29 23:15:52,472 INFO spawned: 'fatls_08' with pid 91935
+2017-04-29 23:15:52,475 INFO spawned: 'fatls_03' with pid 91936
+2017-04-29 23:15:52,478 INFO spawned: 'fatls_04' with pid 91937
+2017-04-29 23:15:52,481 INFO spawned: 'fatls_07' with pid 91938
+2017-04-29 23:15:52,481 INFO exited: fatls_09 (exit status 1; not expected)
+2017-04-29 23:15:53,186 INFO spawned: 'fatls_09' with pid 91940
+2017-04-29 23:16:02,455 INFO success: fatls_01 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:16:02,477 INFO success: fatls_08 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:16:02,477 INFO success: fatls_00 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:16:02,477 INFO success: fatls_03 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:16:02,477 INFO success: fatls_02 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:16:02,477 INFO success: fatls_05 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:16:02,477 INFO success: fatls_04 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:16:02,478 INFO success: fatls_06 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:16:02,479 INFO success: fatls_07 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
+2017-04-29 23:16:03,188 INFO success: fatls_09 entered RUNNING state, process has stayed up for > than 10 seconds (startsecs)
