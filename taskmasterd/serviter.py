@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/29 18:31:34 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 20:13:48 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,8 +99,10 @@ def serviter(clientsocket, addr, server):
 
         elif cmd_lst[0] == 'config':
             program = "program:" + cmd_lst[1].strip('_0123456789')
-            config_program = server.config.options("program:" + program)
-            clientsocket.send(config_program.encode("utf-8"))
+            conf = getConfig(server.config, program)
+            for line in conf:
+                DG(line)
+                clientsocket.send((line + "\n").encode("utf-8"))
 
         elif cmd_lst[0] == 'alert':
             pass
