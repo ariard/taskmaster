@@ -6,7 +6,7 @@
 #    By: echo <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/24 22:34:44 by echo              #+#    #+#              #
-#    Updated: 2017/04/24 22:52:25 by echo             ###   ########.fr        #
+#    Updated: 2017/04/29 20:55:58 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,3 +29,18 @@ def report(addr, name, email):
 	s = smtplib.SMTP('smtp.free.fr')
 	s.sendmail(me, you, msg.as_string())
 	s.quit()
+
+def manual_report(msg):
+    me = 'taskmasterd@42.fr'
+    you = "originadam@gmail.com"
+
+    now = time.strftime("%c")
+    msg = MIMEText(str(now) + ".")  
+  
+    msg['Subject'] = '[MANUAL ALERT]'
+    msg['From'] = 'Taskmaster 42'
+    msg['To'] = you
+
+    s = smtplib.SMTP('smtp.free.fr')
+    s.sendmail(me, you, msg.as_string())
+    s.quit()

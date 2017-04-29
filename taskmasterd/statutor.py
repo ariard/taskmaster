@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 16:54:51 by ariard            #+#    #+#              #
-#    Updated: 2017/04/29 20:16:03 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 20:35:33 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,5 +106,15 @@ def getConfig(config, name_prog):
         tab.append("umask: " + config.get(name_prog, "umask"))
     except configparser.NoOptionError:
         tab.append("umask: None")
+
+    return (tab)
+
+def getAll(cmd):
+
+    tab = list()
+    
+    tab.append(cmd)
+    for name in settings.tab_process:
+        tab.append(name)
 
     return (tab)

@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/29 19:40:49 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 21:01:13 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ def welcome(cnum):
 
 def line_is_command(line):
     if (line == "exit" or line == "help" or "start" in line or "restart" in line or "status" in line \
-        or "stop" in line or "reload" in line or line == "shutdown" or "config" in line):
+        or "stop" in line or "reload" in line or line == "shutdown" or "config" in line or "alert" in line \
+        or "alert"):
         return 1
     return 0
 
@@ -64,22 +65,22 @@ def wait_answer(sc):
     print(reply)
 
 def prompt(sc):
-	while True:
-		line = input("\033[1;32mtaskmaster>\033[0m ")
-		if (line_is_command(line)):
-			if "reload" in line:
-				sp = line.split()
-				if len(sp) == 2:
-					sp[1] = os.path.abspath(sp[1])
-					line = sp[0] + " " + sp[1]
-			send_to_server(line, sc)
-			if (line == 'exit'):
-				break
-		elif (line == 'help'):
-			print ("exit, start <prog>, restart <prog>, status <prog>, stop <prog>, reload <file>, help")
-		else:
-			print("taskmaster:", line, ": command not found")
-		wait_answer(sc)
+    while True:
+        line = input("\033[1;32mtaskmaster>\033[0m ")
+        if (line_is_command(line)):
+            if "reload" in line:
+                sp = line.split()
+                if len(sp) == 2:
+                    sp[1] = os.path.abspath(sp[1])
+                    line = sp[0] + " " + sp[1]
+            send_to_server(line, sc)
+            if (line == 'exit'):
+                break
+            wait_answer(sc)
+        elif (line == 'help'):
+            print ("exit, start <prog>, restart <prog>, status <prog>, stop <prog>, reload <file>, help")
+        else:
+            print("taskmaster:", line, ": command not found")
 
 def launch(host, port):
     DG_init() 
