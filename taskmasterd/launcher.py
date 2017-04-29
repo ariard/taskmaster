@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/04/26 22:09:43 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 19:03:15 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,10 @@ def launcher(program, name_prog, num, retries):
             status = "STARTING"
         else:
             status = "RUNNING"
-        name_process = name_prog[8:] + "_" + str(num)
+        if settings.tab_prog[name_prog].numprocs > 1:
+            name_process = name_prog[8:] + "_" + str(num)
+        else:
+            name_process = name_prog[8:]
         process = Process(name_process, pid, status, retries, num, name_prog)
         settings.pid2name[pid] = name_process
         settings.tab_process[name_process] = process
