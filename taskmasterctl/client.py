@@ -6,13 +6,15 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/28 21:06:40 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 18:23:10 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import socket
 import readline
 import os
+
+from debug import *
 
 # Line editing inits
 
@@ -57,8 +59,9 @@ def send_to_server(line, sc):
 	sc.send(line.encode('utf8'))
 
 def wait_answer(sc):
-	reply = sc.recv(1024)
-	print(">> " + str(reply.decode('utf-8')))
+    DG("waiting for answer")
+    reply = sc.recv(1024).decode('utf-8')
+    print(reply)
 
 def prompt(sc):
 	while True:
@@ -79,13 +82,14 @@ def prompt(sc):
 		wait_answer(sc)
 
 def launch(host, port):
-	sc = socket.socket()
-	print("Trying to connect", host, "on port", port," ...")
-	sc.connect((host, port))
-	cnum = sc.recv(1024)
-	cnum = cnum.decode('utf8')
-	welcome(cnum)
-	prompt(sc)
+    DG_init() 
+    sc = socket.socket()
+    print("Trying to connect", host, "on port", port," ...")
+    sc.connect((host, port))
+    cnum = sc.recv(1024)
+    cnum = cnum.decode('utf8')
+    welcome(cnum)
+    prompt(sc)
 
 if __name__ == '__main__':
-	launch(host, port)
+    launch(host, port)

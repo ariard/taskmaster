@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/04/27 23:56:11 by echo             ###   ########.fr        #
+#    Updated: 2017/04/29 17:48:59 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ def keeper():
             name_prog = settings.tab_process[name].father
             program = settings.tab_prog[name_prog]
             watcher(name)
-            DG(str(program.exitcodes))
             if ((exitcode not in program.exitcodes and program.autorestart == "unexpected") \
                 or (program.autorestart == "true")) and settings.tab_process[name].status == "RUNNING" \
                 and settings.tab_process[name].retries > 0:

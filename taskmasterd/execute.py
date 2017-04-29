@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/04/26 23:55:11 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 17:48:48 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,11 +57,11 @@ class Program:
             try:
                 self.stdout = config.get(name_prog, "stdout_logfile")
             except configparser.NoOptionError:
-                self.stdout = None
+                self.stdout = "/dev/null"
             try:
                 self.stderr = config.get(name_prog, "stderr_logfile")
             except configparser.NoOptionError:
-                self.stderr = None
+                self.stderr = "/dev/null"
             try: 
                 self.env = config.get(name_prog, "environnement")
             except configparser.NoOptionError:
@@ -76,7 +76,6 @@ class Program:
                 self.umask = None 
 
     def conf(self):
-        DG(" conf") 
         if self.dir:
             os.chdir(self.dir) 
 

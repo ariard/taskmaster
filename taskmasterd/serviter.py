@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/29 16:40:30 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/29 18:18:45 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ def serviter(clientsocket, addr, server):
 
         if cmd_lst[0] == 'exit' or cmd_lst[0] == 'quit' or not m:
             logging.warning(flow(addr, 0))
-            print('exit request received from ' + str(addr[1]) + ' ... stopping')
+            DG('exit request received from ' + str(addr[1]) + ' ... stopping')
             break
 
         elif cmd_lst[0] == 'start':
@@ -54,6 +54,7 @@ def serviter(clientsocket, addr, server):
                 program = "program:" + cmd_lst[1].strip('_0123456789')
                 server.config.get(program, "command")
                 server.start_manager(server.config, [program])
+                clientsocket.send(b"\0")
             except configparser.NoSectionError:
                 DG("error no such program")
                 clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
@@ -64,6 +65,7 @@ def serviter(clientsocket, addr, server):
                 program = "program:" + cmd_lst[1].strip('_0123456789')
                 server.config.get(program, "command")
                 server.start_manager(server.config, [program])
+                clientsocket.send(b"\0")
             except configparser.NoSectionError:
                 DG("error no such program")
                 clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
@@ -72,6 +74,7 @@ def serviter(clientsocket, addr, server):
         elif cmd_lst[0] == 'stop':
             if cmd_lst[1] in settings.tab_process:
                 server.start_killer(settings.tab_process[cmd_lst[1]].pid)
+                clientsocket.send(b"\0")
             else:
                 clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
 
@@ -84,12 +87,15 @@ def serviter(clientsocket, addr, server):
                 server.config.read(path_config)
                 server.list_progs = extractProg(server.config.sections())
                 server.start_manager(server.config, server.list_progs)
+                clientsocket.send(b"\0")
             except Error :
                 clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
 
         elif cmd_lst[0] == 'status':
             tab = getStatus()
-            clientsocket.send(str(tab).encode("utf-8"))
+            for line in tab:
+                DG(line)
+                clientsocket.send(line.encode("utf-8"))
 
         elif cmd_lst[0] == 'config':
             program = "program:" + cmd_lst[1].strip('_0123456789')
@@ -110,9 +116,9 @@ def serviter(clientsocket, addr, server):
                 pass
             clientsocket.send("Taskmasterd is shutdown".encode("utf-8"))
             os.kill(server.pid, signal.SIGKILL)
-            sys.exit(-1)
 
+        
     global num_threads
     num_threads -= 1
-    print('debug: [' + str(num_threads) + '] threads are actually running')
+    DG('debug: [' + str(num_threads) + '] threads are actually running')
     clientsocket.close()
