@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/29 23:18:52 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/30 15:41:29 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ def prompt(sc):
                     sp[1] = os.path.abspath(sp[1])
                     line = sp[0] + " " + sp[1]
             send_to_server(line, sc)
-            if (line == 'exit'):
+            if (line == 'exit' or line == 'shutdown'):
                 break
             wait_answer(sc)
         elif (line == 'help'):

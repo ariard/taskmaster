@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/04/29 17:48:59 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/30 15:46:47 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ def keeper():
             if ((exitcode not in program.exitcodes and program.autorestart == "unexpected") \
                 or (program.autorestart == "true")) and settings.tab_process[name].status == "RUNNING" \
                 and settings.tab_process[name].retries > 0:
+                logging.critical(str(name_prog) + "crashed with exit code " + str(exitcode))
+                report(name_prog)
                 if settings.tab_process[name].retries > 0:
                     settings.tab_process[name].retries -= 1
                     launcher(program, name_prog, settings.tab_process[name].num, settings.tab_process[name].retries)

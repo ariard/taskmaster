@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 17:28:00 by ariard            #+#    #+#              #
-#    Updated: 2017/04/29 23:15:34 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/30 15:35:55 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ from serviter import num_threads
 
 import settings
 
+
 if __name__ == '__main__' :
     
     DG_init()
@@ -37,8 +38,9 @@ if __name__ == '__main__' :
     except FileNotFoundError:
         error_msg("No such configuration file")
     DG("start")
-    settings.init()
     daemonize()
+    settings.init()
+    logging.critical("TEST LOGGING")
     server = Server(path_config)
     server.start_keeper()
     server.start_manager(server.config, server.list_progs)

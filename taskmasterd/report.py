@@ -6,7 +6,7 @@
 #    By: echo <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/24 22:34:44 by echo              #+#    #+#              #
-#    Updated: 2017/04/29 20:55:58 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/30 15:00:42 by echo             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,15 +15,15 @@ import smtplib
 
 from email.mime.text import MIMEText
 
-def report(addr, name, email):
+def report(name):
 	me = 'taskmaster@42.fr'
-	you = email
+	you = 'ataguiro@student.42.fr'
 
 	now = time.strftime("%c")
-	msg = MIMEText(str(now) + ', program "' + name + '" crashed from ' + str(addr[0]) + ':' + str(addr[1]) + '.')
+	msg = MIMEText(str(now) + ', program "' + name + '" crashed !')
 
 	msg['Subject'] = '[CRASH] Program [' + name  + '] crashed !'
-	msg['From'] = 'Taskmaster 42'
+	msg['From'] = me
 	msg['To'] = you
 
 	s = smtplib.SMTP('smtp.free.fr')
