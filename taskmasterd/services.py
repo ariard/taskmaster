@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/04/30 16:04:41 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/30 16:15:51 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ def services(clientsocket, addr, server):
 
     while True:
         m = clientsocket.recv(1024)
-        #report(addr, "ls", "originadam@gmail.com")
+        logging.info(command(m, addr))
         dec = m.decode("utf-8")
         cmd_lst = dec.split(' ')
         try:
@@ -48,6 +48,7 @@ def services(clientsocket, addr, server):
                 try:
                     program = "program:" + cmd.strip('_0123456789')
                     server.config.get(program, "command")
+                    logging.info(starting(cmd))
                     server.start_manager(server.config, [program])
                     clientsocket.send(("\r").encode("utf-8"))
                 except configparser.NoSectionError:
@@ -61,6 +62,7 @@ def services(clientsocket, addr, server):
                     server.start_killer(settings.tab_process[cmd].pid)
                     program = "program:" + cmd.strip('_0123456789')
                     server.config.get(program, "command")
+                    logging.info(restarting(cmd))
                     server.start_manager(server.config, [program])
                     clientsocket.send(("\r").encode("utf-8"))
                 except configparser.NoSectionError:
@@ -71,6 +73,7 @@ def services(clientsocket, addr, server):
         elif cmd_lst[0] == 'stop':
             for cmd in cmd_lst[1:]:
                 if cmd in settings.tab_process:
+                    logging.info(stopping(cmd))
                     server.start_killer(settings.tab_process[cmd].pid)
                     clientsocket.send(("\r").encode("utf-8"))
                 else:
@@ -81,6 +84,7 @@ def services(clientsocket, addr, server):
             server.config = configparser.ConfigParser()
             try:
                 path_config = os.path.abspath(cmd_lst[1])
+                logging.info(reloading(path_config))
                 server.config.read(path_config)
                 server.list_progs = extractProg(server.config.sections())
                 server.start_manager(server.config, server.list_progs)
@@ -113,6 +117,7 @@ def services(clientsocket, addr, server):
             clientsocket.send("\r".encode("utf-8"))
 
         elif cmd_lst[0] == 'shutdown':
+            logging.warning("Shutting down taskmasterd...")
             for name in settings.tab_process:
                 DG("pid is " + str(settings.tab_process[name].pid))
                 server.start_killer(settings.tab_process[name].pid)
