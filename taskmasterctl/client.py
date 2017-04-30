@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/29 23:18:52 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/30 16:00:17 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,13 @@ def send_to_server(line, sc):
 
 def wait_answer(sc):
     DG("waiting for answer")
-    reply = sc.recv(1024).decode('utf-8')
-    print(reply)
+    while True:
+        reply = sc.recv(1024).decode('utf-8')
+        DG("after answer")
+        if len(reply) > 0 and reply != '\r':
+            print(reply)
+        if "\r" in reply:
+            break
 
 def prompt(sc):
     DG("Prompt good")
@@ -76,7 +81,11 @@ def prompt(sc):
                 if len(sp) == 2:
                     sp[1] = os.path.abspath(sp[1])
                     line = sp[0] + " " + sp[1]
-            send_to_server(line, sc)
+            try:
+                send_to_server(line, sc)
+            except:
+                print("Broken connection, exiting")
+                break
             if (line == 'exit'):
                 break
             wait_answer(sc)
