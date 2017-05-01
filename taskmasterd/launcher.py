@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/05/01 16:28:18 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/02 00:12:59 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,11 @@ class Process:
 
 def launcher(program, name_prog, num, retries):
 
-    pid = os.fork()
+    try:
+        pid = os.fork()
+    except BlockingIOError:
+        err_msg("Fork temporary unavailable") 
+
     if pid > 0:
         if program.startsecs > 0:
             status = "STARTING"

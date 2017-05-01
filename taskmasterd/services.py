@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/04/30 17:42:00 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/02 00:01:20 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ from statutor import *
 from syslogging import *
 from report import report, manual_report
 from extract import *
+from keeper import *
 
 import settings
 
@@ -94,8 +95,6 @@ def services(clientsocket, addr, server):
                 clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'status':
-            DG("ask status")
-            show_tab_process(settings.tab_process)
             tab = getStatus()
             for line in tab:
                 clientsocket.send(line.encode("utf-8"))
@@ -129,3 +128,4 @@ def services(clientsocket, addr, server):
             clientsocket.send(("Taskmasterd is shutdown").encode("utf-8"))
             clientsocket.send(("\r").encode("utf-8"))
             os.kill(server.pid, signal.SIGKILL)
+

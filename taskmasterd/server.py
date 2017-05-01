@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/05/01 16:35:31 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/01 23:31:23 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,25 +60,17 @@ class Server:
         DG("Server started and waiting for clients...")
 
     def start_manager(self, config, list_progs):
-        DG("start manager")
-        manager(config, list_progs, self)
-#       t = threading.Thread(target=manager, args=(config, list_progs, self))
-#       t.start()
-#       t.join()
+       t = threading.Thread(target=manager, args=(config, list_progs, self))
+       t.start()
     
     def start_keeper(self):
         t = threading.Thread(target=keeper)
         t.start()
 
     def start_serviter(self):
-        serviter(self.c, self.addr, self)
-
-#        t = threading.Thread(target=serviter, args=(self.c, self.addr, self))
-#        t.start()
-#        t.join()
+        t = threading.Thread(target=serviter, args=(self.c, self.addr, self))
+        t.start()
 
     def start_killer(self, pid):
-        killer(pid, None)
-#        t = threading.Thread(target=killer, args=(pid, None))
-#        t.start()
-#        t.join()
+        t = threading.Thread(target=killer, args=(pid, None))
+        t.start()
