@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/04/30 15:46:47 by echo             ###   ########.fr        #
+#    Updated: 2017/04/30 16:24:30 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,10 @@ from debug import *
 from launcher import * 
 from task_signal import *
 from watcher import *
+from report import report
 
 import settings
+import logging
 
 def keeper():
 

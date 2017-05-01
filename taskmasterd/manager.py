@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/04/29 19:05:08 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/30 17:39:21 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ def manager(config, list_progs, server):
 
                 for process in tab_process:
 
+                    DG("kil all process")
                     if process.father == name_prog:
                         server.start_killer(process.pid)
                         settings.tab_process.pop(process.name_process, None)
@@ -93,5 +94,4 @@ def manager(config, list_progs, server):
                         settings.tab_prog[name_prog].startretries, numprocs, name_prog)
                     settings.tab_process[name_process] = process
                     numprocs -= 1
-
 

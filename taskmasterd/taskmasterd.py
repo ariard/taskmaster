@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 17:28:00 by ariard            #+#    #+#              #
-#    Updated: 2017/04/30 15:35:55 by echo             ###   ########.fr        #
+#    Updated: 2017/05/01 16:35:39 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ import settings
 
 if __name__ == '__main__' :
     
-    DG_init()
+    DG_init(0)
     if len(sys.argv) < 2:
         error_msg("usage : <config_file>")
     try:
@@ -42,7 +42,7 @@ if __name__ == '__main__' :
     settings.init()
     logging.critical("TEST LOGGING")
     server = Server(path_config)
-    server.start_keeper()
+#    server.start_keeper()
     server.start_manager(server.config, server.list_progs)
 #   server.init
     DG("after launch server")

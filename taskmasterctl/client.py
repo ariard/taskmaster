@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/04/30 16:15:13 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/01 18:17:33 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,16 +58,15 @@ def line_is_command(line):
         return 1
     return 0
 
-def send_to_server(line, sc):
-	sc.send(line.encode('utf8'))
-
 def wait_answer(sc):
     DG("waiting for answer")
     while True:
-        reply = sc.recv(1024).decode('utf-8')
-        DG("after answer")
+        try:
+            reply = sc.recv(1024).decode('utf-8')
+        except ConnectionResetError:
+            raise ConnectionResetError
         if len(reply) > 0 and reply != '\r':
-            print(reply)
+            print(reply.rstrip("\n\r"))
         if "\r" in reply:
             break
 
@@ -81,14 +80,14 @@ def prompt(sc):
                 if len(sp) == 2:
                     sp[1] = os.path.abspath(sp[1])
                     line = sp[0] + " " + sp[1]
-            try:
-                send_to_server(line, sc)
-            except:
-                print("Broken connection, exiting")
-                break
+            sc.send(line.encode('utf-8'))
             if (line == 'exit'):
                 break
-            wait_answer(sc)
+            try:
+                wait_answer(sc)
+            except ConnectionResetError:
+                print("Broken connection, exiting")
+                break
         elif (line == 'help'):
             print ("exit, start <prog>, restart <prog>, status <prog>, stop <prog>, reload <file>, help")
         else:

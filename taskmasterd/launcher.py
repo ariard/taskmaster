@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/04/29 19:03:15 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/01 16:28:18 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ import settings
 class Process:
     def __init__(self, name_process, pid, status, retries, num, name_prog):
         self.name_process = name_process
+        DG("add pid")
         self.pid = pid
         self.status = status
         self.retries = retries
@@ -31,7 +32,6 @@ class Process:
 
 def launcher(program, name_prog, num, retries):
 
-    DG(name_prog)
     pid = os.fork()
     if pid > 0:
         if program.startsecs > 0:
@@ -48,7 +48,6 @@ def launcher(program, name_prog, num, retries):
         settings.lst_pid.append(pid)
 
     if pid == 0:
-        DG("launch command")
         program.conf()
         try:
             args = program.command.split(' ')

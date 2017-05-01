@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 16:54:51 by ariard            #+#    #+#              #
-#    Updated: 2017/04/30 15:41:22 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/30 17:09:44 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ def getStatus():
         padtwo = " " * pid_padding
             
         tab.append(name + padone + str(settings.tab_process[name].pid) + padtwo + \
-            settings.tab_process[name].status)
+            settings.tab_process[name].status + "\n") 
     return tab
 
 

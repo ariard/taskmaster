@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/04/30 16:15:51 by ariard           ###   ########.fr        #
+#    Updated: 2017/04/30 17:42:00 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,9 +94,10 @@ def services(clientsocket, addr, server):
                 clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'status':
+            DG("ask status")
+            show_tab_process(settings.tab_process)
             tab = getStatus()
             for line in tab:
-                DG(line)
                 clientsocket.send(line.encode("utf-8"))
             DG("sending end")
             clientsocket.send(("\r").encode("utf-8"))
