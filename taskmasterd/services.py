@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/02 20:56:27 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/02 22:15:03 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ def services(clientsocket, addr, server):
                         and settings.tab_process[cmd].status != "BACKOFF":
                         program = "program:" + cmd.strip('_0123456789')
                         logging.info(starting(cmd))
-                        start_launcher(settings.tab_prog[program], cmd, program, settings.tab_process[cmd].retries) 
+                        start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_process[cmd].retries) 
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
                 except KeyError:
                     clientsocket.send(("taskmasterd: No such program " + cmd).encode("utf-8"))
@@ -60,11 +60,15 @@ def services(clientsocket, addr, server):
         elif cmd_lst[0] == 'restart':
             for cmd in cmd_lst[1:]:
                 try:
-                    server.start_killer(copy.copy(settings.tab_process[cmd].pid))
-                    clientsocket.send(("taskmasterd: Process "+ cmd + " is stopping\n").encode("utf-8"))
+                    if settings.tab_process[cmd].status != "STARTING" and settings.tab_process[cmd].status != "RUNNING" \
+                        and settings.tab_process[cmd].status != "BACKOFF":
+                        clientsocket.send(("taskmasterd: Process " + cmd + " isn't running\n").encode("utf-8"))
+                    else:
+                        server.start_killer(copy.copy(settings.tab_process[cmd].pid))
+                        clientsocket.send(("taskmasterd: Process "+ cmd + " is stopping\n").encode("utf-8"))
                     program = "program:" + cmd.strip('_0123456789')
                     logging.info(restarting(cmd))
-                    start_launcher(settings.tab_prog[program], cmd, program, settings.tab_process[cmd].retries) 
+                    start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_process[cmd].retries) 
                     clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
                 except KeyError:
                     clientsocket.send(("taskmasterd: No such program " + cmd).encode("utf-8"))
@@ -123,6 +127,7 @@ def services(clientsocket, addr, server):
         elif cmd_lst[0] == 'shutdown':
             logging.warning("Shutting down taskmasterd...")
             for name in settings.tab_process:
+                DG("killer")
                 server.start_killer(settings.tab_process[name].pid)
             try:
                 os.remove("/tmp/.taskmasterd")

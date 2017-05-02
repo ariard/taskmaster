@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/05/02 20:23:37 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/02 22:03:37 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,11 @@ def start_launcher(program, name_process, name_prog, retries):
     t = threading.Thread(target=launcher, args=(program, name_process, name_prog, retries))
     t.start()
 
+def start_protected_launcher(program, name_process, name_prog, retries):
+    t = threading.Thread(target=protected_launcher, args=(program, name_process, name_prog, retries))
+    t.start()
+    
+
 class Process:
     def __init__(self, name_process, pid, status, retries, name_prog):
         self.name_process = name_process
@@ -32,6 +37,14 @@ class Process:
         self.retries = retries
         self.father = name_prog
         self.time = time.time()
+
+def protected_launcher(program, name_process, name_prog, retries):
+     
+    while settings.tab_process[name_process].status != "EXITED" and settings.tab_process[name_process].status != "STOPPED" \
+        and settings.tab_process[name_process].status != "FATAL":
+        time.sleep(1)
+    DG("ok " + name_process)
+    launcher(program, name_process, name_prog, retries)
 
 def launcher(program, name_process, name_prog, retries):
 

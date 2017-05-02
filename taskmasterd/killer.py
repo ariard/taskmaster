@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:54:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/02 20:39:28 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/02 21:56:17 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,7 @@ def killer(pid, null):
     signal = getSignal(settings.tab_prog[father].stopsignal)
     DG("killing process : " + name)
     DG("pid : " + str(pid) + "vs process_pid: " + str(settings.tab_process[name].pid))
-    if pid == settings.tab_process[name].pid:
-        settings.tab_process[name].status = "STOPPING"
+    settings.tab_process[name].status = "STOPPING"
     try:
         os.kill(pid, signal)
     except ProcessLookupError:
