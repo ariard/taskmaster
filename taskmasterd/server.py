@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/05/01 23:31:23 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/02 17:07:42 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,9 @@ class Server:
             error_msg("Socket already in use")
         self.ss.listen(5)
         self.list_progs = extractProg(self.config.sections())
+
         signal.signal(signal.SIGCHLD, check_exit) 
+
         DG("Server started and waiting for clients...")
 
     def start_manager(self, config, list_progs):

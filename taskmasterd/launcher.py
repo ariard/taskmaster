@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/05/02 00:12:59 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/02 18:54:55 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ import settings
 class Process:
     def __init__(self, name_process, pid, status, retries, num, name_prog):
         self.name_process = name_process
-        DG("add pid")
         self.pid = pid
         self.status = status
         self.retries = retries
@@ -38,8 +37,11 @@ def launcher(program, name_prog, num, retries):
         err_msg("Fork temporary unavailable") 
 
     if pid > 0:
+        DG("new process with " + str(pid))
         if program.startsecs > 0:
             status = "STARTING"
+        elif program.startretries > retries:
+            status = "BACKOFF"
         else:
             status = "RUNNING"
         if settings.tab_prog[name_prog].numprocs > 1:

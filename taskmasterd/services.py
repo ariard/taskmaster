@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/02 00:01:20 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/02 18:42:20 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,39 +47,44 @@ def services(clientsocket, addr, server):
         elif cmd_lst[0] == 'start':
             for cmd in cmd_lst[1:]:
                 try:
-                    program = "program:" + cmd.strip('_0123456789')
-                    server.config.get(program, "command")
-                    logging.info(starting(cmd))
-                    server.start_manager(server.config, [program])
-                    clientsocket.send(("\r").encode("utf-8"))
+                    if settings.tab_process[cmd].status != "RUNNING" and settings.tab_process[cmd].status != "STARTING" \
+                        and settings.tab_process[cmd].status != "BACKOFF":
+                        program = "program:" + cmd.strip('_0123456789')
+                        server.config.get(program, "command")
+                        logging.info(starting(cmd))
+                        server.start_manager(server.config, [program])
+                        clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
                 except configparser.NoSectionError:
-                    DG("error no such program")
                     clientsocket.send(("taskmasterd: No such program " + cmd).encode("utf-8"))
-                    clientsocket.send(("\r").encode("utf-8"))
+            clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'restart':
             for cmd in cmd_lst[1:]:
                 try:
                     server.start_killer(settings.tab_process[cmd].pid)
+                    clientsocket.send(("taskmasterd: Process "+ cmd + " is stopping\n").encode("utf-8"))
                     program = "program:" + cmd.strip('_0123456789')
                     server.config.get(program, "command")
                     logging.info(restarting(cmd))
                     server.start_manager(server.config, [program])
-                    clientsocket.send(("\r").encode("utf-8"))
+                    clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
                 except configparser.NoSectionError:
-                    DG("error no such program")
                     clientsocket.send(("taskmasterd: No such program " + cmd).encode("utf-8"))
-                    clientsocket.send(("\r").encode("utf-8"))
+            clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'stop':
             for cmd in cmd_lst[1:]:
                 if cmd in settings.tab_process:
-                    logging.info(stopping(cmd))
-                    server.start_killer(settings.tab_process[cmd].pid)
-                    clientsocket.send(("\r").encode("utf-8"))
+                    if settings.tab_process[cmd].status != "STARTING" and settings.tab_process[cmd].status != "RUNNING" \
+                        and settings.tab_process[cmd].status != "BACKOFF":
+                        clientsocket.send(("taskmasterd: Process " + cmd + " isn't running\n").encode("utf-8"))
+                    else:
+                        logging.info(stopping(cmd))
+                        server.start_killer(settings.tab_process[cmd].pid)
+                        clientsocket.send(("taskmasterd: Process "+ cmd + " is stopping\n").encode("utf-8"))
                 else:
-                    clientsocket.send(("taskmasterd: No such program " + cmd).encode("utf-8"))
-                    clientsocket.send(("\r").encode("utf-8"))
+                    clientsocket.send(("taskmasterd: No such process " + cmd + "\n").encode("utf-8"))
+            clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'reload':
             server.config = configparser.ConfigParser()
@@ -98,7 +103,6 @@ def services(clientsocket, addr, server):
             tab = getStatus()
             for line in tab:
                 clientsocket.send(line.encode("utf-8"))
-            DG("sending end")
             clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'config':
@@ -107,7 +111,6 @@ def services(clientsocket, addr, server):
                 conf = getConfig(server.config, program)
                 clientsocket.send(("[" + program + "]\n").encode("utf-8"))
                 for line in conf:
-                    DG(line)
                     clientsocket.send((line + "\n").encode("utf-8"))
                 clientsocket.send(("\r").encode("utf-8"))
 
@@ -119,7 +122,6 @@ def services(clientsocket, addr, server):
         elif cmd_lst[0] == 'shutdown':
             logging.warning("Shutting down taskmasterd...")
             for name in settings.tab_process:
-                DG("pid is " + str(settings.tab_process[name].pid))
                 server.start_killer(settings.tab_process[name].pid)
             try:
                 os.remove("/tmp/.taskmasterd")
@@ -128,4 +130,3 @@ def services(clientsocket, addr, server):
             clientsocket.send(("Taskmasterd is shutdown").encode("utf-8"))
             clientsocket.send(("\r").encode("utf-8"))
             os.kill(server.pid, signal.SIGKILL)
-
