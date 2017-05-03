@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 16:54:51 by ariard            #+#    #+#              #
-#    Updated: 2017/05/01 23:57:07 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/03 17:42:05 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ import settings
 from debug import *
 from watcher import *
 
-def getStatus():
+def getStatus(list_progs):
     
     tab = list()
      
@@ -33,8 +33,8 @@ def getStatus():
     max_padding_pid += 15
 
     for name in settings.tab_process:
+
         watcher(name)
-        
         name_padding = max_padding - len(name)
         padone = " " * name_padding
 
@@ -43,6 +43,7 @@ def getStatus():
             
         tab.append(name + padone + str(settings.tab_process[name].pid) + padtwo + \
             settings.tab_process[name].status + "\n") 
+    
     return tab
 
 

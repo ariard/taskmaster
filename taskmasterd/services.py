@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/02 22:15:03 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/03 17:52:37 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ from syslogging import *
 from report import report, manual_report
 from extract import *
 from keeper import *
+from cleaner import cleaner
 
 import settings
 
@@ -51,7 +52,7 @@ def services(clientsocket, addr, server):
                         and settings.tab_process[cmd].status != "BACKOFF":
                         program = "program:" + cmd.strip('_0123456789')
                         logging.info(starting(cmd))
-                        start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_process[cmd].retries) 
+                        start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_prog[program].startretries) 
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
                 except KeyError:
                     clientsocket.send(("taskmasterd: No such program " + cmd).encode("utf-8"))
@@ -68,7 +69,7 @@ def services(clientsocket, addr, server):
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is stopping\n").encode("utf-8"))
                     program = "program:" + cmd.strip('_0123456789')
                     logging.info(restarting(cmd))
-                    start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_process[cmd].retries) 
+                    start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_prog[program].startretries) 
                     clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
                 except KeyError:
                     clientsocket.send(("taskmasterd: No such program " + cmd).encode("utf-8"))
@@ -91,18 +92,20 @@ def services(clientsocket, addr, server):
         elif cmd_lst[0] == 'reload':
             server.config = configparser.ConfigParser()
             try:
+                if os.path.isfile(cmd_lst[1]) == False:
+                    raise KeyError
                 path_config = os.path.abspath(cmd_lst[1])
                 logging.info(reloading(path_config))
                 server.config.read(path_config)
                 server.list_progs = extractProg(server.config.sections())
                 server.start_manager(server.config, server.list_progs)
-                clientsocket.send(("\r").encode("utf-8"))
-            except Error :
-                clientsocket.send(("taskmasterd: No such program " + cmd_lst[1]).encode("utf-8"))
-                clientsocket.send(("\r").encode("utf-8"))
+            except KeyError :
+                clientsocket.send(("taskmasterd: No such file " + cmd_lst[1]).encode("utf-8"))
+            clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'status':
-            tab = getStatus()
+            cleaner(server.list_progs)
+            tab = getStatus(server.list_progs)
             for line in tab:
                 clientsocket.send(line.encode("utf-8"))
             clientsocket.send(("\r").encode("utf-8"))

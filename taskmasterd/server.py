@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/05/02 17:07:42 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/03 17:54:04 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,3 +76,4 @@ class Server:
     def start_killer(self, pid):
         t = threading.Thread(target=killer, args=(pid, None))
         t.start()
+
