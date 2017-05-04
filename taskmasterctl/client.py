@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/05/01 23:56:56 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/04 21:04:10 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ import sys
 import getpass
 
 from debug import *
+from attach import *
 
 # Line editing inits
 
@@ -54,7 +55,7 @@ def welcome(cnum):
 def line_is_command(line):
     if (line == "exit" or line == "help" or "start" in line or "restart" in line or "status" in line \
         or "stop" in line or "reload" in line or line == "shutdown" or "config" in line or "alert" in line \
-        or "alert" in line):
+        or "alert" in line or "attach" in line):
         return 1
     return 0
 
@@ -80,14 +81,17 @@ def prompt(sc):
                 if len(sp) == 2:
                     sp[1] = os.path.abspath(sp[1])
                     line = sp[0] + " " + sp[1]
-            sc.send(line.encode('utf-8'))
+            sc.send(line.encode('utf-8'))             
             if (line == 'exit'):
                 break
-            try:
-                wait_answer(sc)
-            except ConnectionResetError:
-                print("Broken connection, exiting")
-                break
+            elif "attach" in line:
+                attach_mode(sc)
+            else:
+                try:
+                    wait_answer(sc)
+                except ConnectionResetError:
+                    print("Broken connection, exiting")
+                    break
         elif (line == 'help'):
             print ("exit, start <prog>, restart <prog>, status <prog>, stop <prog>, reload <file>, help")
         else:

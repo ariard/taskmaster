@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/03 17:52:37 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/04 22:06:50 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ import socket
 import configparser 
 import logging
 import signal
+import tty
 
 from debug import * 
 from execute import *
@@ -24,6 +25,7 @@ from report import report, manual_report
 from extract import *
 from keeper import *
 from cleaner import cleaner
+from ioprocess import *
 
 import settings
 
@@ -36,6 +38,7 @@ def services(clientsocket, addr, server):
         cmd_lst = dec.split(' ')
         try:
             if cmd_lst[1] == "all":
+                cleaner(server.list_progs)
                 cmd_lst = getAll(cmd_lst[0])
         except IndexError:
             pass
@@ -126,6 +129,10 @@ def services(clientsocket, addr, server):
             manual_report(cmd_lst[1])
             clientsocket.send("Mail sent !")
             clientsocket.send("\r".encode("utf-8"))
+
+        elif cmd_lst[0] == 'attach':
+            DG("attach cmd")
+            ioprocess(settings.tab_process[cmd_lst[1]], clientsocket)
 
         elif cmd_lst[0] == 'shutdown':
             logging.warning("Shutting down taskmasterd...")

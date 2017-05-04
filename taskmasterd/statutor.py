@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 16:54:51 by ariard            #+#    #+#              #
-#    Updated: 2017/05/03 17:42:05 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/03 18:11:52 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,6 @@ def getConfig(config, name_prog):
 def getAll(cmd):
 
     tab = list()
-    
     tab.append(cmd)
     for name in settings.tab_process:
         tab.append(name)

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/04/29 18:35:33 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/04 21:29:32 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ class Program:
             except configparser.NoOptionError:
                 self.stopsignal = "TERM"
             try:
-                self.stopwaitsecs = config.get(name_prog, "stopwaitsecs")
+                self.stopwaitsecs = int(config.get(name_prog, "stopwaitsecs"))
             except configparser.NoOptionError:
                 self.stopwaitsecs = 10
             try:

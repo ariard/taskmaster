@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 19:31:29 by ariard            #+#    #+#              #
-#    Updated: 2017/04/30 15:36:48 by echo             ###   ########.fr        #
+#    Updated: 2017/05/04 21:29:16 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ def init():
     global pid2name
     global lst_pid
     global queue_pid
+    global tab_out
 
     tab_prog = dict()
     tab_process = dict()
@@ -27,4 +28,4 @@ def init():
     LOGFILE='/tmp/logs'
     logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s]: %(message)s', \
        datefmt='%m/%d/%Y %I:%M:%S %p', filename=LOGFILE, filemode='a')
-
+    tab_out = dict()

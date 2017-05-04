@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/05/03 18:00:05 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/04 18:26:34 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,6 @@ def manager(config, list_progs, server):
                     else:
                         name_process = name_prog[8:]
                     process = Process(name_process, "Not Started", "STOPPED", \
-                        settings.tab_prog[name_prog].startretries, name_prog)
+                        settings.tab_prog[name_prog].startretries, name_prog, -1)
                     settings.tab_process[name_process] = process
                     launch_num += 1
