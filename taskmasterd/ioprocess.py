@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/04 20:47:59 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 20:41:45 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 23:21:20 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,40 +47,33 @@ def unactive_ioprocess(process, clientsocket):
         clientsocket.send("\r".encode('utf-8'))
     DG("io process end")
 
-
-def _writen(fd, data):
+def writen(fd, data):
     DG("my fd is " + str(fd))
     while data:
         n = os.write(fd, data)
         data = data[n:]
 
-def _read(fd):
-    return os.read(fd, 1024)
-
 def ioprocess(process, clientsocket):
 
     master_fd = process.master
     clientsocket.send("synchro".encode('utf-8'))
-    os.write(master_fd, "test again\r".encode("utf-8"))
-    time.sleep(2)
     fd = os.open(settings.tab_prog[process.father].stdout, os.O_RDONLY)
-    data = os.read(fd, 1024)
-    DG(data.decode("utf-8"))
     fds = [fd]
+#    while True:
+#        reply = clientsocket.recv(1024)
+#        DG("reply is " + reply.decode("utf-8"))
+#        if "detach".encode("utf-8") == reply:
+#            break
+#        writen(master_fd, reply + "\r".encode("utf-8"))
+#        time.sleep(1)
     while True:
-        reply = clientsocket.recv(1024)
-        _writen(master_fd, reply)
         rfds, wfds, xfds = select(fds, [], [])
+#        DG("MASTER select")
         if fd in rfds:
-            data = _read(fd)
+            data = os.read(fd, 1024)
             DG(data.decode("utf-8"))
-            if not data:
-                fds.remove(fd)
-            else:
-                DG(data.decode("utf-8"))
-#        if 1 in rfds:
-#            data = _read(1)
-#            if not data:
-#                fds.remove(1)
-#            else:
-#                _writen(master_fd, data)
+            if data:
+                clientsocket.send(data)
+                break
+    DG("end")
+    clientsocket.send("\r".encode("utf-8"))
