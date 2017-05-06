@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 16:17:14 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 19:21:35 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,6 +121,24 @@ def services(clientsocket, addr, server):
                         clientsocket.send((line + "\n").encode("utf-8"))
                 except configparser.Error:
                     clientsocket.send(("taskmasterd: No such process " + cmd + "\n").encode("utf-8"))
+            clientsocket.send(("\r").encode("utf-8"))
+
+        elif cmd_lst[0] == 'log':
+            try:
+                f = open("/tmp/.taskmasterdlog", "r")
+                i = 0
+                for line in f:
+                    i += 1
+                f.seek(0, 0)
+                togo = i - int(cmd_lst[1])
+                while togo > 0:
+                    f.readline()
+                    togo -= 1
+                for line in f:
+                    clientsocket.send(line.encode("utf-8"))
+                f.close()
+            except FileNotFoundError:
+                clientsocket.send("taskmasterd: No logging file") 
             clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'alert':

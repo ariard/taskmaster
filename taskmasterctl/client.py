@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/05/06 18:41:33 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 18:46:51 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ def welcome(cnum):
 def line_is_command(line):
     if (line == "exit" or line == "help" or "start" in line or "restart" in line or "status" in line \
         or "stop" in line or "reload" in line or line == "shutdown" or "config" in line or "alert" in line \
-        or "alert" in line or "attach" in line):
+        or "alert" in line or "attach" in line or "log" in line):
         return 1
     return 0
 
