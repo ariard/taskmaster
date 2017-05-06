@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 20:29:59 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 23:32:25 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,7 +147,10 @@ def services(clientsocket, addr, server):
             clientsocket.send("\r".encode("utf-8"))
 
         elif cmd_lst[0] == 'attach':
-            ioprocess(settings.tab_process[cmd_lst[1]], clientsocket)
+            try:
+                ioprocess(settings.tab_process[cmd_lst[1]], clientsocket)
+            except IndexError and KeyError:
+                clientsocket.send("detach".encode("utf-8"))
 
         elif cmd_lst[0] == 'shutdown':
             for name in settings.tab_process:
