@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/05/06 16:24:46 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 18:41:33 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ import socket
 import readline
 import os
 import sys
+import configparser 
 import getpass
+import signal
 
 from debug import *
 from attach import *
@@ -29,8 +31,6 @@ readline.parse_and_bind('set horizontal-scroll-mode On')
 
 # host and port config
 
-host = 'localhost'
-port = 4232
 
 def header():
 	print("  _______        _                        _            ")
@@ -59,6 +59,10 @@ def line_is_command(line):
         return 1
     return 0
 
+def exit_client(number, frame):
+    print("Exiting client...")
+    sys.exit(0)
+
 def wait_answer(sc):
     DG("waiting for answer")
     while True:
@@ -73,33 +77,37 @@ def wait_answer(sc):
 
 def prompt(sc):
     DG("Prompt good")
-    while True:
-        line = input("\033[1;32mtaskmaster>\033[0m ")
-        if (line_is_command(line)):
-            if "reload" in line:
-                sp = line.split()
-                if len(sp) == 2:
-                    sp[1] = os.path.abspath(sp[1])
-                    line = sp[0] + " " + sp[1]
-            sc.send(line.encode('utf-8'))             
-            if (line == 'exit'):
-                break
-            elif "attach" in line:
-                attach_mode(sc)
-            else:
-                try:
-                    wait_answer(sc)
-                except ConnectionResetError:
-                    print("Broken connection, exiting")
+    while True: 
+        try:
+            line = input("\033[1;32mtaskmaster>\033[0m ")
+            if (line_is_command(line)):
+                if "reload" in line:
+                    sp = line.split()
+                    if len(sp) == 2:
+                        sp[1] = os.path.abspath(sp[1])
+                        line = sp[0] + " " + sp[1]
+                sc.send(line.encode('utf-8'))             
+                if (line == 'exit'):
                     break
-        elif (line == 'help'):
-            print ("exit, start <prog>, restart <prog>, status <prog>, stop <prog>, reload <file>, help")
-        else:
-            print("taskmaster:", line, ": command not found")
+                elif "attach" in line:
+                    attach_mode(sc)
+                else:
+                    try:
+                        wait_answer(sc)
+                    except ConnectionResetError:
+                        print("Broken connection, exiting")
+                        break
+            elif (line == 'help'):
+                print ("exit, start <prog>, restart <prog>, status <prog>, stop <prog>, reload <file>, help")
+            else:
+                print("taskmaster:", line, ": command not found")
+        except EOFError:
+            sys.stdout.write("\n")
+            pass 
 
 def launch(host, port):
     DG_init() 
-#    signal.signal(signal.SIGINT, )
+    signal.signal(signal.SIGINT, exit_client)
     sc = socket.socket()
     print("Trying to connect", host, "on port", port," ...")
     sc.connect((host, port))
@@ -108,11 +116,14 @@ def launch(host, port):
     cnum = (sc.recv(1024)).decode('utf-8')
     welcome(cnum)
     while True:
-        psswd = getpass.getpass()
-        if len(psswd) == 0:
-            psswd = "\r\n"
-        sc.send(psswd.encode('utf-8'))
-        answer = sc.recv(1024).decode('utf-8')
+        try:
+            psswd = getpass.getpass()
+            if len(psswd) == 0:
+                psswd = "\r\n"
+            sc.send(psswd.encode('utf-8'))
+            answer = sc.recv(1024).decode('utf-8')
+        except EOFError:
+            pass
         if answer == "valid":
             prompt(sc)
             sys.exit(0)
@@ -121,4 +132,18 @@ def launch(host, port):
             sys.exit(0)
 
 if __name__ == '__main__':
+    try:
+        path_config = os.path.abspath(sys.argv[1])
+    except:
+        sys.stderr.write("taskmasterctl: No such configuration file")
+    config = configparser.ConfigParser()
+    config.read(path_config)
+    try:
+        host = config.get('server', 'host')
+    except configparser.NoSectionError:
+        sys.stderr.write("taskmasterctl: No field server - host")
+    try:
+        port = int(config.get('server', 'port'))
+    except configparser.NoSectionError:
+        sys.stderr.write("taskmasterctl: No field server - port")
     launch(host, port)

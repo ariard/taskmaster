@@ -2696,3 +2696,18 @@
 2017-05-02 19:02:29,475 INFO gave up: pwd entered FATAL state, too many start retries too quickly
 2017-05-02 19:02:29,475 INFO exited: ls (exit status 0; not expected)
 2017-05-02 19:02:30,136 INFO gave up: ls entered FATAL state, too many start retries too quickly
+2017-05-06 16:29:52,579 INFO RPC interface 'supervisor' initialized
+2017-05-06 16:29:52,582 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2017-05-06 16:29:52,583 INFO daemonizing the supervisord process
+2017-05-06 16:29:52,584 INFO supervisord started with pid 61152
+2017-05-06 16:29:53,587 INFO spawned: 'pwd' with pid 61164
+2017-05-06 16:29:53,589 INFO spawned: 'ls' with pid 61165
+2017-05-06 16:29:53,596 INFO exited: ls (exit status 0; not expected)
+2017-05-06 16:29:53,613 INFO exited: pwd (exit status 0; not expected)
+2017-05-06 16:29:54,614 INFO spawned: 'pwd' with pid 61170
+2017-05-06 16:29:54,616 INFO spawned: 'ls' with pid 61171
+2017-05-06 16:29:54,620 INFO exited: pwd (exit status 0; not expected)
+2017-05-06 16:29:54,623 INFO gave up: pwd entered FATAL state, too many start retries too quickly
+2017-05-06 16:29:54,623 INFO exited: ls (exit status 0; not expected)
+2017-05-06 16:29:55,624 INFO gave up: ls entered FATAL state, too many start retries too quickly
+2017-05-06 18:07:13,255 WARN received SIGTERM indicating exit request

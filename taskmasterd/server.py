@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/05/03 17:54:04 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 18:40:44 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ class Server:
         try:
             self.port = int(self.config.get('server', 'port'))
         except configparser.NoSectionError:
-            error_msg("No section on server")
+            error_msg("No field server - port")
         except configparser.DuplicateSectionError: 
             error_msg("Duplicate section on server")
         drop_privileges()
