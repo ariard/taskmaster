@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/05/06 18:46:51 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 19:41:07 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,10 +110,17 @@ def launch(host, port):
     signal.signal(signal.SIGINT, exit_client)
     sc = socket.socket()
     print("Trying to connect", host, "on port", port," ...")
-    sc.connect((host, port))
-    sc.send(("\r\n").encode('utf-8'))
-    DG("num client ok")
-    cnum = (sc.recv(1024)).decode('utf-8')
+    try:
+        sc.connect((host, port))
+    except ConnectionRefusedError:
+        sys.stderr.write("taskmasterctl: No server listening on this given port")
+        sys.exit(1)
+    try:
+        sc.send(("\r\n").encode('utf-8'))
+        cnum = (sc.recv(1024)).decode('utf-8')
+    except ConnectionResetError:
+        sys.stderr.write("taskmasterctl : Unexpected reset connection by server")
+        sys.exit(1)
     welcome(cnum)
     while True:
         try:
@@ -136,14 +143,17 @@ if __name__ == '__main__':
         path_config = os.path.abspath(sys.argv[1])
     except:
         sys.stderr.write("taskmasterctl: No such configuration file")
+        sys.exit(1)
     config = configparser.ConfigParser()
     config.read(path_config)
     try:
         host = config.get('server', 'host')
     except configparser.NoSectionError:
         sys.stderr.write("taskmasterctl: No field server - host")
+        sys.exit(1)
     try:
         port = int(config.get('server', 'port'))
     except configparser.NoSectionError:
         sys.stderr.write("taskmasterctl: No field server - port")
+        sys.exit(1)
     launch(host, port)

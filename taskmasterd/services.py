@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 19:21:35 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 19:24:40 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,7 +147,6 @@ def services(clientsocket, addr, server):
             clientsocket.send("\r".encode("utf-8"))
 
         elif cmd_lst[0] == 'attach':
-            DG("attach cmd")
             ioprocess(settings.tab_process[cmd_lst[1]], clientsocket)
 
         elif cmd_lst[0] == 'shutdown':

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 16:23:51 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 19:44:15 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ def keeper():
                     or (program.autorestart == "true")) and settings.tab_process[name].status == "RUNNING":
 #                report(name_prog)
                     logging.info("Autorestart %s with status %s", name, program.autorestart)
-                    start_launcher(program, name, name_prog, program.startretries)
+                    launcher(program, name, name_prog, program.startretries)
                 elif settings.tab_process[name].status == "RUNNING":
                     settings.tab_process[name].status = "EXITED"
                 elif settings.tab_process[name].status == "STOPPING":
@@ -54,7 +54,7 @@ def keeper():
                         DG("process put backoff : " + name) 
                         settings.tab_process[name].retries -= 1 
                         logging.info("Start %s from backoff", name)
-                        start_launcher(program, name, name_prog, settings.tab_process[name].retries)
+                        launcher(program, name, name_prog, settings.tab_process[name].retries)
                     elif settings.tab_process[name].retries == 0:
                         DG("process put fatal : " + name)
                         settings.tab_process[name].status = "FATAL"

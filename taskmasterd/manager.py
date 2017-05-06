@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 16:05:26 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 19:28:56 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ def manager(config, list_progs, server):
                         name_process = name_prog[8:]
                     DG("num retriess : " + str(settings.tab_prog[name_prog].startretries))
                     logging.info("Start %s", name_process)
-                    start_launcher(settings.tab_prog[name_prog], name_process, name_prog, \
+                    launcher(settings.tab_prog[name_prog], name_process, name_prog, \
                         copy.copy(settings.tab_prog[name_prog].startretries))
                     launch_num += 1
 
