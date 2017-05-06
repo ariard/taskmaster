@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/05/04 21:04:10 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 16:24:46 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ readline.parse_and_bind('set horizontal-scroll-mode On')
 # host and port config
 
 host = 'localhost'
-port = 4242
+port = 4232
 
 def header():
 	print("  _______        _                        _            ")
@@ -99,6 +99,7 @@ def prompt(sc):
 
 def launch(host, port):
     DG_init() 
+#    signal.signal(signal.SIGINT, )
     sc = socket.socket()
     print("Trying to connect", host, "on port", port," ...")
     sc.connect((host, port))

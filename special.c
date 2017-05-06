@@ -10,10 +10,10 @@ int		main(void)
 	char	*garb;
 	int		fd;
 	int		file;
+	int		out;
 
-	in = open("/dev/stdin", O_RDONLY);
+	fd = open("/dev/stdin", O_RDONLY);
 	file = open("/tmp/file", O_CREAT | O_WRONLY | O_APPEND, 0644);
-	out = open("/dev/stdout", O_RDONLY);
 	while (1)
 	{
 		bzero(buf, 128);
@@ -21,9 +21,9 @@ int		main(void)
 		garb = strchr(buf, '\n');
 		*garb = 0;
 		write(file, buf, 128);
-		write(out, "your data [", 11);
-		write(out , buf, 128);
-		write(out, "]\n", 2);
+		write(STDOUT_FILENO, "your data [", 11);
+		write(STDOUT_FILENO , buf, 128);
+		write(STDOUT_FILENO, "]\n", 2);
 	}
 	return (0);
 }

@@ -6,11 +6,12 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/04/29 23:19:06 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 15:51:26 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import socket
+import logging
 
 from debug import * 
 from services import *
@@ -39,4 +40,6 @@ def serviter(clientsocket, addr, server):
 
     num_threads -= 1
     DG('debug: [' + str(num_threads) + '] threads are actually running')
+    logging.info("Client %s exited", addr[1]) 
     clientsocket.close()
+#   server.launch

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 17:28:00 by ariard            #+#    #+#              #
-#    Updated: 2017/05/02 16:06:22 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 15:50:00 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ import time
 import socket
 import configparser
 import threading
+import logging
 
 from daemonize import *
 from server import *
@@ -39,20 +40,19 @@ if __name__ == '__main__' :
         error_msg("No such configuration file")
     DG("start")
     daemonize()
+    logging.basicConfig(format='%(asctime)s , %(levelname)s : %(message)s',filename='/tmp/.taskmasterdlog', level=logging.INFO)
     settings.init()
-    logging.critical("TEST LOGGING")
     server = Server(path_config)
     server.start_keeper()
+    logging.info("Taskmasterd server started")
     server.start_manager(server.config, server.list_progs)
-#   server.init
     DG("after launch server")
-#   server.launch
 
     while True:
         global num_threads
         server.c, server.addr = server.ss.accept()
         DG('Connection received from : ' + str(server.addr))
-        logging.warning(flow(server.addr, 2))
+        logging.info("Connection client %s from %s", server.addr[1], server.addr[0])
         server.c.recv(1024)
         server.c.send(str(num_threads).encode('utf-7'))
         server.start_serviter()

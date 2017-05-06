@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/04 22:06:50 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 16:17:14 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ def services(clientsocket, addr, server):
 
     while True:
         m = clientsocket.recv(1024)
-        logging.info(command(m, addr))
         dec = m.decode("utf-8")
         cmd_lst = dec.split(' ')
         try:
@@ -44,7 +43,6 @@ def services(clientsocket, addr, server):
             pass
         
         if cmd_lst[0] == 'exit' or cmd_lst[0] == 'quit' or not m:
-            logging.warning(flow(addr, 0))
             DG('exit request received from ' + str(addr[1]) + ' ... stopping')
             break
 
@@ -54,7 +52,7 @@ def services(clientsocket, addr, server):
                     if settings.tab_process[cmd].status != "RUNNING" and settings.tab_process[cmd].status != "STARTING" \
                         and settings.tab_process[cmd].status != "BACKOFF":
                         program = "program:" + cmd.strip('_0123456789')
-                        logging.info(starting(cmd))
+                        logging.info("Start %s", cmd)
                         start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_prog[program].startretries) 
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
                 except KeyError:
@@ -71,7 +69,7 @@ def services(clientsocket, addr, server):
                         server.start_killer(copy.copy(settings.tab_process[cmd].pid))
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is stopping\n").encode("utf-8"))
                     program = "program:" + cmd.strip('_0123456789')
-                    logging.info(restarting(cmd))
+                    logging.info("Restart %s", cmd)
                     start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_prog[program].startretries) 
                     clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
                 except KeyError:
@@ -85,7 +83,7 @@ def services(clientsocket, addr, server):
                         and settings.tab_process[cmd].status != "BACKOFF":
                         clientsocket.send(("taskmasterd: Process " + cmd + " isn't running\n").encode("utf-8"))
                     else:
-                        logging.info(stopping(cmd))
+                        logging.info("Stop %s", cmd)
                         server.start_killer(copy.copy(settings.tab_process[cmd].pid))
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is stopping\n").encode("utf-8"))
                 except KeyError:
@@ -93,12 +91,12 @@ def services(clientsocket, addr, server):
             clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'reload':
+            logging.info("Reload server config : %s", cmd_lst[1])
             server.config = configparser.ConfigParser()
             try:
                 if os.path.isfile(cmd_lst[1]) == False:
                     raise KeyError
                 path_config = os.path.abspath(cmd_lst[1])
-                logging.info(reloading(path_config))
                 server.config.read(path_config)
                 server.list_progs = extractProg(server.config.sections())
                 server.start_manager(server.config, server.list_progs)
@@ -135,7 +133,6 @@ def services(clientsocket, addr, server):
             ioprocess(settings.tab_process[cmd_lst[1]], clientsocket)
 
         elif cmd_lst[0] == 'shutdown':
-            logging.warning("Shutting down taskmasterd...")
             for name in settings.tab_process:
                 DG("killer")
                 server.start_killer(settings.tab_process[name].pid)
@@ -145,4 +142,6 @@ def services(clientsocket, addr, server):
                 pass
             clientsocket.send(("Taskmasterd is shutdown").encode("utf-8"))
             clientsocket.send(("\r").encode("utf-8"))
+            logging.info("Client %s exited", addr[1]) 
+            logging.info("Taskmasterd server ended")
             os.kill(server.pid, signal.SIGKILL)

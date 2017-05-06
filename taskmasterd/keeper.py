@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/05/02 20:42:11 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 16:23:51 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ from report import report
 import settings
 import logging
 
-def guardian(pid):
+def guardian(pid, null):
 
     for process in settings.tab_process:
         if pid == settings.tab_process[process].pid:
@@ -41,8 +41,8 @@ def keeper():
                 watcher_backoff(name)
                 if ((exitcode not in program.exitcodes and program.autorestart == "unexpected") \
                     or (program.autorestart == "true")) and settings.tab_process[name].status == "RUNNING":
-#                logging.critical(str(name_prog) + "crashed with exit code " + str(exitcode))
 #                report(name_prog)
+                    logging.info("Autorestart %s with status %s", name, program.autorestart)
                     start_launcher(program, name, name_prog, program.startretries)
                 elif settings.tab_process[name].status == "RUNNING":
                     settings.tab_process[name].status = "EXITED"
@@ -51,8 +51,9 @@ def keeper():
 
                 elif settings.tab_process[name].status == "BACKOFF":
                     if settings.tab_process[name].retries > 0:
-                        DG("process put backoff : " + name)
+                        DG("process put backoff : " + name) 
                         settings.tab_process[name].retries -= 1 
+                        logging.info("Start %s from backoff", name)
                         start_launcher(program, name, name_prog, settings.tab_process[name].retries)
                     elif settings.tab_process[name].retries == 0:
                         DG("process put fatal : " + name)

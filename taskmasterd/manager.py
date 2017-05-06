@@ -6,9 +6,11 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/05/04 18:26:34 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 16:05:26 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+import logging
 
 from launcher import *
 from debug import *
@@ -42,6 +44,7 @@ def manager(config, list_progs, server):
                         name_process = name_prog[8:] + "_" + str(numprocs)
                     else:
                         name_process = name_prog[8:]
+                    logging.info("Start %s", name_process)
                     start_protected_launcher(settings.tab_prog[name_prog], name_process, name_prog, \
                         copy.copy(settings.tab_prog[name_prog].startretries))
                     numprocs -= 1
@@ -54,6 +57,7 @@ def manager(config, list_progs, server):
             
                     while gap_num != new_prog.numprocs:
                         name_process = name_prog[8:] + "_" + str(gap_num)
+                        logging.info("Start %s", name_process)
                         start_launcher(settings.tab_prog[name_prog], name_process, name_prog, \
                             copy.copy(settings.tab_prog[name_prog].startretries))
                         gap_num += 1
@@ -82,6 +86,7 @@ def manager(config, list_progs, server):
                     else:
                         name_process = name_prog[8:]
                     DG("num retriess : " + str(settings.tab_prog[name_prog].startretries))
+                    logging.info("Start %s", name_process)
                     start_launcher(settings.tab_prog[name_prog], name_process, name_prog, \
                         copy.copy(settings.tab_prog[name_prog].startretries))
                     launch_num += 1
