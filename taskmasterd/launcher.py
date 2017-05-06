@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 16:14:29 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 20:31:59 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,8 @@ def protected_launcher(program, name_process, name_prog, retries):
 
 def launcher(program, name_process, name_prog, retries):
 
-    master_fd = 0
     try:
-        pid = os.fork()
+        pid, master_fd = pty.fork()
     except BlockingIOError:
         err_msg("Fork temporary unavailable") 
 
@@ -68,24 +67,23 @@ def launcher(program, name_process, name_prog, retries):
         settings.pid2name[pid] = name_process
         settings.tab_process[name_process] = process
         settings.lst_pid.append(pid)
-#        time.sleep(2)
-#        os.write(master_fd, "hello world\r".encode("utf-8"))
-#        time.sleep(2)
-#        if program.stdout == "/dev/stdout":
-#            data = os.read(master_fd, 1024)
-#        else:
-#            fd = os.open(program.stdout, os.O_RDONLY)
-#            data = os.read(fd, 1024)
-#        DG(data.decode("utf-8"))
+        time.sleep(2)
+        os.write(master_fd, "hello world\r".encode("utf-8"))
+        DG("here master is " + str(master_fd))
+        time.sleep(2)
+        if program.stdout == "/dev/stdout":
+            DG("read on /dev/stdout")
+            data = os.read(master_fd, 1024)
+        else:
+            fd = os.open(program.stdout, os.O_RDONLY)
+            data = os.read(fd, 1024)
+        DG(data.decode("utf-8"))
 
     if pid == 0:
         program.conf()
         try:
             args = program.command.split(' ')
             DG(args[0])
-#            log.update("[PROGRAM] - Launch " + str(program.command) + "\n")
-#           log start + modify table_prog on shared memory
-#            fifo = os.open("/tmp/fifo", os.O_WRONLY | os.O_SYNC)
             os.execv(args[0], args)
         except:
             DG("log : no such program")

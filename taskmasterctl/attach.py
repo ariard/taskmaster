@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/04 18:07:37 by ariard            #+#    #+#              #
-#    Updated: 2017/05/04 21:49:45 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/06 20:22:30 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,6 @@ STDIN_FILENO=0
 def attach_mode(sc):
 
     DG("in attach mode")
-#    try:
-#        mode = tty.tcgetattr(stdin_fileno)
-#        tty.setraw(stdin_fileno)
-#        restore = 1
-#    except tty.error:
-#        restore = 0
     sc.recv(1024)
     try:
 
@@ -43,6 +37,4 @@ def attach_mode(sc):
                     break
     except (OSError, ConnectionResetError) :
         pass
-#        if restore:
-#            tty.tcsetattr(STDIN_FILENO, tty.TCSAFLUSH, mode)
     print("Exiting attach mode")
