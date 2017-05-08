@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 18:40:44 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/08 19:54:14 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,15 @@ from keeper import keeper
 from watcher import watcher
 from serviter import serviter, logging
 from killer import killer
+from dispatcher import dispatcher
 
 class Server:
     def __init__(self, path):
         self.config = configparser.ConfigParser()
-        self.config.read(path)
+        try:
+            self.config.read(path)
+        except configparser.DuplicateSectionError:
+            error_msg("Duplicate section on config file")
         try:
             self.psswd = self.config.get('server', 'password')
         except:
@@ -77,3 +81,6 @@ class Server:
         t = threading.Thread(target=killer, args=(pid, None))
         t.start()
 
+    def start_dispatcher(self):
+        t = threading.Thread(target=dispatcher)
+        t.start()

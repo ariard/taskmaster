@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/07 00:21:03 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/08 20:23:18 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -165,3 +165,4 @@ def services(clientsocket, addr, server):
             logging.info("Client %s exited", addr[1]) 
             logging.info("Taskmasterd server ended")
             os.kill(server.pid, signal.SIGKILL)
+

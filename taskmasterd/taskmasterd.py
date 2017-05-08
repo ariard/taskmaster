@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 17:28:00 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 15:50:00 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/08 20:11:05 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ if __name__ == '__main__' :
     settings.init()
     server = Server(path_config)
     server.start_keeper()
+#    server.start_dispatcher()
     logging.info("Taskmasterd server started")
     server.start_manager(server.config, server.list_progs)
     DG("after launch server")

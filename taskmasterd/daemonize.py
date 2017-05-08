@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:34:11 by ariard            #+#    #+#              #
-#    Updated: 2017/05/04 19:45:10 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/07 18:01:42 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,11 +62,11 @@ def daemonize():
                 pass
             soft -= 1
             
-        # Open standard fd on /dev/null
+       # Open standard fd on /dev/null
 
         fd = open('/dev/null')
-        os.dup2(fd.fileno(), 0)
-        os.dup2(fd.fileno(), 1)
+#        os.dup2(fd.fileno(), 0)
+#        os.dup2(fd.fileno(), 1)
 #        os.dup2(fd.fileno(), 2)
 
         # Reset umask and current directory

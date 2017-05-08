@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 19:46:35 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/08 16:32:24 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ def manager(config, list_progs, server):
                     launcher(settings.tab_prog[name_prog], name_process, name_prog, \
                         copy.copy(settings.tab_prog[name_prog].startretries))
                     launch_num += 1
+
 
             elif settings.tab_prog[name_prog].autostart == "false" \
                 and settings.tab_prog[name_prog].command:

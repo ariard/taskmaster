@@ -6,12 +6,13 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/05/04 23:02:44 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/08 15:50:40 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import os
 import configparser
+import sys
 
 from debug import *
 
@@ -88,10 +89,10 @@ class Program:
                 j = i.split('=')
                 os.environ[j[0]] = j[1]
 
-        if self.stdout:
-            fd = open(self.stdout, 'w+')
-            os.dup2(fd.fileno(), 1)
+#        if self.stdout:
+#            fd = os.open(self.stdout, os.O_CREAT | os.O_WRONLY | os.O_APPEND)
+#            os.dup2(fd, sys.stdout.fileno())
 
-        if self.stderr:
-            fd = open(self.stderr, 'w+')
-            os.dup2(fd.fileno(), 2)
+#        if self.stderr:
+#            fd = os.open(self.stderr, os.O_CREAT | os.O_WRONLY | os.O_APPEND)
+#            os.dup2(fd, sys.stderr.fileno())

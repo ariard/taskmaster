@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/05/06 22:21:46 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/08 17:55:13 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,18 @@ from report import report
 import settings
 import logging
 
+def clean_tab(pid):
+
+    DG("in clean tab with " + str(pid))
+    out = settings.process2fd[str(pid) + "out"]
+    DG("out is " + str(out))
+    err = settings.process2fd[str(pid) + "err"]
+    DG("err is " + str(err))
+    pos = settings.fds.index(out)
+    settings.fds.pop(pos)
+    pos = settings.fds.index(err)
+    settings.fds.pop(pos)
+
 def guardian(pid, null):
 
     for process in settings.tab_process:
@@ -28,7 +40,6 @@ def guardian(pid, null):
 def keeper():
 
     while 1 :
-#        DG("wake up with " + str(len(settings.queue_pid)))
         while len(settings.queue_pid) > 1:
             pid = settings.queue_pid[0]
             DG("da pid is: " + str(pid))
@@ -48,7 +59,6 @@ def keeper():
                     settings.tab_process[name].status = "EXITED"
                 elif settings.tab_process[name].status == "STOPPING":
                     settings.tab_process[name].status = "STOPPED"
-
                 elif settings.tab_process[name].status == "BACKOFF":
                     if settings.tab_process[name].retries > 0:
                         DG("process put backoff : " + name) 
