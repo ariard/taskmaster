@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/08 20:23:18 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 00:13:59 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,8 +98,9 @@ def services(clientsocket, addr, server):
                     raise KeyError
                 path_config = os.path.abspath(cmd_lst[1])
                 server.config.read(path_config)
+                old_list_progs = server.list_progs
                 server.list_progs = extractProg(server.config.sections())
-                server.start_manager(server.config, server.list_progs)
+                server.start_manager(server.config, server.list_progs, old_list_progs)
             except KeyError :
                 clientsocket.send(("taskmasterd: No such file " + cmd_lst[1]).encode("utf-8"))
             clientsocket.send(("\r").encode("utf-8"))
@@ -148,6 +149,10 @@ def services(clientsocket, addr, server):
 
         elif cmd_lst[0] == 'attach':
             try:
+                if settings.attach_process:
+                    raise IndexError
+                settings.attach_process = cmd_lst[1]
+                time.sleep(2)
                 ioprocess(settings.tab_process[cmd_lst[1]], clientsocket)
             except (IndexError,KeyError):
                 clientsocket.send("detach".encode("utf-8"))
@@ -166,3 +171,5 @@ def services(clientsocket, addr, server):
             logging.info("Taskmasterd server ended")
             os.kill(server.pid, signal.SIGKILL)
 
+        else:
+            clientsocket.send(("\r").encode("utf-8"))

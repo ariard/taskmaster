@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/05/06 19:41:07 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 00:11:29 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ def prompt(sc):
         try:
             line = input("\033[1;32mtaskmaster>\033[0m ")
             if (line_is_command(line)):
+                DG("command valid")
                 if "reload" in line:
                     sp = line.split()
                     if len(sp) == 2:

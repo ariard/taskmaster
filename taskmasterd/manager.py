@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/05/08 16:32:24 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/09 23:55:20 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,14 @@ from execute import *
 
 import settings
 
-def manager(config, list_progs, server):
+def manager(config, list_progs, server, old_list_progs):
+
+    if old_list_progs:
+        for name in old_list_progs:
+            if name not in list_progs:
+                for process in settings.tab_process:
+                    if settings.tab_process[process].father == name:
+                        server.start_killer(settings.tab_process[process].pid)
 
     for name_prog in list_progs: 
         DG(name_prog)
@@ -101,6 +108,6 @@ def manager(config, list_progs, server):
                     else:
                         name_process = name_prog[8:]
                     process = Process(name_process, "Not Started", "STOPPED", \
-                        settings.tab_prog[name_prog].startretries, name_prog, -1)
+                        settings.tab_prog[name_prog].startretries, name_prog, -1, -1, -1)
                     settings.tab_process[name_process] = process
                     launch_num += 1

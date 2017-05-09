@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/08 15:53:31 by ariard            #+#    #+#              #
-#    Updated: 2017/05/08 19:59:44 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 00:14:59 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,19 +22,19 @@ def dispatcher():
 
     DG("launching dispatcher")
     while 1: 
-        DG("my settings fds" + str(settings.fds))
         my_fds = list()
         for fd in settings.fds:
-            my_fds.append(fd)
-        DG("before select")
-        DG("my fds is " + str(my_fds))
+            if settings.attach_process and settings.tab_process[settings.attach_process].process_fd[1] != fd and \
+            settings.tab_process[settings.attach_process].process_fd[2] != fd:
+                my_fds.append(fd)
+            elif settings.attach_process == 0:
+                DG("had fd")
+                my_fds.append(fd)
         if len(my_fds) > 0:
             rfds, wfds, xfds = select(my_fds, [], [])
 
-        DG("still")
         for fd in my_fds:
             if fd in rfds:
-                DG("reading data from fd")
                 data = os.read(fd, 1024) 
                 if data:
                     filename = settings.fd2realfile[fd]
@@ -42,4 +42,4 @@ def dispatcher():
                     os.write(tmp_fd, data)
                     os.close(tmp_fd)
 
-        time.sleep(2)
+        time.sleep(1)

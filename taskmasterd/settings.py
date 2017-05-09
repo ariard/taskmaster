@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 19:31:29 by ariard            #+#    #+#              #
-#    Updated: 2017/05/08 17:36:34 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/09 22:36:22 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ def init():
     global wr_fds
     global fd2realfile
     global process2fd
+    global attach_process
 
     tab_prog = dict()
     tab_process = dict()
@@ -33,4 +34,4 @@ def init():
     fds = list()
     wr_fds = list()
     fd2realfile = dict()
-    process2fd = dict()
+    attach_process = 0

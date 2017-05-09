@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:54:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/02 21:56:17 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 00:03:52 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,11 @@ def killer(pid, null):
     except ProcessLookupError:
         return 1
     time.sleep(settings.tab_prog[father].stopwaitsecs)
-    if settings.tab_process[name].status != "STOPPED":
-        try:
-            os.kill(pid, signal.SIGKILL)
-        except ProcessLookupError:
-            pass
+    try:        
+        if settings.tab_process[name].status != "STOPPED":
+            try:
+                os.kill(pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+    except KeyError:
+        pass

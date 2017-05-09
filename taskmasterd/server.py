@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/05/08 19:54:14 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/09 23:53:44 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,8 +65,8 @@ class Server:
 
         DG("Server started and waiting for clients...")
 
-    def start_manager(self, config, list_progs):
-       t = threading.Thread(target=manager, args=(config, list_progs, self))
+    def start_manager(self, config, list_progs, old_list_progs):
+       t = threading.Thread(target=manager, args=(config, list_progs, self, old_list_progs))
        t.start()
     
     def start_keeper(self):

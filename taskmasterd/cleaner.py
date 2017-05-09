@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/03 17:28:59 by ariard            #+#    #+#              #
-#    Updated: 2017/05/03 18:08:23 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 00:02:09 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,11 @@ def cleaner(list_progs):
 
     for name in settings.tab_process:
 
-        if "program:" + name.strip('_0123456789') not in list_progs:
-            to_del.append(name) 
+        if "program:" + name.strip('_0123456789') not in list_progs \
+            and  (settings.tab_process[name].status == "STOPPED" or \
+            settings.tab_process[name].status == "EXITED" or \
+            settings.tab_process[name].status == "FATAL"):
+                to_del.append(name) 
 
     DG(str(settings.tab_prog))
     for name in to_del:

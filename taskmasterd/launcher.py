@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/05/08 20:38:50 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/09 22:36:18 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,6 @@ def launcher(program, name_process, name_prog, retries):
         DG("in_process is " + str(write_in))
         settings.fds.append(read_out)
         settings.fds.append(read_err)
-#        settings.process2fd[str(pid) + "out"] = read_out
-#        settings.process2fd[str(pid) + "err"] = read_err
         settings.fd2realfile[read_out] = program.stdout
         settings.fd2realfile[read_err] = program.stderr
         os.close(read_in)
