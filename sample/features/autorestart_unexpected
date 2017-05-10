@@ -1,7 +1,6 @@
 [program:ls]
 command=/bin/ls -l
-exitcodes=fewewffewewf
-autorestart=unexpected
+autorestart=wefwefwefewfwef
 
 [server]
 port=4246
