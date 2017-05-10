@@ -20,11 +20,11 @@ start / restart / status / stop
 
 sample/start one programs true
 sample/start two programs true/false
-sample/start three programs true/false/true
-sample/start five programs true/true/false/true/true
+sample/start four programs true/false/true
 sample/start ten programs all true
 
 sample/start two program always crash
+sample/start a programs with a lot of process always crash
 sample/start big output
 Kill manually programs
 
@@ -35,6 +35,7 @@ Try a `shutdown` with a lot of process, check with px if it well killed
 ### reload
 
 diff between hard conditions/soft conditions
+
 
 ### loggging systems
 
