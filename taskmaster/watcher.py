@@ -6,9 +6,11 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/10 16:08:35 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:19:10 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 20:20:55 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+import time
 
 import taskmaster.settings as settings
 

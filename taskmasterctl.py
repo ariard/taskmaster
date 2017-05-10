@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/05/10 16:54:28 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 20:20:07 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,6 @@ def prompt(sc):
             pass 
 
 def launch(host, port):
-    DG_init() 
     signal.signal(signal.SIGINT, exit_client)
     sc = socket.socket()
     print("Trying to connect", host, "on port", port," ...")
@@ -142,6 +141,7 @@ def launch(host, port):
 #def     main():
 
 if __name__ == '__main__':
+    DG_init(0) 
     try:
         path_config = os.path.abspath(sys.argv[1])
     except:

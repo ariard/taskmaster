@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:59:09 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 22:51:30 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,11 @@ import sys
 import time
 import copy
 import pty
+import logging
 import threading
 
 from taskmaster.debug import *
+from taskmaster.task_error import *
 
 import taskmaster.settings as settings
 
@@ -56,7 +58,8 @@ def launcher(program, name_process, name_prog, retries):
     try:
         pid = os.fork()
     except BlockingIOError:
-        err_msg("Fork temporary unavailable") 
+        logging.info("Taskmasterd server ended")
+        error_msg("Fork temporary unavailable, taskmasterd exiting")
 
     if pid > 0: 
         DG("in_process is " + str(write_in))
@@ -67,7 +70,6 @@ def launcher(program, name_process, name_prog, retries):
         os.close(read_in)
         os.close(write_out)
         os.close(write_err)
-        time.sleep(2)
         if program.startsecs > 0:
             status = "STARTING"
         elif program.startretries > retries:

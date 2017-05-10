@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 17:01:48 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 20:46:14 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ def services(clientsocket, addr, server):
                 try:
                     if settings.tab_process[cmd].status != "RUNNING" and settings.tab_process[cmd].status != "STARTING" \
                         and settings.tab_process[cmd].status != "BACKOFF":
-                        program = "program:" + cmd.strip('_0123456789')
+                        program = "program:" + cmd.split('_')[0]
                         logging.info("Start %s", cmd)
                         start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_prog[program].startretries) 
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
@@ -67,7 +67,7 @@ def services(clientsocket, addr, server):
                     else:
                         server.start_killer(copy.copy(settings.tab_process[cmd].pid))
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is stopping\n").encode("utf-8"))
-                    program = "program:" + cmd.strip('_0123456789')
+                    program = "program:" + cmd.split('_')[0]
                     logging.info("Restart %s", cmd)
                     start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_prog[program].startretries) 
                     clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
@@ -114,7 +114,7 @@ def services(clientsocket, addr, server):
         elif cmd_lst[0] == 'config':
             for cmd in cmd_lst[1:]:
                 try:
-                    program = "program:" + cmd.strip('_0123456789')
+                    program = "program:" + cmd.split('_')[0]
                     conf = getConfig(server.config, program)
                     clientsocket.send(("[" + program + "]\n").encode("utf-8"))
                     for line in conf:

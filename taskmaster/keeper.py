@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 17:06:38 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 22:03:09 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,16 @@ from taskmaster.report import reporter
 
 import taskmaster.settings as settings
 
-def clean_tab(pid):
+def clean_fd(name):
 
-    DG("in clean tab with " + str(pid))
-    out = settings.process2fd[str(pid) + "out"]
-    DG("out is " + str(out))
-    err = settings.process2fd[str(pid) + "err"]
-    DG("err is " + str(err))
-    pos = settings.fds.index(out)
-    settings.fds.pop(pos)
-    pos = settings.fds.index(err)
-    settings.fds.pop(pos)
+    infd = settings.tab_process[name].process_fd[0]
+    outfd = settings.tab_process[name].process_fd[1]
+    errfd = settings.tab_process[name].process_fd[2]
+    os.close(infd)
+    settings.queue_old_fd.append(outfd)
+    settings.queue_old_fd.append(errfd)
+    DG("old fd are ")
+    DG(str(settings.queue_old_fd))
 
 def guardian(pid, null):
 
@@ -51,9 +50,10 @@ def keeper():
                 program = settings.tab_prog[name_prog]
                 watcher(name)
                 watcher_backoff(name)
+                clean_fd(name)
+                DG("old fd")
                 if ((exitcode not in program.exitcodes and program.autorestart == "unexpected") \
                     or (program.autorestart == "true")) and settings.tab_process[name].status == "RUNNING":
-#                report(name_prog)
                     if program.autorestart == "unexpected":
                         start_reporter(name_prog)
                     logging.info("Autorestart %s with status %s", name, program.autorestart)
@@ -72,7 +72,7 @@ def keeper():
                         DG("process put fatal : " + name)
                         start_reporter(name_prog)
                         settings.tab_process[name].status = "FATAL"
-            except:
+            except OSError:
                 t = threading.Thread(target=guardian, args=(pid, None))
                 t.start()
             settings.queue_pid.pop(0)
