@@ -5,12 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/04/29 17:28:00 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:23:23 by ariard           ###   ########.fr        #
+#    Created: 2017/05/10 16:53:40 by ariard            #+#    #+#              #
+#    Updated: 2017/05/10 16:53:44 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-import os
 import sys
 import signal
 import time
@@ -27,8 +26,9 @@ from taskmaster.debug import *
 from taskmaster.task_error import *
 from taskmaster.serviter import num_threads
 
-def main():
+#def main():
     
+if  __name__ == '__main__':
     DG_init(0)
     if len(sys.argv) < 2:
         error_msg("usage : <config_file>")

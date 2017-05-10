@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/05/10 16:01:25 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 16:54:28 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,9 @@ def launch(host, port):
         if "deconnecting" in answer:
             sys.exit(0)
 
-def     main():
+#def     main():
+
+if __name__ == '__main__':
     try:
         path_config = os.path.abspath(sys.argv[1])
     except:
