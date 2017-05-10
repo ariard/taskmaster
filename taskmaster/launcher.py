@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:17:55 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 16:59:09 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ def start_launcher(program, name_process, name_prog, retries):
 def start_protected_launcher(program, name_process, name_prog, retries):
     t = threading.Thread(target=protected_launcher, args=(program, name_process, name_prog, retries))
     t.start()
-    
 
 class Process:
     def __init__(self, name_process, pid, status, retries, name_prog, write_in, read_out, read_err):

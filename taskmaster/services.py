@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:15:39 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 17:01:48 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ from taskmaster.debug import *
 from taskmaster.execute import *
 from taskmaster.task_error import *
 from taskmaster.statutor import *
-from taskmaster.report import report, manual_report
+from taskmaster.report import reporter, manual_reporter
 from taskmaster.extract import *
 from taskmaster.keeper import *
 from taskmaster.cleaner import cleaner
@@ -142,7 +142,7 @@ def services(clientsocket, addr, server):
             clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'alert':
-            manual_report(cmd_lst[1])
+            start_manual_reporter(cmd_lst[1])
             clientsocket.send("Mail sent !")
             clientsocket.send("\r".encode("utf-8"))
 

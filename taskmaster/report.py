@@ -6,7 +6,7 @@
 #    By: echo <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/24 22:34:44 by echo              #+#    #+#              #
-#    Updated: 2017/04/30 16:26:45 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 17:01:27 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,15 @@ import smtplib
 
 from email.mime.text import MIMEText
 
-def report(name):
+def start_reporter(name_prog):
+    t = threading.Thread(target=reporter, args=(name_prog, None))
+    t.start()
+
+def start_manual_reporter(name_prog):
+    t = threading.Thread(target=manual_reporter, args=(name_prog, None))
+    t.start()
+
+def reporter(name, null):
     me = 'taskmaster@42.fr'
     you = 'ataguiro@student.42.fr'
 
@@ -33,7 +41,7 @@ def report(name):
     except:
         pass
 
-def manual_report(msg):
+def manual_reporter(msg, null):
     me = 'taskmasterd@42.fr'
     you = "originadam@gmail.com"
 

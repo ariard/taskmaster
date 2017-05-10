@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:17:43 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/10 17:01:58 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ from taskmaster.debug import *
 from taskmaster.launcher import * 
 from taskmaster.task_signal import *
 from taskmaster.watcher import *
-from taskmaster.report import report
+from taskmaster.report import reporter
 
 import taskmaster.settings as settings
 
@@ -54,6 +54,8 @@ def keeper():
                 if ((exitcode not in program.exitcodes and program.autorestart == "unexpected") \
                     or (program.autorestart == "true")) and settings.tab_process[name].status == "RUNNING":
 #                report(name_prog)
+                    if program.autorestart == "unexpected":
+                        start_reporter(name_prog)
                     logging.info("Autorestart %s with status %s", name, program.autorestart)
                     launcher(program, name, name_prog, program.startretries)
                 elif settings.tab_process[name].status == "RUNNING":
@@ -68,6 +70,7 @@ def keeper():
                         launcher(program, name, name_prog, settings.tab_process[name].retries)
                     elif settings.tab_process[name].retries == 0:
                         DG("process put fatal : " + name)
+                        start_reporter(name_prog)
                         settings.tab_process[name].status = "FATAL"
             except:
                 t = threading.Thread(target=guardian, args=(pid, None))
