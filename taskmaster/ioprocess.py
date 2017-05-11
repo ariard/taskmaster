@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/04 20:47:59 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:17:31 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 22:47:12 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ def ioprocess(process, clientsocket):
     fd_client = os.open("/tmp/.client_attach", os.O_CREAT | os.O_RDONLY)
     fd_server = os.open("/tmp/.server_attach", os.O_CREAT | os.O_WRONLY)
     clientsocket.send("synchro".encode('utf-8'))
+    DG("proces pid is " + str(process.pid))
     in_process = process.process_fd[0] 
     out_process = process.process_fd[1] 
     err_process = process.process_fd[2] 

@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/04 18:07:37 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 15:48:40 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 23:08:42 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,19 +36,29 @@ def attach_mode(sc):
         while True:
             line = input("\033[1;32m(attach mode)\033[0m ")
             timeout = 0 
-            if len(line) == 0:
-                timeout = time.time() + 2
+      #     if len(line) == 0:
+            timeout = time.time() + 2
             writen(fd_client, line.encode("utf-8"))
             if line == "detach":
+                break
+            if line == "detach2":
+                print("Process should be running to be in attach mode")
                 break
             fds = [fd_server]
             while True:
                 rfds, wfds, xfds = select(fds, [], [])
                 if fd_server in rfds:
+                    DG("before read")
                     data = os.read(fd_server, 1024)
+                    DG("after read")
                     if data:
+                        DG("got data")
                         os.write(sys.stdout.fileno(), data)
+                        timeout = 0
                         break
+                DG("len is " + str(len(line)))
+                DG("timeout" + str(timeout))
+                DG("time" + str(time.time()))
                 if timeout != 0 and time.time() > timeout:
                     break
     except (OSError, ConnectionResetError) :

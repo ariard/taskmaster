@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 21:36:13 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 23:07:38 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -152,14 +152,17 @@ def services(clientsocket, addr, server):
             clientsocket.send("\r".encode("utf-8"))
 
         elif cmd_lst[0] == 'attach':
-            try:
-                if settings.attach_process:
-                    raise IndexError
-                settings.attach_process = cmd_lst[1]
-                time.sleep(2)
-                ioprocess(settings.tab_process[cmd_lst[1]], clientsocket)
-            except (IndexError,KeyError):
-                clientsocket.send("detach".encode("utf-8"))
+            if settings.tab_process[cmd_lst[1]].status == "RUNNING":
+                try:
+                    if settings.attach_process:
+                        raise IndexError
+                    settings.attach_process = cmd_lst[1]
+                    time.sleep(2)
+                    ioprocess(settings.tab_process[cmd_lst[1]], clientsocket)
+                except (IndexError,KeyError):
+                    clientsocket.send("detach".encode("utf-8"))
+            else:
+                clienstsocket.send("detach2".encode("utf-8"))
 
         elif cmd_lst[0] == 'shutdown':
             for name in settings.tab_process:
