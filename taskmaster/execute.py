@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/07 04:23:04 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 22:18:45 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 23:46:12 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,10 +78,16 @@ class Program:
 
     def conf(self):
         if self.dir:
-            os.chdir(self.dir) 
+            try:
+                os.chdir(self.dir)
+            except (FileNotFoundError, PermissionError):
+                sys.exit(1)
 
         if self.umask:
-            os.umask(int(self.umask))
+            try:
+                os.umask(int(self.umask))
+            except:
+                sys.exit(1)
         
         if self.env:
             list_env = self.env.split(',')
