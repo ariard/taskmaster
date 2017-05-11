@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 22:03:09 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 20:20:33 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ from taskmaster.debug import *
 from taskmaster.launcher import * 
 from taskmaster.task_signal import *
 from taskmaster.watcher import *
-from taskmaster.report import reporter
+from taskmaster.report import *
 
 import taskmaster.settings as settings
 
@@ -36,6 +36,7 @@ def guardian(pid, null):
     for process in settings.tab_process:
         if pid == settings.tab_process[process].pid:
             settings.tab_process[process].status = "UNKNOWN"
+#            start_manual_reporter(str(settings.tab_process[process].name_process) + "is in UNKNOWN state")
 
 def keeper():
 
@@ -75,6 +76,8 @@ def keeper():
             except OSError:
                 t = threading.Thread(target=guardian, args=(pid, None))
                 t.start()
+            except KeyError:
+                pass
             settings.queue_pid.pop(0)
             settings.queue_pid.pop(0)
         time.sleep(1)

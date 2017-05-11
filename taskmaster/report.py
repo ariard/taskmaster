@@ -6,12 +6,13 @@
 #    By: echo <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/24 22:34:44 by echo              #+#    #+#              #
-#    Updated: 2017/05/10 17:01:27 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 20:20:25 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import time
 import smtplib
+import threading
 
 from email.mime.text import MIMEText
 

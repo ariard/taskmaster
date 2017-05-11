@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:54:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:17:49 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 20:46:42 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,8 @@ def killer(pid, null):
     if settings.tab_process[name].status != "STARTING" and settings.tab_process[name].status != "RUNNING" \
         and settings.tab_process[name].status != "BACKOFF":
         return 1
+    if settings.tab_process[name].status == "STOPPING":
+        settings.tab_process[name].status = "STOPPED"
     father = settings.tab_process[name].father
     signal = getSignal(settings.tab_prog[father].stopsignal)
     DG("killing process : " + name)

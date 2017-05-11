@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:18:15 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 20:52:14 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ def manager(config, list_progs, server, old_list_progs):
             new_prog = Program(config, name_prog)
             old_prog = settings.tab_prog[name_prog]
             numprocs = settings.tab_prog[name_prog].numprocs
-            if new_prog.stdout != old_prog.stdout or new_prog.stderr != old_prog.stderr \
+            if (new_prog.stdout != old_prog.stdout or new_prog.stderr != old_prog.stderr \
                 or new_prog.env != old_prog.env or new_prog.dir != old_prog.dir \
-                or new_prog.umask != old_prog.umask:
+                or new_prog.umask != old_prog.umask) and new_prog.autostart == "true":
                 settings.tab_prog.pop(name_prog, None)
                 settings.tab_prog[name_prog] = new_prog
 

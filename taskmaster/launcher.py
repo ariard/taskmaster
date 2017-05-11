@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:57:06 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 22:51:30 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 20:42:33 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,9 @@ class Process:
 
 def protected_launcher(program, name_process, name_prog, retries):
      
+    DG(name_process + " status" + settings.tab_process[name_process].status)
     while settings.tab_process[name_process].status != "EXITED" and settings.tab_process[name_process].status != "STOPPED" \
-        and settings.tab_process[name_process].status != "FATAL":
+        and settings.tab_process[name_process].status != "FATAL" and settings.tab_process[name_process].status != "UNKNOWN":
         time.sleep(1)
     DG("ok " + name_process)
     launcher(program, name_process, name_prog, retries)
@@ -91,6 +92,7 @@ def launcher(program, name_process, name_prog, retries):
         program.conf()
         try:
             args = program.command.split(' ')
+            DG("I launch " + name_process)
             DG(args[0])
             os.execv(args[0], args)
         except:

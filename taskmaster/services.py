@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 19:41:26 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 20:27:45 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ def services(clientsocket, addr, server):
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is stopping\n").encode("utf-8"))
                     program = "program:" + cmd.split('_')[0]
                     logging.info("Restart %s", cmd)
+                    DG("will launch in protect" + cmd)
                     start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_prog[program].startretries) 
                     clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
                 except KeyError:
@@ -80,7 +81,7 @@ def services(clientsocket, addr, server):
             for cmd in cmd_lst[1:]:
                 try:
                     if settings.tab_process[cmd].status != "STARTING" and settings.tab_process[cmd].status != "RUNNING" \
-                        and settings.tab_process[cmd].status != "BACKOFF":
+                            and settings.tab_process[cmd].status != "BACKOFF" and settings.tab_process[cmd].status != "STOPPING":
                         clientsocket.send(("taskmasterd: Process " + cmd + " isn't running\n").encode("utf-8"))
                     else:
                         logging.info("Stop %s", cmd)

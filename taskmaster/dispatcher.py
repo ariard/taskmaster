@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/08 15:53:31 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 22:52:42 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 20:21:46 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,12 +35,11 @@ def dispatcher():
             elif settings.attach_process == 0:
                 my_fds.append(fd)
 
-        DG(str(my_fds))
 
         if len(my_fds) > 0:
             try:
                 rfds, wfds, xfds = select(my_fds, [], [])
-            except ValueError:
+            except (ValueError, OSError):
                 logging.info("Taskmasterd server ended")
                 error_msg("No more fd")
 

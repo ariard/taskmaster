@@ -1,6 +1,6 @@
 [program:special]
 command=/Users/ariard/Projects/taskmaster/bin/special
-numprocs=1000
+numprocs=499
 autostart=false
 autorestart=false
 exitcodes=0
