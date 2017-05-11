@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 15:58:36 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 19:43:10 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ from taskmaster.watcher import watcher
 from taskmaster.serviter import serviter, logging
 from taskmaster.killer import killer
 from taskmaster.dispatcher import dispatcher
+from taskmaster.protect import *
 
 class Server:
     def __init__(self, path):
@@ -59,7 +60,8 @@ class Server:
             error_msg("Socket already in use")
         self.ss.listen(5)
         self.list_progs = extractProg(self.config.sections())
-
+        if protect_stackoverflow(self.list_progs, self.config):
+            error_msg("taskmasterd: Too much process asked, risk of stackoverflow, submit another config")
         signal.signal(signal.SIGCHLD, check_exit) 
 
         DG("Server started and waiting for clients...")

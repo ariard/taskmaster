@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 20:46:14 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 19:41:26 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ from taskmaster.extract import *
 from taskmaster.keeper import *
 from taskmaster.cleaner import cleaner
 from taskmaster.ioprocess import *
+from taskmaster.protect import *
 
 def services(clientsocket, addr, server):
 
@@ -99,7 +100,10 @@ def services(clientsocket, addr, server):
                 server.config.read(path_config)
                 old_list_progs = server.list_progs
                 server.list_progs = extractProg(server.config.sections())
-                server.start_manager(server.config, server.list_progs, old_list_progs)
+                if protect_stackoverflow(server.list_progs, server.config):
+                    clientsocket.send("taskmasterd: Too much process asked, risk of stackoverlow, submit another config")
+                else:
+                    server.start_manager(server.config, server.list_progs, old_list_progs)
             except KeyError :
                 clientsocket.send(("taskmasterd: No such file " + cmd_lst[1]).encode("utf-8"))
             clientsocket.send(("\r").encode("utf-8"))

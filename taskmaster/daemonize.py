@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:34:11 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 15:50:47 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 19:46:05 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ from taskmaster.task_error import *
 from taskmaster.debug import *
 
 def daemon_success(number, frame):
-    print ("still printing")
     sys.exit(0)
 
 def daemonize():
