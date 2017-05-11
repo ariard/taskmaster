@@ -1,4 +1,4 @@
-[program:free_stack]
+[program:freestack]
 command=/Users/ariard/Projects/taskmaster/bin/crash1
 numprocs=1
 autostart=true
@@ -13,7 +13,7 @@ stderr_logfile=/dev/null
 directory=/tmp
 umask=000
 
-[program:stack_overflow]
+[program:stackoverflow]
 command=/Users/ariard/Projects/taskmaster/bin/crash2
 numprocs=5
 autostart=false

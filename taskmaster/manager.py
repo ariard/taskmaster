@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 20:52:14 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 22:24:37 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,10 @@ def manager(config, list_progs, server, old_list_progs):
             new_prog = Program(config, name_prog)
             old_prog = settings.tab_prog[name_prog]
             numprocs = settings.tab_prog[name_prog].numprocs
-            if (new_prog.stdout != old_prog.stdout or new_prog.stderr != old_prog.stderr \
-                or new_prog.env != old_prog.env or new_prog.dir != old_prog.dir \
-                or new_prog.umask != old_prog.umask) and new_prog.autostart == "true":
+            if new_prog.stdout != old_prog.stdout or new_prog.stderr != old_prog.stderr \
+                or new_prog.env != old_prog.env or old_prog.env == None or new_prog.dir != old_prog.dir \
+                or old_prog.dir == None or old_prog.umask == None \
+                or new_prog.umask != old_prog.umask or new_prog.command != old_prog.command:
                 settings.tab_prog.pop(name_prog, None)
                 settings.tab_prog[name_prog] = new_prog
 
@@ -45,16 +46,18 @@ def manager(config, list_progs, server, old_list_progs):
 
                     if settings.tab_process[name].father == name_prog:
                         server.start_killer(settings.tab_process[name].pid)
- 
-                while numprocs > 0:
-                    if settings.tab_prog[name_prog].numprocs > 1:
-                        name_process = name_prog[8:] + "_" + str(numprocs)
-                    else:
-                        name_process = name_prog[8:]
-                    logging.info("Start %s", name_process)
-                    start_protected_launcher(settings.tab_prog[name_prog], name_process, name_prog, \
-                        copy.copy(settings.tab_prog[name_prog].startretries))
-                    numprocs -= 1
+
+                if new_prog.autostart == "true":
+
+                    while numprocs > 0:
+                        if settings.tab_prog[name_prog].numprocs > 1:
+                            name_process = name_prog[8:] + "_" + str(numprocs)
+                        else:
+                            name_process = name_prog[8:]
+                        logging.info("Start %s", name_process)
+                        start_protected_launcher(settings.tab_prog[name_prog], name_process, name_prog, \
+                            copy.copy(settings.tab_prog[name_prog].startretries))
+                        numprocs -= 1
 
             else:
 

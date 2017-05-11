@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 16:54:51 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:18:42 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/11 22:23:52 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,15 +98,15 @@ def getConfig(config, name_prog):
     try: 
         tab.append("environnement: " + config.get(name_prog, "environnement"))
     except configparser.NoOptionError:
-        tab.append("environnement: None") 
+        pass
     try:
         tab.append("directory: " + config.get(name_prog, "directory"))
     except configparser.NoOptionError:
-        tab.append("directory: None")
+        pass
     try:
         tab.append("umask: " + config.get(name_prog, "umask"))
     except configparser.NoOptionError:
-        tab.append("umask: None")
+        pass
 
     return (tab)
 
