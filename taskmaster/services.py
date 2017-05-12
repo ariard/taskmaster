@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/29 22:05:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 23:07:38 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/12 15:25:29 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ def services(clientsocket, addr, server):
             pass
         
         if cmd_lst[0] == 'exit' or cmd_lst[0] == 'quit' or not m:
-            DG('exit request received from ' + str(addr[1]) + ' ... stopping')
             break
 
         elif cmd_lst[0] == 'start':
@@ -70,7 +69,6 @@ def services(clientsocket, addr, server):
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is stopping\n").encode("utf-8"))
                     program = "program:" + cmd.split('_')[0]
                     logging.info("Restart %s", cmd)
-                    DG("will launch in protect" + cmd)
                     start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_prog[program].startretries) 
                     clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
                 except KeyError:
@@ -166,7 +164,6 @@ def services(clientsocket, addr, server):
 
         elif cmd_lst[0] == 'shutdown':
             for name in settings.tab_process:
-                DG("killer")
                 server.start_killer(settings.tab_process[name].pid)
             try:
                 os.remove("/tmp/.taskmasterd")

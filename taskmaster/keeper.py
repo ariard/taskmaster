@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 00:35:20 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 20:20:33 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/12 15:21:04 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,6 @@ def clean_fd(name):
     os.close(infd)
     settings.queue_old_fd.append(outfd)
     settings.queue_old_fd.append(errfd)
-    DG("old fd are ")
-    DG(str(settings.queue_old_fd))
 
 def guardian(pid, null):
 
@@ -43,7 +41,6 @@ def keeper():
     while 1 :
         while len(settings.queue_pid) > 1:
             pid = settings.queue_pid[0]
-            DG("da pid is: " + str(pid))
             try:
                 name = settings.pid2name[pid]
                 exitcode = settings.queue_pid[1]
@@ -52,7 +49,6 @@ def keeper():
                 watcher(name)
                 watcher_backoff(name)
                 clean_fd(name)
-                DG("old fd")
                 if ((exitcode not in program.exitcodes and program.autorestart == "unexpected") \
                     or (program.autorestart == "true")) and settings.tab_process[name].status == "RUNNING":
                     if program.autorestart == "unexpected":
@@ -65,12 +61,10 @@ def keeper():
                     settings.tab_process[name].status = "STOPPED"
                 elif settings.tab_process[name].status == "BACKOFF":
                     if settings.tab_process[name].retries > 0:
-                        DG("process put backoff : " + name) 
                         settings.tab_process[name].retries -= 1 
                         logging.info("Start %s from backoff", name)
                         launcher(program, name, name_prog, settings.tab_process[name].retries)
                     elif settings.tab_process[name].retries == 0:
-                        DG("process put fatal : " + name)
                         start_reporter(name_prog)
                         settings.tab_process[name].status = "FATAL"
             except OSError:

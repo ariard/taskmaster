@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:49:16 by ariard            #+#    #+#              #
-#    Updated: 2017/05/10 16:00:22 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/12 15:22:03 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,5 @@ def serviter(clientsocket, addr, server):
             clientsocket.send(("Wrong password, submit again").encode("utf-8"))
 
     num_threads -= 1
-    DG('debug: [' + str(num_threads) + '] threads are actually running')
     logging.info("Client %s exited", addr[1]) 
     clientsocket.close()
-#   server.launch

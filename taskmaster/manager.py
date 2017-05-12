@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/22 15:42:41 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 22:24:37 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/12 15:21:47 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ def manager(config, list_progs, server, old_list_progs):
                         server.start_killer(settings.tab_process[process].pid)
 
     for name_prog in list_progs: 
-        DG(name_prog)
 
         if name_prog in settings.tab_prog:
             new_prog = Program(config, name_prog)
@@ -41,7 +40,6 @@ def manager(config, list_progs, server, old_list_progs):
                 settings.tab_prog.pop(name_prog, None)
                 settings.tab_prog[name_prog] = new_prog
 
-                DG("despwan process for critical reasons")
                 for name in settings.tab_process:
 
                     if settings.tab_process[name].father == name_prog:
@@ -61,7 +59,6 @@ def manager(config, list_progs, server, old_list_progs):
 
             else:
 
-                DG("complete process")
                 if numprocs < new_prog.numprocs:
                     gap_num = numprocs
             
@@ -77,7 +74,6 @@ def manager(config, list_progs, server, old_list_progs):
                     or new_prog.stopsignal != old_prog.stopsignal or new_prog.stopwaitsecs != old_prog.stopwaitsecs \
                     or new_prog.numprocs != old_prog.numprocs:
 
-                    DG("change process conditions")
                     settings.tab_prog.pop(name_prog, None) 
                     settings.tab_prog[name_prog] = new_prog
  
@@ -89,13 +85,11 @@ def manager(config, list_progs, server, old_list_progs):
             if settings.tab_prog[name_prog].autostart == "true" \
                 and settings.tab_prog[name_prog].command:
 
-                DG("at launch")
                 while launch_num != numprocs:
                     if numprocs > 1:
                         name_process = name_prog[8:] + "_" + str(launch_num)
                     else:
                         name_process = name_prog[8:]
-                    DG("num retriess : " + str(settings.tab_prog[name_prog].startretries))
                     logging.info("Start %s", name_process)
                     launcher(settings.tab_prog[name_prog], name_process, name_prog, \
                         copy.copy(settings.tab_prog[name_prog].startretries))

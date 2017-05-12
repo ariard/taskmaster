@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/21 20:54:34 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 20:46:42 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/12 15:24:05 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,15 +24,11 @@ def getSignal(stopsignal):
         "USR2", signal.SIGUSR2] 
 
     a = 0
-    DG(stopsignal)
     for i in signals:
-        
         
         if a == 1:
             return i
         if stopsignal == i:
-
-            DG(i)
             a = 1
 
 def killer(pid, null):
@@ -47,8 +43,6 @@ def killer(pid, null):
         settings.tab_process[name].status = "STOPPED"
     father = settings.tab_process[name].father
     signal = getSignal(settings.tab_prog[father].stopsignal)
-    DG("killing process : " + name)
-    DG("pid : " + str(pid) + "vs process_pid: " + str(settings.tab_process[name].pid))
     settings.tab_process[name].status = "STOPPING"
     try:
         os.kill(pid, signal)

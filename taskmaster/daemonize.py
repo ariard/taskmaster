@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:34:11 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 19:46:05 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/12 15:19:38 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ def daemonize():
         fd = open('/dev/null')
         os.dup2(fd.fileno(), 0)
         os.dup2(fd.fileno(), 1)
-#        os.dup2(fd.fileno(), 2)
+        os.dup2(fd.fileno(), 2)
 
         # Reset umask and current directory
 

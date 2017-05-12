@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/06 23:56:10 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 19:43:10 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/12 15:20:46 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ class Server:
             error_msg("taskmasterd: Too much process asked, risk of stackoverflow, submit another config")
         signal.signal(signal.SIGCHLD, check_exit) 
 
-        DG("Server started and waiting for clients...")
 
     def start_manager(self, config, list_progs, old_list_progs):
        t = threading.Thread(target=manager, args=(config, list_progs, self, old_list_progs))

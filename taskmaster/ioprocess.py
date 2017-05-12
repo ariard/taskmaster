@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/04 20:47:59 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 22:47:12 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/12 15:25:25 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ def writen(fd, data):
 
 def ioprocess(process, clientsocket):
 
-    DG("begin of ioprocess with " + process.name_process)
     try:
         os.unlink("/tmp/.client_attach")
         os.unlink("/tmp/.server_attach")
@@ -43,7 +42,6 @@ def ioprocess(process, clientsocket):
     fd_client = os.open("/tmp/.client_attach", os.O_CREAT | os.O_RDONLY)
     fd_server = os.open("/tmp/.server_attach", os.O_CREAT | os.O_WRONLY)
     clientsocket.send("synchro".encode('utf-8'))
-    DG("proces pid is " + str(process.pid))
     in_process = process.process_fd[0] 
     out_process = process.process_fd[1] 
     err_process = process.process_fd[2] 
@@ -84,4 +82,3 @@ def ioprocess(process, clientsocket):
     settings.attach_process = 0
     os.close(fd_client)
     os.close(fd_server)
-    DG("end of ioprocess")

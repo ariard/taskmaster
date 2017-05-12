@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/08 15:53:31 by ariard            #+#    #+#              #
-#    Updated: 2017/05/11 20:21:46 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/12 15:21:14 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,7 @@ from taskmaster.task_error import *
 
 def dispatcher():
 
-    DG("launching dispatcher")
     while 1: 
-
 
         my_fds = list()
         for fd in settings.fds:
