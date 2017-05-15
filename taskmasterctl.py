@@ -6,7 +6,7 @@
 #    By: ataguiro <ataguiro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/19 23:52:12 by ataguiro          #+#    #+#              #
-#    Updated: 2017/05/10 20:20:07 by ariard           ###   ########.fr        #
+#    Updated: 2017/05/12 15:45:08 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ def exit_client(number, frame):
     sys.exit(0)
 
 def wait_answer(sc):
-    DG("waiting for answer")
     while True:
         try:
             reply = sc.recv(1024).decode('utf-8')
@@ -76,12 +75,10 @@ def wait_answer(sc):
             break
 
 def prompt(sc):
-    DG("Prompt good")
     while True: 
         try:
             line = input("\033[1;32mtaskmaster>\033[0m ")
             if (line_is_command(line)):
-                DG("command valid")
                 if "reload" in line:
                     sp = line.split()
                     if len(sp) == 2:
@@ -138,10 +135,8 @@ def launch(host, port):
         if "deconnecting" in answer:
             sys.exit(0)
 
-#def     main():
 
 if __name__ == '__main__':
-    DG_init(0) 
     try:
         path_config = os.path.abspath(sys.argv[1])
     except:
