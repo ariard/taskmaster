@@ -73,9 +73,10 @@ def prompt(sc):
                         sp[1] = os.path.abspath(sp[1])
                         line = sp[0] + " " + sp[1]
                 sc.send(line.encode('utf-8'))             
+                word = line.split(' ')[0]
                 if (line == 'exit'):
                     break
-                elif "attach" in line:
+                elif "attach" == word:
                     attach_mode(sc)
                 else:
                     try:

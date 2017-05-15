@@ -134,21 +134,24 @@ def services(clientsocket, addr, server):
 
         elif cmd_lst[0] == 'alert':
             start_manual_reporter(cmd_lst[1])
-            clientsocket.send("Mail sent !")
+            clientsocket.send(("Mail sent !").encode("utf-8"))
             clientsocket.send("\r".encode("utf-8"))
 
         elif cmd_lst[0] == 'attach':
-            if settings.tab_process[cmd_lst[1]].status == "RUNNING":
-                try:
-                    if settings.attach_process:
-                        raise IndexError
-                    settings.attach_process = cmd_lst[1]
-                    time.sleep(2)
-                    ioprocess(settings.tab_process[cmd_lst[1]], clientsocket)
-                except (IndexError,KeyError):
-                    clientsocket.send("detach".encode("utf-8"))
-            else:
-                clienstsocket.send("detach2".encode("utf-8"))
+            try:
+                if settings.tab_process[cmd_lst[1]].status == "RUNNING":
+                    try:
+                        if settings.attach_process:
+                            raise IndexError
+                        settings.attach_process = cmd_lst[1]
+                        time.sleep(2)
+                        ioprocess(settings.tab_process[cmd_lst[1]], clientsocket)
+                    except (IndexError,KeyError):
+                        clientsocket.send("detach".encode("utf-8"))
+                else:
+                    clienstsocket.send("detach2".encode("utf-8"))
+            except KeyError:
+                clientsocket.send3("detach".encode("utf-8"))  
 
         elif cmd_lst[0] == 'shutdown':
             for name in settings.tab_process:

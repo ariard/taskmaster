@@ -15,6 +15,7 @@ from taskmaster.task_error import *
 from taskmaster.serviter import num_threads
 
 if  __name__ == '__main__':
+    DG_init(0)
     if len(sys.argv) < 2:
         error_msg("usage : <config_file>")
     try:

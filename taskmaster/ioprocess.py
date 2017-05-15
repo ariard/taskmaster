@@ -3,6 +3,7 @@ import sys
 import pty
 import tty
 import time
+import fcntl
 from select import select
 
 import taskmaster.settings as settings
@@ -32,7 +33,9 @@ def ioprocess(process, clientsocket):
     clientsocket.send("synchro".encode('utf-8'))
     in_process = process.process_fd[0] 
     out_process = process.process_fd[1] 
+    fcntl.fcntl(out_process, fcntl.F_SETFL, os.O_NONBLOCK)
     err_process = process.process_fd[2] 
+    fcntl.fcntl(err_process, fcntl.F_SETFL, os.O_NONBLOCK)
     remove_tmp_fd(out_process, err_process)
     fileout = settings.fd2realfile[out_process]
     fileerr = settings.fd2realfile[err_process]
@@ -53,14 +56,20 @@ def ioprocess(process, clientsocket):
                 os.write(in_process, data.encode("utf-8") + "\n".encode("utf-8"))
 
         if out_process in rfds:
-            data = os.read(out_process, 1024)
+            try:
+                data = os.read(out_process, 1024)
+            except BlockingIOError:
+                pass
             if data:
                 data = data.decode("utf-8")
                 writen(fd_server, data.encode("utf-8"))
                 writen(tmp_fdout, data.encode("utf-8"))
 
         if err_process in rfds:
-            data = os.read(err_process, 1024)
+            try:
+                data = os.read(err_process, 1024)
+            except BlockingIOError:
+                pass
             if data:
                 data = data.decode("utf-8")
                 writen(fd_server, data.encode("utf-8"))

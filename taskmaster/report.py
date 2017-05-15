@@ -41,6 +41,9 @@ def manual_reporter(msg, null):
     msg['From'] = 'Taskmaster 42'
     msg['To'] = you
 
-    s = smtplib.SMTP('smtp.free.fr')
-    s.sendmail(me, you, msg.as_string())
-    s.quit()
+    try:
+        s = smtplib.SMTP('smtp.free.fr')
+        s.sendmail(me, you, msg.as_string())
+        s.quit()
+    except:
+        pass
