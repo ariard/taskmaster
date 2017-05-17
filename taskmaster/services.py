@@ -133,9 +133,14 @@ def services(clientsocket, addr, server):
             clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'alert':
-            start_manual_reporter(cmd_lst[1])
-            clientsocket.send(("Mail sent !").encode("utf-8"))
-            clientsocket.send("\r".encode("utf-8"))
+            try:
+                start_manual_reporter(cmd_lst[1])
+                clientsocket.send(("Mail sent !").encode("utf-8"))
+                clientsocket.send("\r".encode("utf-8"))
+            except IndexError:
+                clientsocket.send(("taskmasterd : need a message").encode("utf-8"))
+                clientsocket.send("\r".encode("utf-8"))
+                
 
         elif cmd_lst[0] == 'attach':
             try:
@@ -151,7 +156,7 @@ def services(clientsocket, addr, server):
                 else:
                     clienstsocket.send("detach2".encode("utf-8"))
             except KeyError:
-                clientsocket.send3("detach".encode("utf-8"))  
+                clientsocket.send("detach".encode("utf-8"))  
 
         elif cmd_lst[0] == 'shutdown':
             for name in settings.tab_process:

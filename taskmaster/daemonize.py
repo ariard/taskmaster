@@ -55,7 +55,7 @@ def daemonize():
         fd = open('/dev/null')
         os.dup2(fd.fileno(), 0)
         os.dup2(fd.fileno(), 1)
-#        os.dup2(fd.fileno(), 2)
+        os.dup2(fd.fileno(), 2)
 
         # Reset umask and current directory
 
