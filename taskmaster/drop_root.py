@@ -2,6 +2,8 @@ import os
 import pwd
 import grp
 
+import logging
+
 def drop_privileges():
     if os.getuid() == 0:
         running_uid = 1
@@ -12,4 +14,4 @@ def drop_privileges():
         os.setgid(running_gid)
         os.setuid(running_uid)
 
-        print('Privileges dropped !\nRunning with UID : ' + str(os.getuid()))
+        logging.info('[DROP ROOT] Running with UID : ' + str(os.getuid()))
