@@ -1,0 +1,8 @@
+[program:pwd]
+command=/bin/pwd
+stdout_logfile=/tmp/out_dir
+directory=/Users/ariard/Projects/
+
+[server]
+port=4242
+password=123
