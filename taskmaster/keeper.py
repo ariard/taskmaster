@@ -38,7 +38,6 @@ def keeper():
                 watcher_backoff(name)
                 clean_fd(name)
                 if exitcode not in program.exitcodes:
-                    DG("launch reporter")
                     start_reporter(name_prog)
                 if ((exitcode not in program.exitcodes and program.autorestart == "unexpected") \
                     or (program.autorestart == "true")) and settings.tab_process[name].status == "RUNNING":
