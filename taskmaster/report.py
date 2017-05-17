@@ -24,25 +24,25 @@ def reporter(name, null):
     msg['To'] = you
 
     try:
-        s = smtplib.SMTP('smtp.free.fr')
+        s = smtplib.SMTP('smtp.neuf.fr')
         s.sendmail(me, you, msg.as_string())
         s.quit()
     except:
         pass
 
-def manual_reporter(msg, null):
+def manual_reporter(name, null):
     me = 'taskmasterd@42.fr'
     you = "originadam@gmail.com"
 
     now = time.strftime("%c")
-    msg = MIMEText(str(now) + ".")  
+    msg = MIMEText(str(now) + " : " + str(name)  + ".")  
   
     msg['Subject'] = '[MANUAL ALERT]'
-    msg['From'] = 'Taskmaster 42'
+    msg['From'] = me
     msg['To'] = you
 
     try:
-        s = smtplib.SMTP('smtp.free.fr')
+        s = smtplib.SMTP('smtp.neuf.fr')
         s.sendmail(me, you, msg.as_string())
         s.quit()
     except:
