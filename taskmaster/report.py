@@ -4,6 +4,8 @@ import threading
 
 from email.mime.text import MIMEText
 
+from taskmaster.debug import *
+
 def start_reporter(name_prog):
     t = threading.Thread(target=reporter, args=(name_prog, None))
     t.start()
