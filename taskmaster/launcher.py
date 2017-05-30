@@ -77,6 +77,7 @@ def launcher(program, name_process, name_prog, retries):
         program.conf()
         try:
             args = program.command.split(' ')
+            DG(args[0])
             os.execv(args[0], args)
         except:
             sys.exit(-1)

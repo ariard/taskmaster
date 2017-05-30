@@ -22,6 +22,7 @@ def guardian(pid, null):
     for process in settings.tab_process:
         if pid == settings.tab_process[process].pid:
             settings.tab_process[process].status = "UNKNOWN"
+            name = settings.pid2name[pid]
             logging.info("Process %s in UNKOWN", name)
 
 def keeper():

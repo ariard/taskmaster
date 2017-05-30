@@ -15,8 +15,11 @@ def manager(config, list_progs, server, old_list_progs):
                     if settings.tab_process[process].father == name:
                         server.start_killer(settings.tab_process[process].pid)
 
+
     for name_prog in list_progs: 
 
+        DG("for name in new list")
+        DG(str(settings.tab_prog))
         if name_prog in settings.tab_prog:
             new_prog = Program(config, name_prog)
             old_prog = settings.tab_prog[name_prog]
@@ -28,6 +31,7 @@ def manager(config, list_progs, server, old_list_progs):
                 settings.tab_prog.pop(name_prog, None)
                 settings.tab_prog[name_prog] = new_prog
 
+                DG("check in tab_process")
                 for name in settings.tab_process:
 
                     if settings.tab_process[name].father == name_prog:
@@ -47,6 +51,7 @@ def manager(config, list_progs, server, old_list_progs):
 
             else:
 
+                DG("launch more if needed")
                 if numprocs < new_prog.numprocs:
                     gap_num = numprocs
             
@@ -71,6 +76,7 @@ def manager(config, list_progs, server, old_list_progs):
             numprocs = settings.tab_prog[name_prog].numprocs
             launch_num = 0
 
+            DG("at reload/reconfig")
             if settings.tab_prog[name_prog].autostart == "true" \
                 and settings.tab_prog[name_prog].command:
 
@@ -97,3 +103,6 @@ def manager(config, list_progs, server, old_list_progs):
                         settings.tab_prog[name_prog].startretries, name_prog, -1, -1, -1)
                     settings.tab_process[name_process] = process
                     launch_num += 1
+
+
+    DG(str(settings.tab_process))
