@@ -68,7 +68,6 @@ def launcher(program, name_process, name_prog, retries):
         settings.lst_pid.append(pid)
 
     if pid == 0:
-        DG("in launcher") 
         os.dup2(read_in, 0)
         os.dup2(write_out, sys.stdout.fileno())
         os.dup2(write_err, sys.stderr.fileno())
@@ -78,7 +77,6 @@ def launcher(program, name_process, name_prog, retries):
         program.conf()
         try:
             args = program.command.split(' ')
-            DG(args[0])
             os.execv(args[0], args)
         except:
             sys.exit(-1)

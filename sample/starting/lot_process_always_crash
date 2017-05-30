@@ -1,6 +1,6 @@
 [program:bufferoverflow]
 command=/Users/ariard/Projects/taskmaster/bin/crash3
-numprocs=100
+numprocs=199
 autostart=true
 autorestart=true
 exitcodes=0

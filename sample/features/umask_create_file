@@ -1,7 +1,12 @@
-[program:touch]
-command=/usr/bin/touch hello_file
-directory=/tmp/
-umask=0777
+[program:touch1]
+command=/usr/bin/touch iam_rw_all
+directory=/Users/ariard
+umask=000
+
+[program:touch2]
+command=/usr/bin/touch iam_r_all
+directory=/Users/ariard
+umask=222
 
 [server]
 port=4242

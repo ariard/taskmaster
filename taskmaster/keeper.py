@@ -34,13 +34,11 @@ def keeper():
                 exitcode = settings.queue_pid[1]
                 name_prog = settings.tab_process[name].father
                 program = settings.tab_prog[name_prog]
-                DG(settings.tab_process[name].status)
                 watcher(name)
                 watcher_backoff(name)
-                DG(settings.tab_process[name].status)
                 clean_fd(name)
-                if exitcode not in program.exitcodes:
-                    start_reporter(name_prog)  
+#                if exitcode not in program.exitcodes:
+#                    reporter(name_prog, None)  
                 if ((str(exitcode) not in program.exitcodes and program.autorestart == "unexpected") \
                     or (program.autorestart == "true")) and settings.tab_process[name].status == "RUNNING":
                     logging.info("Autorestart %s with status %s", name, program.autorestart)

@@ -73,7 +73,7 @@ class Program:
 
         if self.umask:
             try:
-                os.umask(int(self.umask))
+                value = os.umask(int(self.umask, 8))
             except:
                 sys.exit(1)
         

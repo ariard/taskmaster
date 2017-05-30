@@ -71,7 +71,6 @@ def manager(config, list_progs, server, old_list_progs):
             numprocs = settings.tab_prog[name_prog].numprocs
             launch_num = 0
 
-            DG(settings.tab_prog[name_prog].autostart)
             if settings.tab_prog[name_prog].autostart == "true" \
                 and settings.tab_prog[name_prog].command:
 

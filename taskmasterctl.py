@@ -108,6 +108,7 @@ def launch(host, port):
         sys.stderr.write("taskmasterctl : Unexpected reset connection by server")
         sys.exit(1)
     welcome(cnum)
+    i = 3
     while True:
         try:
             psswd = getpass.getpass()
@@ -115,14 +116,18 @@ def launch(host, port):
                 psswd = "\r\n"
             sc.send(psswd.encode('utf-8'))
             answer = sc.recv(1024).decode('utf-8')
+            if answer == "valid":
+                prompt(sc)
+                sys.exit(0)
+            print(answer)
+            if "deconnecting" in answer:
+                sys.exit(-1)
         except EOFError:
+            i -= 1
+            if i == 0:
+                print("Too many false submits, deconnecting")
+                sys.exit(-1)
             pass
-        if answer == "valid":
-            prompt(sc)
-            sys.exit(0)
-        print(answer)
-        if "deconnecting" in answer:
-            sys.exit(0)
 
 
 if __name__ == '__main__':
