@@ -75,7 +75,6 @@ def manager(config, list_progs, server, old_list_progs):
             if settings.tab_prog[name_prog].autostart == "true" \
                 and settings.tab_prog[name_prog].command:
 
-                DG("in launch")
                 while launch_num != numprocs:
                     if numprocs > 1:
                         name_process = name_prog[8:] + "_" + str(launch_num)

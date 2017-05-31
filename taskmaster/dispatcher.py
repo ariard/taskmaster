@@ -31,20 +31,26 @@ def dispatcher():
 
         for fd in my_fds:
             if fd in rfds:
-                data = os.read(fd, 1024) 
-                if data:
-                    filename = settings.fd2realfile[fd]
-                    tmp_fd = os.open(filename, os.O_CREAT | os.O_WRONLY | os.O_APPEND)
-                    os.write(tmp_fd, data)
-                    os.close(tmp_fd)
-                if not data:
-                    if fd in settings.queue_old_fd:
+                try:
+                    data = os.read(fd, 1024) 
+                    if data:
+                        filename = settings.fd2realfile[fd]
                         try:
-                            i = settings.fds.index(fd)
-                            settings.fds.pop(i)
-                            i = settings.queue_old_fd.index(fd)
-                            settings.queue_old_fd.pop(i)
-                            os.close(fd)
-                        except OSError:
-                            pass 
+                            tmp_fd = os.open(filename, os.O_CREAT | os.O_WRONLY | os.O_APPEND)
+                            os.write(tmp_fd, data)
+                            os.close(tmp_fd)
+                        except IsADirectoryError:
+                            pass
+                    if not data:
+                        if fd in settings.queue_old_fd:
+                            try:
+                                i = settings.fds.index(fd)
+                                settings.fds.pop(i)
+                                i = settings.queue_old_fd.index(fd)
+                                settings.queue_old_fd.pop(i)
+                                os.close(fd)
+                            except OSError:
+                                pass 
+                except BlockingIOError:
+                    pass
         time.sleep(1)

@@ -1,6 +1,7 @@
 [program:ls]
 command=/bin/ls -l
-autostart=true
+autorestart=wefweofijfwejoi
+exitcodes=1
 
 [server]
 port=4242

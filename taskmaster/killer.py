@@ -3,6 +3,7 @@ import signal
 import time
 
 from taskmaster.task_signal import *
+from taskmaster.debug import *
 
 import taskmaster.settings as settings
 
@@ -15,7 +16,7 @@ def getSignal(stopsignal):
     for i in signals:
         
         if a == 1:
-            return i
+            return int(i)
         if stopsignal == i:
             a = 1
 
@@ -30,10 +31,10 @@ def killer(pid, null):
     if settings.tab_process[name].status == "STOPPING":
         settings.tab_process[name].status = "STOPPED"
     father = settings.tab_process[name].father
-    signal = getSignal(settings.tab_prog[father].stopsignal)
+    custom_signal = getSignal(settings.tab_prog[father].stopsignal)
     settings.tab_process[name].status = "STOPPING"
     try:
-        os.kill(pid, signal)
+        os.kill(int(pid), custom_signal)
     except ProcessLookupError:
         return 1
     time.sleep(settings.tab_prog[father].stopwaitsecs)

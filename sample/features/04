@@ -1,7 +1,6 @@
 [program:pwd]
 command=/bin/pwd
-stdout_logfile=/tmp/out_dir
-directory=/Users/ariard/Projects/
+autostart=true
 
 [server]
 port=4242

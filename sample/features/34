@@ -1,7 +1,7 @@
 [program:bash]
 command=/bin/bash
-stopsignal=KILL
+directory=/Users/bocal/Downloads
 
 [server]
-port=4246
+port=4242
 password=123

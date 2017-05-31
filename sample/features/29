@@ -1,7 +1,7 @@
 [program:ls]
 command=/bin/ls -l
-numprocs=100
+stdout_logfile=/dev/null
 
 [server]
-port=4246
+port=4242
 password=123

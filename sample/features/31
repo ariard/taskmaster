@@ -1,6 +1,6 @@
 [program:ls]
 command=/bin/cat efwfwewef
-stdout=/Users/bocal/Downloads/
+stderr_logfile=/tmp/error_cat
 
 [server]
 port=4242

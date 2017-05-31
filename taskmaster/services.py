@@ -99,14 +99,8 @@ def services(clientsocket, addr, server):
             clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'status':
-            DG("status")
-            DG(str(settings.tab_process))
-            DG("before cleaner")
             cleaner(server.list_progs)
-            DG(str(server.list_progs))
-            DG(str(settings.tab_process))
             tab = getStatus(server.list_progs)
-            DG(str(tab))
             for line in tab:
                 clientsocket.send(line.encode("utf-8"))
             clientsocket.send(("\r").encode("utf-8"))
