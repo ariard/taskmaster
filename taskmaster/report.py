@@ -4,6 +4,8 @@ import threading
 
 from email.mime.text import MIMEText
 
+import taskmaster.settings as settings
+
 from taskmaster.debug import *
 
 def start_reporter(name_prog):
@@ -15,6 +17,8 @@ def start_manual_reporter(name_prog):
     t.start()
 
 def reporter(name, null):
+    if settings.opt != 1:
+        return 
     me = 'taskmaster@42.fr'
     you = 'ataguiro@student.42.fr'
 
@@ -33,6 +37,8 @@ def reporter(name, null):
         pass
 
 def manual_reporter(name, null):
+    if settings.opt != 1:
+        return 
     me = 'taskmasterd@42.fr'
     you = "originadam@gmail.com"
 

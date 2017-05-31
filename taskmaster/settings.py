@@ -11,6 +11,7 @@ def init():
     global process2fd
     global attach_process
     global queue_old_fd
+    global opt
 
     tab_prog = dict()
     tab_process = dict()
@@ -23,3 +24,4 @@ def init():
     fd2realfile = dict()
     attach_process = 0
     queue_old_fd = list()
+    opt = 0

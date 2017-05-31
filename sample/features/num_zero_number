@@ -3,5 +3,5 @@ command=/bin/ls -l
 numprocs=0
 
 [server]
-port=4246
+port=4242
 password=123

@@ -18,6 +18,10 @@ if  __name__ == '__main__':
     DG_init(0)
     if len(sys.argv) < 2:
         error_msg("usage : <config_file>")
+    if len(sys.argv) > 2 and sys.argv[2] == "-m":
+        settings.opt = 1
+    else:
+        settings.opt = 0
     try:
         path_config = os.path.abspath(sys.argv[1])
     except FileNotFoundError:

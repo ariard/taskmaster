@@ -42,6 +42,8 @@ def services(clientsocket, addr, server):
                         logging.info("Start %s", cmd)
                         start_protected_launcher(settings.tab_prog[program], cmd, program, settings.tab_prog[program].startretries) 
                         clientsocket.send(("taskmasterd: Process "+ cmd + " is starting\n").encode("utf-8"))
+                    else:
+                        clientsocket.send(("taskmasterd: Process "+ cmd +" always running\n").encode("utf-8"))
                 except KeyError:
                     clientsocket.send(("taskmasterd: No such program " + cmd).encode("utf-8"))
             clientsocket.send(("\r").encode("utf-8"))
@@ -139,7 +141,7 @@ def services(clientsocket, addr, server):
                     clientsocket.send(line.encode("utf-8"))
                 f.close()
             except FileNotFoundError:
-                clientsocket.send("taskmasterd: No logging file") 
+                clientsocket.send(("taskmasterd: No logging file").encode("utf-8"))
             clientsocket.send(("\r").encode("utf-8"))
 
         elif cmd_lst[0] == 'alert':

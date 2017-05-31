@@ -1,6 +1,6 @@
 [program:freestack]
 command=/Users/ariard/Projects/taskmaster/bin/crash1
-numprocs=100
+numprocs=10
 autostart=true
 autorestart=false
 exitcodes=0

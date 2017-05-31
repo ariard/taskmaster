@@ -39,7 +39,7 @@ def keeper():
                 watcher_backoff(name)
                 clean_fd(name)
 #                if exitcode not in program.exitcodes:
-#                    reporter(name_prog, None)  
+ #                   reporter(name_prog, None)  
                 if ((str(exitcode) not in program.exitcodes and program.autorestart == "unexpected") \
                     or (program.autorestart == "true")) and settings.tab_process[name].status == "RUNNING":
                     logging.info("Autorestart %s with status %s", name, program.autorestart)

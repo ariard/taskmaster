@@ -2,5 +2,5 @@
 command= 
 
 [server]
-port=4246
+port=4242
 password=123
