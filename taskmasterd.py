@@ -16,6 +16,7 @@ from taskmaster.serviter import num_threads
 
 if  __name__ == '__main__':
     DG_init(0)
+    settings.init()
     if len(sys.argv) < 2:
         error_msg("usage : <config_file>")
     if len(sys.argv) > 2 and sys.argv[2] == "-m":
@@ -29,7 +30,6 @@ if  __name__ == '__main__':
     daemonize()
     logging.basicConfig(format='%(asctime)s , %(levelname)s : %(message)s', \
         filename='/tmp/.taskmasterdlog', level=logging.INFO)
-    settings.init()
     server = Server(path_config)
     server.start_keeper()
     server.start_dispatcher()

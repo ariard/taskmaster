@@ -17,6 +17,7 @@ def start_manual_reporter(name_prog):
     t.start()
 
 def reporter(name, null):
+    DG(str(settings.opt))
     if settings.opt != 1:
         return 
     me = 'taskmaster@42.fr'
