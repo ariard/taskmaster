@@ -23,8 +23,7 @@ def manager(config, list_progs, server, old_list_progs):
             old_prog = settings.tab_prog[name_prog]
             numprocs = settings.tab_prog[name_prog].numprocs
             if new_prog.stdout != old_prog.stdout or new_prog.stderr != old_prog.stderr \
-                or new_prog.env != old_prog.env or old_prog.env == None or new_prog.dir != old_prog.dir \
-                or old_prog.dir == None or old_prog.umask == None \
+                or new_prog.env != old_prog.env or new_prog.dir != old_prog.dir \
                 or new_prog.umask != old_prog.umask or new_prog.command != old_prog.command:
                 settings.tab_prog.pop(name_prog, None)
                 settings.tab_prog[name_prog] = new_prog
@@ -36,6 +35,7 @@ def manager(config, list_progs, server, old_list_progs):
 
                 if new_prog.autostart == "true":
 
+                    numprocs = settings.tab_prog[name_prog].new_prog
                     while numprocs > 0:
                         if settings.tab_prog[name_prog].numprocs > 1:
                             name_process = name_prog[8:] + "_" + str(numprocs)

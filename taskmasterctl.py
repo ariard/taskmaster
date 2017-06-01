@@ -114,7 +114,11 @@ def launch(host, port):
             psswd = getpass.getpass()
             if len(psswd) == 0:
                 psswd = "\r\n"
-            sc.send(psswd.encode('utf-8'))
+            try:
+                sc.send(psswd.encode('utf-8'))
+            except BrokenPipeError:
+                print("Broken connection, exiting")
+                sys.exit(1)
             answer = sc.recv(1024).decode('utf-8')
             if answer == "valid":
                 prompt(sc)
